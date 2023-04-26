@@ -14,14 +14,40 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/explorer.svg
-  SvgGenImage get explorer => const SvgGenImage('assets/icons/explorer.svg');
+  /// File path: assets/icons/add_new.svg
+  SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
+
+  /// File path: assets/icons/explore.svg
+  SvgGenImage get explore => const SvgGenImage('assets/icons/explore.svg');
+
+  /// File path: assets/icons/explore_selected.svg
+  SvgGenImage get exploreSelected =>
+      const SvgGenImage('assets/icons/explore_selected.svg');
 
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
+  /// File path: assets/icons/home_selected.svg
+  SvgGenImage get homeSelected =>
+      const SvgGenImage('assets/icons/home_selected.svg');
+
+  /// File path: assets/icons/notify.svg
+  SvgGenImage get notify => const SvgGenImage('assets/icons/notify.svg');
+
+  /// File path: assets/icons/notify_selected.svg
+  SvgGenImage get notifySelected =>
+      const SvgGenImage('assets/icons/notify_selected.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [explorer, home];
+  List<SvgGenImage> get values => [
+        addNew,
+        explore,
+        exploreSelected,
+        home,
+        homeSelected,
+        notify,
+        notifySelected
+      ];
 }
 
 class Assets {
