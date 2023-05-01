@@ -25,7 +25,7 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar:Container(
         height: 60,
         width: double.infinity,
-        color: MyColors.bottomNavigationBar,
+        color: AppConstantColor.lightThemeBottomNavColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -35,8 +35,8 @@ class _MainScreenState extends State<MainScreen> {
                     ? Assets.icons.homeSelected.svg()
                     : Assets.icons.home.svg()),
             IconButton(
-                onPressed: (() => setState(() => selectedIndex = BottomNavIndex.explorIndex)),
-                icon: selectedIndex == BottomNavIndex.explorIndex
+                onPressed: (() => setState(() => selectedIndex = BottomNavIndex.exploreIndex)),
+                icon: selectedIndex == BottomNavIndex.exploreIndex
                     ? Assets.icons.exploreSelected.svg()
                     : Assets.icons.explore.svg()),
             IconButton(
@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
 class BottomNavIndex{
   BottomNavIndex._();
   static const int homeIndex = 0;
-  static const int explorIndex = 1;
+  static const int exploreIndex = 1;
   static const int notifyIndex = 2;
   static const int userProfileIndex = 3;
 }
