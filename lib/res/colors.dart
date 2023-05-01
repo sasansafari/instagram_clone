@@ -1,7 +1,3 @@
-
-
-import 'dart:ui';
-
 import 'package:flutter/widgets.dart';
 
 abstract class AppConstantColor {
@@ -51,4 +47,17 @@ abstract class AppConstantColor {
   static const Color buttonBackgroundColor = Color(0xff3797EF);
   static const Color buttonForegroundColor = Color(0xffFFFFFF);
   static const Color textButtonColor = Color(0xff3797EF);
+}
+
+abstract class AppConstantGradient {
+  static const List<Color> liveWidgetColorGradient = [
+    Color(0xffC90083),
+    Color(0xffD22463),
+    Color(0xffE10038),
+  ];
+  static const List<Color> notViewedStoryBorderGradient = [
+    Color(0xffFBAA47),
+    Color(0xffD91A46),
+    Color(0xffA60F93)
+  ];
 }
