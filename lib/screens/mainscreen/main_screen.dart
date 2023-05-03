@@ -17,24 +17,32 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
+  int selectedIndex = 0;
 
   final GlobalKey<NavigatorState> _homeScreenKey  = GlobalKey();
   final GlobalKey<NavigatorState> _explorScreenKey  = GlobalKey();
   final GlobalKey<NavigatorState> _notifiyScreenKey  = GlobalKey();
   final GlobalKey<NavigatorState> _profileScreenKey  = GlobalKey();
 
-  Future<bool> _onWillPop() async{
-    
-    if (_homeScreenKey.currentState!.canPop()) {
-      _homeScreenKey.currentState!.pop();
-    } 
+  late final map ={
+    BottomNavIndex.homeIndex:_homeScreenKey,
+    BottomNavIndex.explorIndex:_explorScreenKey,
+    BottomNavIndex.notifyIndex:_notifiyScreenKey,
+    BottomNavIndex.userProfileIndex:_profileScreenKey,
+  };
 
+
+  Future<bool> _onWillPop() async{
+   
+    if (map[selectedIndex]!.currentState!.canPop()) {
+      map[selectedIndex]!.currentState!.pop();
+    } 
+ 
     log("back");  
     return false;
   }
 
-  int selectedIndex = 0;
+ 
   @override
   Widget build(BuildContext context) {
     return  WillPopScope(
@@ -61,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
                     Navigator(
                       key: _explorScreenKey,
                       onGenerateRoute: (settings) => MaterialPageRoute(
-                          builder: (context) => const ExploreScreen()),
+                          builder: (context) =>   ExploreScreen()),
                     ),
               
                     Navigator(
