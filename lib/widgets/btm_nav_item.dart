@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class BtmNavItem extends StatelessWidget {
+class BtmNavItem extends StatefulWidget {
   void Function() onTap;
   var active;
   var inActive;
@@ -16,11 +16,16 @@ class BtmNavItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<BtmNavItem> createState() => _BtmNavItemState();
+}
+
+class _BtmNavItemState extends State<BtmNavItem> {
+  @override
   Widget build(BuildContext context) {
     return IconButton(
-              onPressed: onTap,
-              icon:isSelected
-                  ? active
-                  : inActive);
+              onPressed: widget.onTap,
+              icon:widget.isSelected
+                  ? widget.active
+                  : widget.inActive);
   }
 }

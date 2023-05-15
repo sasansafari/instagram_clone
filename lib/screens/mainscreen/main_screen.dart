@@ -107,12 +107,12 @@ class _MainScreenState extends State<MainScreen> {
         children: [
 
           BtmNavItem(
-              onTap: btmNavOnPresses(bottomNavIndex: BottomNavIndex.homeIndex),
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.homeIndex),
               active: Assets.icons.homeSelected.svg(),
               inActive: Assets.icons.home.svg(),
               isSelected: selectedIndex == BottomNavIndex.homeIndex),
           BtmNavItem(
-              onTap: btmNavOnPresses(bottomNavIndex: BottomNavIndex.explorIndex),
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.explorIndex),
               active: Assets.icons.exploreSelected.svg(),
               inActive: Assets.icons.explore.svg(),
               isSelected: selectedIndex == BottomNavIndex.explorIndex),
@@ -122,13 +122,13 @@ class _MainScreenState extends State<MainScreen> {
               icon: Assets.icons.addNew.svg()),
 
           BtmNavItem(
-              onTap: btmNavOnPresses(bottomNavIndex: BottomNavIndex.notifyIndex),
+              onTap: ()=>btmNavOnPresses(bottomNavIndex: BottomNavIndex.notifyIndex),
               active: Assets.icons.notifySelected.svg(),
               inActive: Assets.icons.notify.svg(),
               isSelected: selectedIndex == BottomNavIndex.notifyIndex),
 
           BtmNavItem(
-              onTap: btmNavOnPresses(bottomNavIndex: BottomNavIndex.userProfileIndex),
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.userProfileIndex),
               active:const Icon(Icons.verified_user_sharp),
               inActive: const Icon(Icons.verified_user_outlined),
               isSelected: selectedIndex == BottomNavIndex.userProfileIndex),
@@ -141,9 +141,13 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   btmNavOnPresses({required bottomNavIndex }){
-                _backFollowing.remove(selectedIndex);
-                _backFollowing.add(selectedIndex);
-                setState(() => selectedIndex = bottomNavIndex);
+       _backFollowing.remove(selectedIndex);
+
+       if (_backFollowing.last!=selectedIndex) {
+         _backFollowing.add(selectedIndex);
+       }
+
+       setState(() => selectedIndex = bottomNavIndex);
   }
 
 }
