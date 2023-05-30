@@ -1,35 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/res/constant/colors.dart';
+import 'package:tec/res/constant/dimens.dart';
+import 'package:tec/res/constant/my_strings.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var textTheme = Theme.of(context).textTheme;
+    var size = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
         body: Center(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               ItemOval(
-                width: 96,
-                height: 96,
-                sizeInner: 86,
-                sizeOuter: 96,
+                width: MyDimens.num96,
+                height: MyDimens.num96,
+                sizeInner: MyDimens.num86,
+                sizeOuter: MyDimens.num96,
                 image: Assets.images.imgMe.provider(),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Text('54',),
-                  Text(
-                    'Posts',
-                    style: TextStyle(),
-                  ),
-                ],
-              ),
+              ColumnTextProfile(
+                  textChangeable: '54',
+                  text: MyStrings.postsUserProfile,
+                  textTheme: textTheme),
+              ColumnTextProfile(
+                  textChangeable: '834',
+                  text: MyStrings.followersUserProfile,
+                  textTheme: textTheme),
+              ColumnTextProfile(
+                  textChangeable: '162',
+                  text: MyStrings.followingUserProfile,
+                  textTheme: textTheme),
             ],
           ),
         ),
@@ -37,7 +45,38 @@ class UserProfileScreen extends StatelessWidget {
     );
   }
 }
+//Custom Widget - Text Info Profile post-followers-following
+class ColumnTextProfile extends StatelessWidget {
+  const ColumnTextProfile({
+    Key? key,
+    required this.textTheme,
+    required this.textChangeable,
+    required this.text,
+  }) : super(key: key);
 
+  final TextTheme textTheme;
+  final String textChangeable;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          textChangeable,
+          style: textTheme.displayLarge,
+        ),
+        Text(
+          text,
+          style: textTheme.displaySmall,
+        ),
+      ],
+    );
+  }
+}
+
+//Custom widget - Items Oval profile page highlight
 class ItemOval extends StatelessWidget {
   final double width;
   final double height;

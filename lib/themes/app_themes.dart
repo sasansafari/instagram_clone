@@ -1,13 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/res/constant/colors.dart';
 import 'package:tec/res/constant/dimens.dart';
 
-
-
-
 class AppThemes {
-  static ThemeData lightTheme = ThemeData(
+  static ThemeData myAppThemes = ThemeData(
     textTheme: const TextTheme(
       displayLarge: TextStyle(
           fontFamily: 'dana',
