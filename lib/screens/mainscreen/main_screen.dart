@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/route/names.dart';
@@ -6,6 +9,7 @@ import 'package:tec/screens/mainscreen/explore_screen.dart';
 import 'package:tec/screens/mainscreen/home_screen.dart';
 import 'package:tec/screens/mainscreen/notrifications_screen.dart';
 import 'package:tec/screens/mainscreen/user_profile_screen.dart';
+import 'package:tec/widgets/btm_nav_item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -15,38 +19,20 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int selectedIndex = 0;
-  List navigatorHistory = [0];
-  
-
-  final GlobalKey<NavigatorState> _homeScreenKey = GlobalKey();
-  final GlobalKey<NavigatorState> _explorScreenKey = GlobalKey();
-  final GlobalKey<NavigatorState> _notifiyScreenKey = GlobalKey();
-  final GlobalKey<NavigatorState> _profileScreenKey = GlobalKey();
-
-  late final getNavigationKey = {
-    BottomNavIndex.homeIndex: _homeScreenKey,
-    BottomNavIndex.explorIndex: _explorScreenKey,
-    BottomNavIndex.notifyIndex: _notifiyScreenKey,
-    BottomNavIndex.userProfileIndex: _profileScreenKey,
-  };
 
 
+  final GlobalKey<NavigatorState> _homeScreenKey  = GlobalKey();
+  final GlobalKey<NavigatorState> _explorScreenKey  = GlobalKey();
+  final GlobalKey<NavigatorState> _notifiyScreenKey  = GlobalKey();
+  final GlobalKey<NavigatorState> _profileScreenKey  = GlobalKey();
 
-  Future<bool> _onWillPop() async {
-    if (getNavigationKey[selectedIndex]!.currentState!.canPop()) {
-      getNavigationKey[selectedIndex]!.currentState!.pop();
-    } else if (navigatorHistory.length > 1) {
-      navigatorHistory.remove(navigatorHistory.last);
-      setState(() {
-        selectedIndex = navigatorHistory.last;
-      });
-    } else if (navigatorHistory.length == 1) {
-      setState(() {
-        selectedIndex = navigatorHistory.first;
-      });
-    } else
-      print("exit App");
+  Future<bool> _onWillPop() async{
+    
+    if (_homeScreenKey.currentState!.canPop()) {
+      _homeScreenKey.currentState!.pop();
+    } 
+
+    log("back");  
     return false;
   }
 
@@ -74,7 +60,7 @@ class _MainScreenState extends State<MainScreen> {
                     Navigator(
                       key: _explorScreenKey,
                       onGenerateRoute: (settings) => MaterialPageRoute(
-                          builder: (context) => const ExploreScreen()),
+                          builder: (context) => ExploreScreen()),
                     ),
                     Navigator(
                       key: _notifiyScreenKey,
@@ -105,42 +91,38 @@ class _MainScreenState extends State<MainScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+
+          BtmNavItem(
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.homeIndex),
+              active: Assets.icons.homeSelected.svg(),
+              inActive: Assets.icons.home.svg(),
+              isSelected: selectedIndex == BottomNavIndex.homeIndex),
+          BtmNavItem(
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.explorIndex),
+              active: Assets.icons.exploreSelected.svg(),
+              inActive: Assets.icons.explore.svg(),
+              isSelected: selectedIndex == BottomNavIndex.explorIndex),
+
           IconButton(
-              onPressed: (() => setState(() {
-                    selectedIndex = BottomNavIndex.homeIndex;
-                    navigatorHistory.add(selectedIndex);
-                    print(navigatorHistory);
-                  })),
+              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.homeIndex)),
               icon: selectedIndex == BottomNavIndex.homeIndex
                   ? Assets.icons.homeSelected.svg()
                   : Assets.icons.home.svg()),
           IconButton(
-              onPressed: (() => setState(() {
-                    selectedIndex = BottomNavIndex.explorIndex;
-                    navigatorHistory.add(selectedIndex);
-                    print(navigatorHistory);
-                  })),
+              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.explorIndex)),
               icon: selectedIndex == BottomNavIndex.explorIndex
                   ? Assets.icons.exploreSelected.svg()
                   : Assets.icons.explore.svg()),
           IconButton(
-              onPressed: () => Navigator.pushNamed(context, Screens.addNew),
+              onPressed:()=>Navigator.pushNamed(context,Screens.addNew ),
               icon: Assets.icons.addNew.svg()),
           IconButton(
-              onPressed: (() => setState(() {
-                    selectedIndex = BottomNavIndex.notifyIndex;
-                    navigatorHistory.add(selectedIndex);
-                    print(navigatorHistory);
-                  })),
+              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.notifyIndex)),
               icon: selectedIndex == BottomNavIndex.notifyIndex
                   ? Assets.icons.notifySelected.svg()
                   : Assets.icons.notify.svg()),
           IconButton(
-              onPressed: (() => setState(() {
-                    selectedIndex = BottomNavIndex.userProfileIndex;
-                    navigatorHistory.add(selectedIndex);
-                    print(navigatorHistory);
-                  })),
+              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.userProfileIndex)),
               icon: selectedIndex == BottomNavIndex.userProfileIndex
                   ? const Icon(Icons.verified_user_sharp)
                   : const Icon(Icons.verified_user_outlined)),
@@ -148,6 +130,17 @@ class _MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
+  btmNavOnPresses({required bottomNavIndex }){
+       _backFollowing.remove(selectedIndex);
+
+       if (_backFollowing.last!=selectedIndex) {
+         _backFollowing.add(selectedIndex);
+       }
+
+       setState(() => selectedIndex = bottomNavIndex);
+  }
+
 }
 
 class BottomNavIndex {
