@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/res/constant/colors.dart';
@@ -10,41 +11,109 @@ class UserProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
-    var size = MediaQuery.of(context).size;
+    var sizeMediaQuery = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
         body: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ItemOval(
-                width: MyDimens.num96,
-                height: MyDimens.num96,
-                sizeInner: MyDimens.num86,
-                sizeOuter: MyDimens.num96,
-                image: Assets.images.imgMe.provider(),
-              ),
-              ColumnTextProfile(
-                  textChangeable: '54',
-                  text: MyStrings.postsUserProfile,
-                  textTheme: textTheme),
-              ColumnTextProfile(
-                  textChangeable: '834',
-                  text: MyStrings.followersUserProfile,
-                  textTheme: textTheme),
-              ColumnTextProfile(
-                  textChangeable: '162',
-                  text: MyStrings.followingUserProfile,
-                  textTheme: textTheme),
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: sizeMediaQuery.width / MyDimens.num16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ItemOval(
+                      width: MyDimens.num96,
+                      height: MyDimens.num96,
+                      sizeInner: MyDimens.num86,
+                      sizeOuter: MyDimens.num96,
+                      image: Assets.images.imgMe.provider(),
+                    ),
+                    ColumnTextProfile(
+                        textChangeable: '54',
+                        text: MyStrings.postsUserProfile,
+                        textTheme: textTheme),
+                    ColumnTextProfile(
+                        textChangeable: '834',
+                        text: MyStrings.followersUserProfile,
+                        textTheme: textTheme),
+                    ColumnTextProfile(
+                        textChangeable: '162',
+                        text: MyStrings.followingUserProfile,
+                        textTheme: textTheme),
+                  ],
+                ),
+                const SizedBox(height: MyDimens.num12),
+                BioUserProfile(
+                    mainText: "acob west",
+                    secondText: 'Digital goodies designer ',
+                    clickableText: '@pixsellz',
+                    thirdText: "Everything is designed",
+                    textTheme: textTheme),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+
+//custom widget - Bio User Profile - Under the profile picture
+class BioUserProfile extends StatelessWidget {
+  const BioUserProfile({
+    Key? key,
+    required this.textTheme,
+    required this.mainText,
+    required this.secondText,
+    required this.clickableText,
+    required this.thirdText,
+  }) : super(key: key);
+
+  final TextTheme textTheme;
+  final String mainText;
+  final String secondText;
+  final String clickableText;
+  final String thirdText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          mainText,
+          style: textTheme.displayMedium,
+        ),
+        RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: secondText,
+                style: textTheme.displaySmall,
+              ),
+              TextSpan(
+                text: clickableText,
+                style: textTheme.labelMedium,
+                recognizer: TapGestureRecognizer()..onTap = () {},
+              ),
+            ],
+          ),
+        ),
+        Text(
+          thirdText,
+          style: textTheme.displaySmall,
+        ),
+      ],
+    );
+  }
+}
+
 //Custom Widget - Text Info Profile post-followers-following
 class ColumnTextProfile extends StatelessWidget {
   const ColumnTextProfile({
