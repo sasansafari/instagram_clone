@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/res/colors.dart';
+import 'package:tec/res/constant/colors.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
         body: Center(
-          child: Center(
-            child: ItemOval(
-              width: 96,
-              height: 96,
-              sizeInner: 86,
-              sizeOuter: 96,
-              image: Assets.images.imgMe.provider(),
-            ),
+          child: Row(
+            children: [
+              ItemOval(
+                width: 96,
+                height: 96,
+                sizeInner: 86,
+                sizeOuter: 96,
+                image: Assets.images.imgMe.provider(),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('54',),
+                  Text(
+                    'Posts',
+                    style: TextStyle(),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -33,7 +45,7 @@ class ItemOval extends StatelessWidget {
   final double sizeOuter;
   final ImageProvider<Object> image;
 
-    ItemOval({
+  ItemOval({
     Key? key,
     required this.width,
     required this.height,

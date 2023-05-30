@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/res/colors.dart';
+import 'package:tec/res/constant/colors.dart';
 import 'package:tec/route/names.dart';
 import 'package:tec/screens/mainscreen/explore_screen.dart';
 import 'package:tec/screens/mainscreen/home_screen.dart';
