@@ -16,49 +16,89 @@ class UserProfileScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
-        body: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: sizeMediaQuery.width / MyDimens.num16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ItemOval(
-                      width: MyDimens.num96,
-                      height: MyDimens.num96,
-                      sizeInner: MyDimens.num86,
-                      sizeOuter: MyDimens.num96,
-                      image: Assets.images.imgMe.provider(),
-                    ),
-                    ColumnTextProfile(
-                        textChangeable: '54',
-                        text: MyStrings.postsUserProfile,
-                        textTheme: textTheme),
-                    ColumnTextProfile(
-                        textChangeable: '834',
-                        text: MyStrings.followersUserProfile,
-                        textTheme: textTheme),
-                    ColumnTextProfile(
-                        textChangeable: '162',
-                        text: MyStrings.followingUserProfile,
-                        textTheme: textTheme),
-                  ],
+        body: NestedScrollView(
+          headerSliverBuilder: (context, isScrolled) {
+            return [
+              const SliverAppBar(
+                backgroundColor: Colors.red,
+                pinned: true,
+                actions: [
+                  Icon(Icons.menu),
+                ],
+                flexibleSpace: FlexibleSpaceBar(),
+              ),
+              SliverToBoxAdapter(
+                child: GetHeaderProfile(
+                  sizeMediaQuery: sizeMediaQuery,
+                  textTheme: textTheme,
                 ),
-                const SizedBox(height: MyDimens.num12),
-                BioUserProfile(
-                    mainText: "acob west",
-                    secondText: 'Digital goodies designer ',
-                    clickableText: '@pixsellz',
-                    thirdText: "Everything is designed",
-                    textTheme: textTheme),
-              ],
-            ),
-          ),
+              ),
+              //SliverPersistentHeader(delegate: delegate),
+            ];
+          },
+          body: Text('sas'),
         ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+//Widget Header profile in NestedScrollview
+class GetHeaderProfile extends StatelessWidget {
+  const GetHeaderProfile({
+    Key? key,
+    required this.sizeMediaQuery,
+    required this.textTheme,
+  }) : super(key: key);
+
+  final Size sizeMediaQuery;
+  final TextTheme textTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: sizeMediaQuery.width / MyDimens.num16),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ItemOval(
+                width: MyDimens.num96,
+                height: MyDimens.num96,
+                sizeInner: MyDimens.num86,
+                sizeOuter: MyDimens.num96,
+                image: Assets.images.imgMe.provider(),
+              ),
+              ColumnTextProfile(
+                  textChangeable: '54',
+                  text: MyStrings.postsUserProfile,
+                  textTheme: textTheme),
+              ColumnTextProfile(
+                  textChangeable: '834',
+                  text: MyStrings.followersUserProfile,
+                  textTheme: textTheme),
+              ColumnTextProfile(
+                  textChangeable: '162',
+                  text: MyStrings.followingUserProfile,
+                  textTheme: textTheme),
+            ],
+          ),
+          const SizedBox(height: MyDimens.num12),
+          BioUserProfile(
+              mainText: "acob west",
+              secondText: 'Digital goodies designer ',
+              clickableText: '@pixsellz',
+              thirdText: "Everything is designed",
+              textTheme: textTheme),
+        ],
       ),
     );
   }
