@@ -6,6 +6,7 @@ import 'package:tec/res/constant/dimens.dart';
 import 'package:tec/res/constant/my_strings.dart';
 
 class UserProfileScreen extends StatelessWidget {
+  //final String textTitle;
   const UserProfileScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,36 +17,146 @@ class UserProfileScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
-        body: NestedScrollView(
-          headerSliverBuilder: (context, isScrolled) {
-            return [
-              const SliverAppBar(
-                backgroundColor: Colors.red,
-                pinned: true,
-                actions: [
-                  Icon(Icons.menu),
-                ],
-                flexibleSpace: FlexibleSpaceBar(),
-              ),
-              SliverToBoxAdapter(
-                child: GetHeaderProfile(
-                  sizeMediaQuery: sizeMediaQuery,
-                  textTheme: textTheme,
+        body: DefaultTabController(
+          length: MyDimens.num2.toInt(),
+          child: NestedScrollView(
+            headerSliverBuilder: (context, isScrolled) {
+              return [
+                SliverAppBar(
+                  backgroundColor: MyColors.secondaryColorUi,
+                  pinned: true,
+                  actions: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          right: sizeMediaQuery.width / MyDimens.num18),
+                      child: Assets.icons.menu.svg(),
+                    ),
+                  ],
+                  title: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(width: sizeMediaQuery.width / MyDimens.num16),
+                        Assets.icons.privateIcon.svg(),
+                        SizedBox(width: sizeMediaQuery.width / MyDimens.num50),
+                        Text(
+                          "jacob_w",
+                          style: textTheme.displayLarge,
+                        ),
+                      ],
+                    ),
+                  ),
+                  centerTitle: true,
                 ),
-              ),
-              //SliverPersistentHeader(delegate: delegate),
-            ];
-          },
-          body: Text('sas'),
+                //widgets between Appbar and TabBar
+                SliverToBoxAdapter(
+                  child: GetHeaderProfile(
+                    sizeMediaQuery: sizeMediaQuery,
+                    textTheme: textTheme,
+                  ),
+                ),
+                SliverPersistentHeader(
+                  pinned: true,
+                  floating: false,
+                  delegate: TabBarViewDelegate(
+                    TabBar(
+                      indicatorPadding:
+                          const EdgeInsets.only(bottom: MyDimens.num1),
+                      indicatorWeight: MyDimens.num1,
+                      indicatorColor: MyColors.indicatorColor,
+                      labelColor: Colors.black,
+                      unselectedLabelColor: Colors.blue,
+                      tabs: [
+                        Tab(
+                          icon: Assets.icons.gridIconSelected.svg(),
+                        ),
+                        Tab(
+                          icon: Assets.icons.tagsIconInSelected.svg(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ];
+            },
+            body: TabBarView(
+              children: [
+                CustomScrollView(
+                  slivers: [
+                    SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: MyDimens.num3.toInt(),
+                        mainAxisSpacing: MyDimens.num3,
+                        crossAxisSpacing: MyDimens.num3,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return Container(
+                            color: Colors.red,
+                          );
+                        },
+                        childCount: MyDimens.num100.toInt(),
+                      ),
+                    )
+                  ],
+                ),
+                CustomScrollView(
+                  slivers: [
+                    SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: MyDimens.num3.toInt(),
+                        mainAxisSpacing: MyDimens.num5,
+                        crossAxisSpacing: MyDimens.num5,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return Container(
+                            color: Colors.blueAccent,
+                          );
+                        },
+                        childCount: MyDimens.num100.toInt(),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
+class TabBarViewDelegate extends SliverPersistentHeaderDelegate {
+  TabBarViewDelegate(this._tabBar);
 
+  final TabBar _tabBar;
 
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      child: _tabBar,
+      color: MyColors.secondaryColorUi,
+    );
+  }
 
+  @override
+  // TODO: implement maxExtent
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  // TODO: implement minExtent
+  double get minExtent => _tabBar.preferredSize.height;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    // TODO: implement shouldRebuild
+    return false;
+  }
+}
 
 //Widget Header profile in NestedScrollview
 class GetHeaderProfile extends StatelessWidget {
@@ -92,12 +203,35 @@ class GetHeaderProfile extends StatelessWidget {
             ],
           ),
           const SizedBox(height: MyDimens.num12),
+          //Bio user Profile
           BioUserProfile(
               mainText: "acob west",
               secondText: 'Digital goodies designer ',
               clickableText: '@pixsellz',
               thirdText: "Everything is designed",
               textTheme: textTheme),
+          const SizedBox(height: 10),
+          //Edit Profile Button
+          ElevatedButton(
+            onPressed: () {},
+            child: Text(
+              "Edit Profile",
+              style: textTheme.displayMedium,
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              side: const BorderSide(
+                  color: MyColors.borderEditProfileColor, width: MyDimens.num1),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(MyDimens.num6),
+                ),
+              ),
+              elevation: MyDimens.num0,
+              minimumSize:
+                  Size(sizeMediaQuery.width, sizeMediaQuery.height / MyDimens.num22),
+            ),
+          ),
         ],
       ),
     );
@@ -140,7 +274,10 @@ class BioUserProfile extends StatelessWidget {
               TextSpan(
                 text: clickableText,
                 style: textTheme.labelMedium,
-                recognizer: TapGestureRecognizer()..onTap = () {},
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    print('asasdasdasdas000000000000000000000sd');
+                  },
               ),
             ],
           ),
