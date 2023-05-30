@@ -14,7 +14,7 @@ class UserProfileScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
         body: Center(
-          child: Text("UserProfileScreen"),
+          child: Text("UserProfileScr"),
         ),
       ),
     );
