@@ -17,12 +17,23 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add_new.svg
   SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
 
+  /// File path: assets/icons/add_story.svg
+  SvgGenImage get addStory => const SvgGenImage('assets/icons/add_story.svg');
+
   /// File path: assets/icons/explore.svg
   SvgGenImage get explore => const SvgGenImage('assets/icons/explore.svg');
 
   /// File path: assets/icons/explore_selected.svg
   SvgGenImage get exploreSelected =>
       const SvgGenImage('assets/icons/explore_selected.svg');
+
+  /// File path: assets/icons/grid_Icon_inSelected.svg
+  SvgGenImage get gridIconInSelected =>
+      const SvgGenImage('assets/icons/grid_Icon_inSelected.svg');
+
+  /// File path: assets/icons/grid_Icon_selected.svg
+  SvgGenImage get gridIconSelected =>
+      const SvgGenImage('assets/icons/grid_Icon_selected.svg');
 
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
@@ -31,6 +42,9 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
+  /// File path: assets/icons/menu.svg
+  SvgGenImage get menu => const SvgGenImage('assets/icons/menu.svg');
+
   /// File path: assets/icons/notify.svg
   SvgGenImage get notify => const SvgGenImage('assets/icons/notify.svg');
 
@@ -38,15 +52,34 @@ class $AssetsIconsGen {
   SvgGenImage get notifySelected =>
       const SvgGenImage('assets/icons/notify_selected.svg');
 
+  /// File path: assets/icons/private_icon.svg
+  SvgGenImage get privateIcon =>
+      const SvgGenImage('assets/icons/private_icon.svg');
+
+  /// File path: assets/icons/tags_icon_inSelected.svg
+  SvgGenImage get tagsIconInSelected =>
+      const SvgGenImage('assets/icons/tags_icon_inSelected.svg');
+
+  /// File path: assets/icons/tags_icon_selected.svg
+  SvgGenImage get tagsIconSelected =>
+      const SvgGenImage('assets/icons/tags_icon_selected.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         addNew,
+        addStory,
         explore,
         exploreSelected,
+        gridIconInSelected,
+        gridIconSelected,
         home,
         homeSelected,
+        menu,
         notify,
-        notifySelected
+        notifySelected,
+        privateIcon,
+        tagsIconInSelected,
+        tagsIconSelected
       ];
 }
 
@@ -114,7 +147,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
@@ -141,9 +183,9 @@ class SvgGenImage {
     bool excludeFromSemantics = false,
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated Clip? clipBehavior,
     @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
@@ -161,8 +203,10 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
+      colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }

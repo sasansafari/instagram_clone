@@ -9,6 +9,12 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(body: Center(child: Text("UserProfileScreen"),),));
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Text("UserProfileScreen"),
+        ),
+      ),
+    );
   }
 }
