@@ -83,10 +83,21 @@ class $AssetsIconsGen {
       ];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/img_me.jpg
+  AssetGenImage get imgMe => const AssetGenImage('assets/images/img_me.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [imgMe];
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {
@@ -203,6 +214,7 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
+
       color: color,
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,

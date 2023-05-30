@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
  import 'package:tec/route/names.dart';
  import 'package:tec/route/routes.dart';
+import 'package:tec/screens/mainscreen/user_profile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,9 +19,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Watch Store',
-      initialRoute:Screens.root,
-      routes: routes,
+      home: UserProfileScreen(),
+      //title: 'Watch Store',
+      //initialRoute:Screens.root,
+      //routes: routes,
     );
   }
 }
