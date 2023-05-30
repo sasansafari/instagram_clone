@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Watch Store',
       initialRoute:Screens.root,
-      routes: routes,
+      routes: routes, 
     );
   }
 }
