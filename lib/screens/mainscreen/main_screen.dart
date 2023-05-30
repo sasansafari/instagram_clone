@@ -1,6 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/route/names.dart';
@@ -8,6 +8,7 @@ import 'package:tec/screens/mainscreen/explore_screen.dart';
 import 'package:tec/screens/mainscreen/home_screen.dart';
 import 'package:tec/screens/mainscreen/notrifications_screen.dart';
 import 'package:tec/screens/mainscreen/user_profile_screen.dart';
+import 'package:tec/widgets/btm_nav_item.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -17,10 +18,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+
+  int selectedIndex = 0;
+
   final GlobalKey<NavigatorState> _homeScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _explorScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _notifiyScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _profileScreenKey = GlobalKey();
+
 
   late final navigationMapper = {
     BottomNavIndex.homeIndex: _homeScreenKey,
@@ -48,13 +54,34 @@ class _MainScreenState extends State<MainScreen> {
       setState(() {
         selectedIndex = navigationHistory.first;
       });
+
+
+  final List<int> _backFollowing = [0, 1, 3];
+
+  late final map = {
+    BottomNavIndex.homeIndex: _homeScreenKey,
+    BottomNavIndex.explorIndex: _explorScreenKey,
+    BottomNavIndex.notifyIndex: _notifiyScreenKey,
+    BottomNavIndex.userProfileIndex: _profileScreenKey,
+  };
+
+  Future<bool> _onWillPop() async {
+    if (map[selectedIndex]!.currentState!.canPop()) {
+      map[selectedIndex]!.currentState!.pop();
+    } else if (_backFollowing.isNotEmpty) {
+      setState(() {
+        selectedIndex = _backFollowing.last;
+        _backFollowing.removeLast();
+      });
+
+      return false;
+
     }
 
     log("back");
     return false;
   }
 
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -79,7 +106,7 @@ class _MainScreenState extends State<MainScreen> {
                     Navigator(
                       key: _explorScreenKey,
                       onGenerateRoute: (settings) => MaterialPageRoute(
-                          builder: (context) => const ExploreScreen()),
+                          builder: (context) => ExploreScreen()),
                     ),
                     Navigator(
                       key: _notifiyScreenKey,
@@ -110,7 +137,20 @@ class _MainScreenState extends State<MainScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+
+          BtmNavItem(
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.homeIndex),
+              active: Assets.icons.homeSelected.svg(),
+              inActive: Assets.icons.home.svg(),
+              isSelected: selectedIndex == BottomNavIndex.homeIndex),
+          BtmNavItem(
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.explorIndex),
+              active: Assets.icons.exploreSelected.svg(),
+              inActive: Assets.icons.explore.svg(),
+              isSelected: selectedIndex == BottomNavIndex.explorIndex),
+
           IconButton(
+
               onPressed: () {
                 setState(() {
                   selectedIndex = BottomNavIndex.homeIndex;
@@ -173,11 +213,44 @@ class _MainScreenState extends State<MainScreen> {
               icon: selectedIndex == BottomNavIndex.userProfileIndex
                   ? const Icon(Icons.person)
                   : const Icon(Icons.person_outline)),
+
+              onPressed: () => Navigator.pushNamed(context, Screens.addNew),
+              icon: Assets.icons.addNew.svg()),
+
+          BtmNavItem(
+              onTap: ()=>btmNavOnPresses(bottomNavIndex: BottomNavIndex.notifyIndex),
+              active: Assets.icons.notifySelected.svg(),
+              inActive: Assets.icons.notify.svg(),
+              isSelected: selectedIndex == BottomNavIndex.notifyIndex),
+
+          BtmNavItem(
+              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.userProfileIndex),
+              active:const Icon(Icons.verified_user_sharp),
+              inActive: const Icon(Icons.verified_user_outlined),
+              isSelected: selectedIndex == BottomNavIndex.userProfileIndex),
+
+
+ 
+
         ],
       ),
     );
   }
+
+
+
+  btmNavOnPresses({required bottomNavIndex }){
+       _backFollowing.remove(selectedIndex);
+
+       if (_backFollowing.last!=selectedIndex) {
+         _backFollowing.add(selectedIndex);
+       }
+
+       setState(() => selectedIndex = bottomNavIndex);
+  }
+
 }
+
 
 class BottomNavIndex {
   BottomNavIndex._();
