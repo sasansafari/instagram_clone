@@ -14,6 +14,10 @@ import 'package:flutter/services.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/accounts_list.svg
+  SvgGenImage get accountsList =>
+      const SvgGenImage('assets/icons/accounts_list.svg');
+
   /// File path: assets/icons/add_new.svg
   SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
 
@@ -66,6 +70,7 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<SvgGenImage> get values => [
+        accountsList,
         addNew,
         addStory,
         explore,
@@ -214,7 +219,6 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
-
       color: color,
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,

@@ -37,13 +37,15 @@ class UserProfileScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(width: sizeMediaQuery.width / MyDimens.num16),
+                        SizedBox(width: sizeMediaQuery.width / MyDimens.num12),
                         Assets.icons.privateIcon.svg(),
                         SizedBox(width: sizeMediaQuery.width / MyDimens.num50),
                         Text(
                           "jacob_w",
                           style: textTheme.displayLarge,
                         ),
+                        const SizedBox(width: MyDimens.num5),
+                        Assets.icons.accountsList.svg(),
                       ],
                     ),
                   ),
@@ -181,7 +183,7 @@ class GetHeaderProfile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ItemOval(
+              ItemStoryBox(
                 width: MyDimens.num96,
                 height: MyDimens.num96,
                 sizeInner: MyDimens.num86,
@@ -228,10 +230,18 @@ class GetHeaderProfile extends StatelessWidget {
                 ),
               ),
               elevation: MyDimens.num0,
-              minimumSize:
-                  Size(sizeMediaQuery.width, sizeMediaQuery.height / MyDimens.num22),
+              minimumSize: Size(
+                  sizeMediaQuery.width, sizeMediaQuery.height / MyDimens.num22),
             ),
           ),
+          SizedBox(height: 10,),
+          ItemAddStory(
+            width: MyDimens.num64,
+            height: MyDimens.num64,
+            containerOne: MyDimens.num64,
+            containerTwo: MyDimens.num64,
+          ),
+          SizedBox(height: 10,),
         ],
       ),
     );
@@ -322,15 +332,15 @@ class ColumnTextProfile extends StatelessWidget {
   }
 }
 
-//Custom widget - Items Oval profile page highlight
-class ItemOval extends StatelessWidget {
+//Custom widget - Item Story Box profile page
+class ItemStoryBox extends StatelessWidget {
   final double width;
   final double height;
   final double sizeInner;
   final double sizeOuter;
   final ImageProvider<Object> image;
 
-  ItemOval({
+  ItemStoryBox({
     Key? key,
     required this.width,
     required this.height,
@@ -361,6 +371,56 @@ class ItemOval extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+//Custom widget - Item Add Story profile page
+class ItemAddStory extends StatelessWidget {
+  final double width;
+  final double height;
+  final double containerOne;
+  final double containerTwo;
+
+  ItemAddStory({
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.containerOne,
+    required this.containerTwo,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            color: MyColors.borderEditProfileColor,
+            borderRadius: BorderRadius.circular(containerOne),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(MyDimens.num1),
+            child: Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                color: MyColors.secondaryColorUi,
+                borderRadius: BorderRadius.circular(containerTwo),
+              ),
+              child: Padding(
+                  padding: const EdgeInsets.all(MyDimens.num20),
+                  child: Assets.icons.addStory.svg(),),
+            ),
+          ),
+        ),
+        const SizedBox(height: MyDimens.num10),
+        const Text(
+          MyStrings.newAddHighlight,
+        ),
+      ],
     );
   }
 }
