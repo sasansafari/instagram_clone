@@ -53,7 +53,11 @@ class $AssetsIconsGen {
 class Assets {
   Assets._();
 
+  static const AssetGenImage oval = AssetGenImage('assets/Oval.png');
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+
+  /// List of all assets
+  List<AssetGenImage> get values => [oval];
 }
 
 class AssetGenImage {
@@ -114,7 +118,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
@@ -141,9 +154,9 @@ class SvgGenImage {
     bool excludeFromSemantics = false,
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated Clip? clipBehavior,
     @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
@@ -161,8 +174,10 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
+      // colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }

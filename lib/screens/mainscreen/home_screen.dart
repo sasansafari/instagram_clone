@@ -6,6 +6,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:tec/route/names.dart';
 import 'package:tec/screens/mainscreen/post_screen.dart';
 
+import '../../widgets/homeScreen_likes.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -17,9 +19,20 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("home - 0 stack",style: TextStyle( fontSize: 28),),
-
-            ElevatedButton(onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => const PostScreen())), child: Text("next"))
+            HomeScreenLikes(
+              profile_picture: "assets/Oval.png",
+              likes: ["craing_love", "craing_love", "craing_love"],
+            ),
+            Text(
+              "home - 0 stack",
+              style: TextStyle(fontSize: 28),
+            ),
+            ElevatedButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PostScreen())),
+                child: Text("next"))
           ],
         ),
       ),
