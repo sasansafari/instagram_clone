@@ -18,12 +18,43 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+
   int selectedIndex = 0;
 
   final GlobalKey<NavigatorState> _homeScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _explorScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _notifiyScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _profileScreenKey = GlobalKey();
+
+
+  late final navigationMapper = {
+    BottomNavIndex.homeIndex: _homeScreenKey,
+    BottomNavIndex.explorIndex: _explorScreenKey,
+    BottomNavIndex.notifyIndex: _notifiyScreenKey,
+    BottomNavIndex.userProfileIndex: _profileScreenKey
+  };
+
+  List navigationHistory = [
+    0,
+  ];
+
+  Future<bool> _onWillPop() async {
+    if (navigationMapper[selectedIndex]!.currentState!.canPop()) {
+      navigationMapper[selectedIndex]!.currentState!.pop();
+    } else if (navigationHistory.length > 1) {
+      setState(() {
+        navigationHistory.remove(navigationHistory.last);
+        log(navigationHistory.toString());
+        setState(() {
+          selectedIndex = navigationHistory.last;
+        });
+      });
+    } else if (navigationHistory.length == 1) {
+      setState(() {
+        selectedIndex = navigationHistory.first;
+      });
+
 
   final List<int> _backFollowing = [0, 1, 3];
 
@@ -44,6 +75,7 @@ class _MainScreenState extends State<MainScreen> {
       });
 
       return false;
+
     }
 
     log("back");
@@ -118,6 +150,70 @@ class _MainScreenState extends State<MainScreen> {
               isSelected: selectedIndex == BottomNavIndex.explorIndex),
 
           IconButton(
+
+              onPressed: () {
+                setState(() {
+                  selectedIndex = BottomNavIndex.homeIndex;
+                  if (!navigationHistory.contains(selectedIndex)) {
+                    navigationHistory.add(selectedIndex);
+                    log(navigationHistory.toString());
+                  }
+                });
+              },
+              // onPressed: (() =>
+              //     setState(() => selectedIndex = BottomNavIndex.homeIndex)),
+              icon: selectedIndex == BottomNavIndex.homeIndex
+                  ? Assets.icons.homeSelected.svg()
+                  : Assets.icons.home.svg()),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedIndex = BottomNavIndex.explorIndex;
+                  if (!navigationHistory.contains(selectedIndex)) {
+                    navigationHistory.add(selectedIndex);
+                    log(navigationHistory.toString());
+                  }
+                });
+              },
+              // onPressed: (() =>
+              //     setState(() => selectedIndex = BottomNavIndex.explorIndex)),
+              icon: selectedIndex == BottomNavIndex.explorIndex
+                  ? Assets.icons.exploreSelected.svg()
+                  : Assets.icons.explore.svg()),
+          IconButton(
+              onPressed: () => Navigator.pushNamed(context, Screens.addNew),
+              icon: Assets.icons.addNew.svg()),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedIndex = BottomNavIndex.notifyIndex;
+                  if (!navigationHistory.contains(selectedIndex)) {
+                    navigationHistory.add(selectedIndex);
+                    log(navigationHistory.toString());
+                  }
+                });
+              },
+              // onPressed: (() =>
+              //     setState(() => selectedIndex = BottomNavIndex.notifyIndex)),
+              icon: selectedIndex == BottomNavIndex.notifyIndex
+                  ? Assets.icons.notifySelected.svg()
+                  : Assets.icons.notify.svg()),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  selectedIndex = BottomNavIndex.userProfileIndex;
+                  if (!navigationHistory.contains(selectedIndex)) {
+                    navigationHistory.add(selectedIndex);
+                    log(navigationHistory.toString());
+                  }
+                });
+              },
+              // onPressed: (() => setState(
+              //     () => selectedIndex = BottomNavIndex.userProfileIndex)),
+              icon: selectedIndex == BottomNavIndex.userProfileIndex
+                  ? const Icon(Icons.person)
+                  : const Icon(Icons.person_outline)),
+
               onPressed: () => Navigator.pushNamed(context, Screens.addNew),
               icon: Assets.icons.addNew.svg()),
 
@@ -135,10 +231,13 @@ class _MainScreenState extends State<MainScreen> {
 
 
  
+
         ],
       ),
     );
   }
+
+
 
   btmNavOnPresses({required bottomNavIndex }){
        _backFollowing.remove(selectedIndex);
@@ -151,6 +250,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
 }
+
 
 class BottomNavIndex {
   BottomNavIndex._();

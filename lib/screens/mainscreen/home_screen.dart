@@ -19,10 +19,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            HomeScreenLikes(
-              profile_picture: "assets/Oval.png",
-              likes: ["craing_love", "craing_love", "craing_love"],
-            ),
             Text(
               "home - 0 stack",
               style: TextStyle(fontSize: 28),
@@ -33,6 +29,8 @@ class HomeScreen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => const PostScreen())),
                 child: Text("next"))
+            Text('implenting fork and pr'),
+            ElevatedButton(onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => const PostScreen())), child: Text("next"))
           ],
         ),
       ),
