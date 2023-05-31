@@ -58,6 +58,12 @@ class UserProfileScreen extends StatelessWidget {
                     textTheme: textTheme,
                   ),
                 ),
+                SliverToBoxAdapter(
+                    child: Container(
+                  width: sizeMediaQuery.width,
+                  height: 1,
+                  color: MyColors.borderOvalProfileScreen,
+                )),
                 SliverPersistentHeader(
                   pinned: true,
                   floating: false,
@@ -183,7 +189,7 @@ class GetHeaderProfile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ItemStoryBox(
+              ItemImageProfile(
                 width: MyDimens.num96,
                 height: MyDimens.num96,
                 sizeInner: MyDimens.num86,
@@ -234,14 +240,30 @@ class GetHeaderProfile extends StatelessWidget {
                   sizeMediaQuery.width, sizeMediaQuery.height / MyDimens.num22),
             ),
           ),
-          SizedBox(height: 10,),
-          ItemAddStory(
-            width: MyDimens.num64,
-            height: MyDimens.num64,
-            containerOne: MyDimens.num64,
-            containerTwo: MyDimens.num64,
+          const SizedBox(
+            height: 10,
           ),
-          SizedBox(height: 10,),
+          //
+          SizedBox(
+            height: 110,
+            child: ListView.builder(
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => index == 0
+                  ? ItemAddStory(
+                      width: MyDimens.num64,
+                      height: MyDimens.num64,
+                      containerOne: MyDimens.num64,
+                      containerTwo: MyDimens.num64)
+                  : ItemStoryBox(
+                      width: MyDimens.num64,
+                      height: MyDimens.num64,
+                      sizeInner: MyDimens.num56,
+                      sizeOuter: MyDimens.num56,
+                      textItemStoryBox: "Friends",
+                      image: Assets.images.imgMe.provider()), //
+            ),
+          ),
         ],
       ),
     );
@@ -333,14 +355,14 @@ class ColumnTextProfile extends StatelessWidget {
 }
 
 //Custom widget - Item Story Box profile page
-class ItemStoryBox extends StatelessWidget {
+class ItemImageProfile extends StatelessWidget {
   final double width;
   final double height;
   final double sizeInner;
   final double sizeOuter;
   final ImageProvider<Object> image;
 
-  ItemStoryBox({
+  ItemImageProfile({
     Key? key,
     required this.width,
     required this.height,
@@ -395,6 +417,7 @@ class ItemAddStory extends StatelessWidget {
     return Column(
       children: [
         Container(
+          margin: const EdgeInsets.only(right: MyDimens.num8),
           width: width,
           height: height,
           decoration: BoxDecoration(
@@ -411,14 +434,70 @@ class ItemAddStory extends StatelessWidget {
                 borderRadius: BorderRadius.circular(containerTwo),
               ),
               child: Padding(
-                  padding: const EdgeInsets.all(MyDimens.num20),
-                  child: Assets.icons.addStory.svg(),),
+                padding: const EdgeInsets.all(MyDimens.num20),
+                child: Assets.icons.addStory.svg(),
+              ),
             ),
           ),
         ),
-        const SizedBox(height: MyDimens.num10),
+        const SizedBox(height: MyDimens.num5),
         const Text(
           MyStrings.newAddHighlight,
+        ),
+      ],
+    );
+  }
+}
+
+//Custom widget - Item Story Box profile page
+class ItemStoryBox extends StatelessWidget {
+  final double width;
+  final double height;
+  final double sizeInner;
+  final double sizeOuter;
+  final String textItemStoryBox;
+  final ImageProvider<Object> image;
+
+  ItemStoryBox({
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.sizeInner,
+    required this.sizeOuter,
+    required this.image,
+    required this.textItemStoryBox,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          width: width,
+          height: height,
+          decoration: BoxDecoration(
+            border:
+                Border.all(width: 1.5, color: MyColors.borderOvalProfileScreen),
+            borderRadius: BorderRadius.all(
+              Radius.elliptical(sizeOuter, sizeOuter),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: ClipRRect(
+              borderRadius:
+                  BorderRadius.all(Radius.elliptical(sizeInner, sizeInner)),
+              child: FittedBox(
+                fit: BoxFit.cover,
+                child: Image(image: image),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: MyDimens.num5),
+        Text(
+          textItemStoryBox,
         ),
       ],
     );
