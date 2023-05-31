@@ -17,11 +17,13 @@ class UserProfileScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: MyColors.secondaryColorUi,
+        //access to controller TabBar
         body: DefaultTabController(
           length: MyDimens.num2.toInt(),
           child: NestedScrollView(
             headerSliverBuilder: (context, isScrolled) {
               return [
+                //AppBar
                 SliverAppBar(
                   backgroundColor: MyColors.secondaryColorUi,
                   pinned: true,
@@ -58,12 +60,14 @@ class UserProfileScreen extends StatelessWidget {
                     textTheme: textTheme,
                   ),
                 ),
+                //Top line of TabBar
                 SliverToBoxAdapter(
                     child: Container(
                   width: sizeMediaQuery.width,
                   height: 1,
                   color: MyColors.borderOvalProfileScreen,
                 )),
+                //TabBar & Pinned
                 SliverPersistentHeader(
                   pinned: true,
                   floating: false,
@@ -88,6 +92,7 @@ class UserProfileScreen extends StatelessWidget {
                 ),
               ];
             },
+            //The body of the NestedScrollView which includes tab bar items and their contents
             body: TabBarView(
               children: [
                 CustomScrollView(
@@ -241,15 +246,15 @@ class GetHeaderProfile extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: MyDimens.num10,
           ),
           //
           SizedBox(
             height: 110,
             child: ListView.builder(
-              itemCount: 10,
+              itemCount: MyDimens.num10.toInt(),
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) => index == 0
+              itemBuilder: (context, index) => index == MyDimens.num0
                   ? ItemAddStory(
                       width: MyDimens.num64,
                       height: MyDimens.num64,
@@ -383,7 +388,7 @@ class ItemImageProfile extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(MyDimens.num4),
         child: ClipRRect(
           borderRadius:
               BorderRadius.all(Radius.elliptical(sizeInner, sizeInner)),
@@ -421,6 +426,7 @@ class ItemAddStory extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
+
             color: MyColors.borderEditProfileColor,
             borderRadius: BorderRadius.circular(containerOne),
           ),
