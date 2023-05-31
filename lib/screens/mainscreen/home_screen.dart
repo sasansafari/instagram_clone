@@ -17,8 +17,8 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("home - 0 stack",style: TextStyle( fontSize: 28),),
-
+            // Text("home - 0 stack",style: TextStyle( fontSize: 28),),
+            Text('implenting fork and pr'),
             ElevatedButton(onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => const PostScreen())), child: Text("next"))
           ],
         ),
