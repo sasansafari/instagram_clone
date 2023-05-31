@@ -17,6 +17,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add_new.svg
   SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
 
+  /// File path: assets/icons/camera.svg
+  SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
+
   /// File path: assets/icons/explore.svg
   SvgGenImage get explore => const SvgGenImage('assets/icons/explore.svg');
 
@@ -31,6 +34,16 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
+  /// File path: assets/icons/igtv.svg
+  SvgGenImage get igtv => const SvgGenImage('assets/icons/igtv.svg');
+
+  /// File path: assets/icons/instagram_logo.svg
+  SvgGenImage get instagramLogo =>
+      const SvgGenImage('assets/icons/instagram_logo.svg');
+
+  /// File path: assets/icons/messanger.svg
+  SvgGenImage get messanger => const SvgGenImage('assets/icons/messanger.svg');
+
   /// File path: assets/icons/notify.svg
   SvgGenImage get notify => const SvgGenImage('assets/icons/notify.svg');
 
@@ -41,10 +54,14 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         addNew,
+        camera,
         explore,
         exploreSelected,
         home,
         homeSelected,
+        igtv,
+        instagramLogo,
+        messanger,
         notify,
         notifySelected
       ];
@@ -114,7 +131,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
@@ -141,9 +167,9 @@ class SvgGenImage {
     bool excludeFromSemantics = false,
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated Clip? clipBehavior,
     @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
@@ -163,6 +189,7 @@ class SvgGenImage {
       theme: theme,
       color: color,
       colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }

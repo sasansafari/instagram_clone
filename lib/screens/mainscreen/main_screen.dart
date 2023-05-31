@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/route/names.dart';
@@ -19,20 +19,20 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int selectedIndex = 0;
+  final List<int> _backFollowing = [0];
 
+  final GlobalKey<NavigatorState> _homeScreenKey = GlobalKey();
+  final GlobalKey<NavigatorState> _explorScreenKey = GlobalKey();
+  final GlobalKey<NavigatorState> _notifiyScreenKey = GlobalKey();
+  final GlobalKey<NavigatorState> _profileScreenKey = GlobalKey();
 
-  final GlobalKey<NavigatorState> _homeScreenKey  = GlobalKey();
-  final GlobalKey<NavigatorState> _explorScreenKey  = GlobalKey();
-  final GlobalKey<NavigatorState> _notifiyScreenKey  = GlobalKey();
-  final GlobalKey<NavigatorState> _profileScreenKey  = GlobalKey();
-
-  Future<bool> _onWillPop() async{
-    
+  Future<bool> _onWillPop() async {
     if (_homeScreenKey.currentState!.canPop()) {
       _homeScreenKey.currentState!.pop();
-    } 
+    }
 
-    log("back");  
+    log("back");
     return false;
   }
 
@@ -41,11 +41,12 @@ class _MainScreenState extends State<MainScreen> {
     return WillPopScope(
       onWillPop: _onWillPop,
       child: Scaffold(
+        appBar: myAppbar(context),
         body: SafeArea(
           child: Stack(
             children: [
               Positioned(
-                top: 10,
+                top: 0,
                 left: 0,
                 right: 0,
                 bottom: 60,
@@ -75,6 +76,7 @@ class _MainScreenState extends State<MainScreen> {
                   ],
                 ),
               ),
+              // Positioned(top: 0, left: 0, right: 0, child: headNav(context)),
               Positioned(bottom: 0, left: 0, right: 0, child: btmNav(context))
             ],
           ),
@@ -91,38 +93,30 @@ class _MainScreenState extends State<MainScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-
           BtmNavItem(
-              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.homeIndex),
+              onTap: () =>
+                  btmNavOnPresses(bottomNavIndex: BottomNavIndex.homeIndex),
               active: Assets.icons.homeSelected.svg(),
               inActive: Assets.icons.home.svg(),
               isSelected: selectedIndex == BottomNavIndex.homeIndex),
           BtmNavItem(
-              onTap:()=> btmNavOnPresses(bottomNavIndex: BottomNavIndex.explorIndex),
+              onTap: () =>
+                  btmNavOnPresses(bottomNavIndex: BottomNavIndex.explorIndex),
               active: Assets.icons.exploreSelected.svg(),
               inActive: Assets.icons.explore.svg(),
               isSelected: selectedIndex == BottomNavIndex.explorIndex),
-
           IconButton(
-              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.homeIndex)),
-              icon: selectedIndex == BottomNavIndex.homeIndex
-                  ? Assets.icons.homeSelected.svg()
-                  : Assets.icons.home.svg()),
-          IconButton(
-              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.explorIndex)),
-              icon: selectedIndex == BottomNavIndex.explorIndex
-                  ? Assets.icons.exploreSelected.svg()
-                  : Assets.icons.explore.svg()),
-          IconButton(
-              onPressed:()=>Navigator.pushNamed(context,Screens.addNew ),
+              onPressed: () => Navigator.pushNamed(context, Screens.addNew),
               icon: Assets.icons.addNew.svg()),
           IconButton(
-              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.notifyIndex)),
+              onPressed: (() =>
+                  setState(() => selectedIndex = BottomNavIndex.notifyIndex)),
               icon: selectedIndex == BottomNavIndex.notifyIndex
                   ? Assets.icons.notifySelected.svg()
                   : Assets.icons.notify.svg()),
           IconButton(
-              onPressed: (() => setState(() => selectedIndex = BottomNavIndex.userProfileIndex)),
+              onPressed: (() => setState(
+                  () => selectedIndex = BottomNavIndex.userProfileIndex)),
               icon: selectedIndex == BottomNavIndex.userProfileIndex
                   ? const Icon(Icons.verified_user_sharp)
                   : const Icon(Icons.verified_user_outlined)),
@@ -131,16 +125,42 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  btmNavOnPresses({required bottomNavIndex }){
-       _backFollowing.remove(selectedIndex);
-
-       if (_backFollowing.last!=selectedIndex) {
-         _backFollowing.add(selectedIndex);
-       }
-
-       setState(() => selectedIndex = bottomNavIndex);
+  PreferredSize myAppbar(BuildContext context) {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(60.0),
+      child: AppBar(
+        elevation: 0.0,
+        centerTitle: true,
+        backgroundColor: MyColors.bottomNavigationBar,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Assets.icons.camera.svg(),
+        ),
+        leadingWidth: 32,
+        title: Assets.icons.instagramLogo.svg(),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Assets.icons.igtv.svg(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Assets.icons.messanger.svg(),
+          ),
+        ],
+      ),
+    );
   }
 
+  btmNavOnPresses({required bottomNavIndex}) {
+    _backFollowing.remove(selectedIndex);
+
+    if (_backFollowing.last != selectedIndex) {
+      _backFollowing.add(selectedIndex);
+    }
+
+    setState(() => selectedIndex = bottomNavIndex);
+  }
 }
 
 class BottomNavIndex {
