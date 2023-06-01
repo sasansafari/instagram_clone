@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:tec/res/colors.dart';
 import '../../widgets/custom_tabbar_widget.dart';
 
 class AddScreen extends StatelessWidget {
@@ -38,19 +38,21 @@ class AddScreen extends StatelessWidget {
 
   CustomAddImageAppBarWidget _buildAppBarWidget(BuildContext context) {
     return CustomAddImageAppBarWidget(
-        title: 'Recents',
-        backButton: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Text('Cancel'),
+      title: 'Recents',
+      backButton: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: const Text('Cancel'),
+      ),
+      nextButton: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          'Next',
+          style: TextStyle(color: Colors.blue),
         ),
-        nextButton: GestureDetector(
-          onTap: () {},
-          child: const Text(
-            'Next',
-            style: TextStyle(color: Colors.blue),
-          ),
-        ),
-        appBarPadding: 14);
+      ),
+      appBarPadding: 14,
+      appBarColor: MyColors.customAppBarBackgroundColor,
+    );
   }
 }
 
@@ -62,6 +64,7 @@ class CustomAddImageAppBarWidget extends StatelessWidget
   final String title;
   final Widget? backButton;
   final Widget? nextButton;
+  final Color appBarColor;
 
   const CustomAddImageAppBarWidget(
       {Key? key,
@@ -69,13 +72,15 @@ class CustomAddImageAppBarWidget extends StatelessWidget
       required this.title,
       this.backButton,
       required this.nextButton,
-      required this.appBarPadding})
+      required this.appBarPadding,
+      required this.appBarColor})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Padding(
+        child: Container(
+      color: appBarColor,
       padding: EdgeInsets.all(appBarPadding),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
