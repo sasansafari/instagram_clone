@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/custom_tabbar_widget.dart';
+
 class AddScreen extends StatelessWidget {
   const AddScreen({Key? key}) : super(key: key);
 
@@ -7,6 +9,30 @@ class AddScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBarWidget(context),
+      body: Stack(children: [_buildTabBarWidget()]),
+    );
+  }
+
+  CustomTabBarWidget _buildTabBarWidget() {
+    return CustomTabBarWidget(
+      isBottom: true,
+      items: [
+        CustomTabBarItem.bottom(
+          isSelected: true,
+          onTap: () {},
+          title: 'Library',
+        ),
+        CustomTabBarItem.bottom(
+          isSelected: false,
+          onTap: () {},
+          title: 'Photo',
+        ),
+        CustomTabBarItem.bottom(
+          isSelected: false,
+          onTap: () {},
+          title: 'Video',
+        ),
+      ],
     );
   }
 
