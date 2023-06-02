@@ -5,8 +5,40 @@ import '../../gen/assets.gen.dart';
 import '../../widgets/custom_tabbar_widget.dart';
 import '../../widgets/image_action_custom_widget.dart';
 
-class AddScreen extends StatelessWidget {
+class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AddScreen> createState() => _AddScreenState();
+}
+
+class _AddScreenState extends State<AddScreen> {
+  late RequestType selectedRequestType;
+  AssetPathEntity? selectedAlbum;
+  List<AssetPathEntity> albumList = [];
+  List<AssetEntity> assetList = [];
+
+  @override
+  void initState() {
+    /*  RequestType.image for just image
+     RequestType.video for just video 
+     load common assets(image and video) */
+    selectedRequestType = RequestType.common;
+    // ******** load all albums ********
+    MediaServices.loadAlbums(selectedRequestType).then((value) {
+      setState(() {
+        albumList = value;
+        selectedAlbum = value[0];
+      });
+      // ******** load recent assets ********
+      MediaServices.loadAssets(selectedAlbum!).then((value) {
+        setState(() {
+          assetList = value;
+        });
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
