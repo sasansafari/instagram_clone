@@ -1,15 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:tec/res/colors.dart';
+import '../../gen/assets.gen.dart';
 import '../../widgets/custom_tabbar_widget.dart';
+import '../../widgets/image_action_custom_widget.dart';
 
 class AddScreen extends StatelessWidget {
   const AddScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: _buildAppBarWidget(context),
-      body: Stack(children: [_buildTabBarWidget()]),
+      body: Stack(children: [
+        _buildAddImageScreenBody(size),
+        _buildTabBarWidget(),
+      ]),
+    );
+  }
+
+  Widget _buildAddImageScreenBody(Size size) {
+    return Positioned.fill(
+      child: CustomScrollView(
+        slivers: [
+          // ******** show selected media or medias ********
+          SliverAppBar(
+            automaticallyImplyLeading: false,
+            expandedHeight: size.height / 2.5,
+            flexibleSpace: Stack(
+              children: [
+                Container(
+                  color: Colors.blue,
+                ),
+                _buildActionImageList()
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -53,6 +81,32 @@ class AddScreen extends StatelessWidget {
       appBarPadding: 14,
       appBarColor: MyColors.customAppBarBackgroundColor,
     );
+  }
+
+  Widget _buildActionImageList() {
+    return Positioned(
+        bottom: 10.2,
+        right: 10,
+        child: Row(
+          children: [
+            ImageActionsCustomWidget(
+                child: Assets.icons.boomerang.svg(fit: BoxFit.scaleDown)),
+            ImageActionsCustomWidget(
+                child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown)),
+            ImageActionsCustomWidget(
+                width: 153,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Assets.icons.selectMultiple.svg(fit: BoxFit.scaleDown),
+                    const Text(
+                      'SELECT MULTIPLE',
+                      style: TextStyle(color: Colors.white,fontSize: 14),
+                    )
+                  ],
+                )),
+          ],
+        ));
   }
 }
 
