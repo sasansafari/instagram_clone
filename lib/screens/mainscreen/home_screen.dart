@@ -28,9 +28,14 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const PostScreen())),
-                child: Text("next"))
+                child: Text("next")),
             Text('implenting fork and pr'),
-            ElevatedButton(onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => const PostScreen())), child: Text("next"))
+            ElevatedButton(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PostScreen())),
+                child: Text("next"))
           ],
         ),
       ),
