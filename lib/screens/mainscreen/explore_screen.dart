@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
-import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/screens/constants/app_text_feild.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
