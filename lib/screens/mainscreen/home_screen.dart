@@ -6,8 +6,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:tec/route/names.dart';
 import 'package:tec/screens/mainscreen/post_screen.dart';
 
-import '../../widgets/homeScreen_likes.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
