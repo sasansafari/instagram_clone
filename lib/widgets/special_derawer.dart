@@ -35,7 +35,7 @@ class SpecialDrawer extends StatelessWidget {
           ),
           ListTile(
             title: CustomDrawer(
-              icon: Assets.icons.menu.nameTage.svg(),
+              icon: Assets.icons.menu.nameTag.svg(),
               title: 'Nametag',
             ),
             onTap: () {},
@@ -49,21 +49,21 @@ class SpecialDrawer extends StatelessWidget {
           ),
           ListTile(
             title: CustomDrawer(
-              icon: Assets.icons.menu.closeFreind.svg(),
+              icon: Assets.icons.menu.closeFreinds.svg(),
               title: 'Close Friends',
             ),
             onTap: () {},
           ),
           ListTile(
             title: CustomDrawer(
-              icon: Assets.icons.menu.discover.svg(),
+              icon: Assets.icons.menu.discoverPeople.svg(),
               title: 'Discover People',
             ),
             onTap: () {},
           ),
           ListTile(
             title: CustomDrawer(
-              icon: Assets.icons.menu.facebook.svg(),
+              icon: Assets.icons.menu.openFacebook.svg(),
               title: 'Open Facebook',
             ),
             onTap: () {},
