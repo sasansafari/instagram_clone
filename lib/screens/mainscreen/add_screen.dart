@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
 import '../../gen/assets.gen.dart';
 import '../../widgets/custom_tabbar_widget.dart';
@@ -101,7 +102,7 @@ class AddScreen extends StatelessWidget {
                     Assets.icons.selectMultiple.svg(fit: BoxFit.scaleDown),
                     const Text(
                       'SELECT MULTIPLE',
-                      style: TextStyle(color: Colors.white,fontSize: 14),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
                 )),
@@ -154,4 +155,29 @@ class CustomAddImageAppBarWidget extends StatelessWidget
 
   @override
   Size get preferredSize => Size.fromHeight(appBarHeight);
+}
+
+// ******** load medias from storage ********
+class MediaServices {
+  static Future loadAlbums(RequestType requestType) async {
+    var permission = await PhotoManager.requestPermissionExtend();
+    List<AssetPathEntity> albumList = [];
+
+    if (permission.isAuth == true) {
+      // ******** success ********
+      albumList = await PhotoManager.getAssetPathList(type: requestType);
+    } else {
+      // ******** failed (get access) ********
+      PhotoManager.openSetting();
+    }
+    return albumList;
+  }
+
+  static Future loadAssets(AssetPathEntity selectedAlbum) async {
+    List<AssetEntity> assetList = await selectedAlbum.getAssetListRange(
+        start: 0,
+        // ignore: deprecated_member_use
+        end: selectedAlbum.assetCount);
+    return assetList;
+  }
 }
