@@ -10,7 +10,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // ignore: must_be_immutable
 class ExploreScreen extends StatefulWidget {
-    ExploreScreen({Key? key}) : super(key: key);
+  ExploreScreen({Key? key}) : super(key: key);
 
   static const aState = 0;
   static const bState = 1;
@@ -26,84 +26,77 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return   SafeArea(
+    return SafeArea(
         child: Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-
           Container(
             width: double.infinity,
             height: double.infinity,
             color: Colors.teal,
-            child: const Center(
-              child: Text("ExploreScreen")),
+            child: const Center(child: Text("ExploreScreen")),
           ),
-
           currentWidget(),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Visibility(
-                visible: widgetsIndexList.last> widgetsIndexList.first,
-                child: ElevatedButton(onPressed:() {
-                  setState(() {
-                    widgetsIndexList.remove(counter);
-                  });
-                  counter--;
-              
-                }, child: const Text("Back")),
+                visible: widgetsIndexList.last > widgetsIndexList.first,
+                child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        widgetsIndexList.remove(counter);
+                      });
+                      counter--;
+                    },
+                    child: const Text("Back")),
               ),
               Visibility(
-                visible: widgetsIndexList.last<2,
-                child: ElevatedButton(onPressed: (() {
-              
-                  counter++;
-                  setState(() {
-                    widgetsIndexList.add(counter);
-                  });
-                  
-                }), child: const Text("Next")),
+                visible: widgetsIndexList.last < 2,
+                child: ElevatedButton(
+                    onPressed: (() {
+                      counter++;
+                      setState(() {
+                        widgetsIndexList.add(counter);
+                      });
+                    }),
+                    child: const Text("Next")),
               ),
             ],
           )
-
-
         ],
       ),
     ));
   }
 
-
-  Widget currentWidget(){
-    routeToC(){
+  Widget currentWidget() {
+    routeToC() {
       setState(() {
-      widgetsIndexList.add(ExploreScreen.cState);
-
+        widgetsIndexList.add(ExploreScreen.cState);
       });
     }
 
-    Widget widget = A(onTap: routeToC,);
+    Widget widget = A(
+      onTap: routeToC,
+    );
     switch (widgetsIndexList.last) {
       case ExploreScreen.aState:
-          widget =   A(onTap: routeToC,);
+        widget = A(
+          onTap: routeToC,
+        );
         break;
       case ExploreScreen.bState:
-          widget = const B();
+        widget = const B();
         break;
       case ExploreScreen.cState:
-          widget = const C();
+        widget = const C();
         break;
       default:
     }
-  return widget;
+    return widget;
   }
-
-
 }
-
-
 
 class A extends StatelessWidget {
   void Function() onTap;
@@ -116,8 +109,11 @@ class A extends StatelessWidget {
       child: Container(
         color: Colors.green,
         height: 300,
-        width: MediaQuery.of(context).size.width*.5,
-        child: const Text("A",style: TextStyle(fontSize: 30),),
+        width: MediaQuery.of(context).size.width * .5,
+        child: const Text(
+          "A",
+          style: TextStyle(fontSize: 30),
+        ),
       ),
     );
   }
@@ -130,9 +126,11 @@ class B extends StatelessWidget {
     return Container(
       color: Colors.red,
       height: 300,
-      width: MediaQuery.of(context).size.width*.5,
-      child: const Text("B",style: TextStyle(fontSize: 30),),
-
+      width: MediaQuery.of(context).size.width * .5,
+      child: const Text(
+        "B",
+        style: TextStyle(fontSize: 30),
+      ),
     );
   }
 }
@@ -159,11 +157,11 @@ class C extends StatelessWidget {
           ],
         ),
       )),
-    return Container(
-      color: Colors.yellow,
-      height: 300,
-      width: MediaQuery.of(context).size.width*.5,
-      child: const Text("C",style: TextStyle(fontSize: 30),),
+      // return Container(
+      //   color: Colors.yellow,
+      //   height: 300,
+      //   width: MediaQuery.of(context).size.width*.5,
+      //   child: const Text("C",style: TextStyle(fontSize: 30),),
     );
   }
 
