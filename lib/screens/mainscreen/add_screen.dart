@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
 import '../../gen/assets.gen.dart';
+import '../../widgets/custom_asset_widget.dart';
 import '../../widgets/custom_tabbar_widget.dart';
 import '../../widgets/image_action_custom_widget.dart';
 
@@ -74,9 +75,20 @@ class _AddScreenState extends State<AddScreen> {
                     ],
                   ),
                 ),
+                _buildGridWidget(assetList)
               ],
             ),
     );
+  }
+
+  Widget _buildGridWidget(List<AssetEntity> assetList) {
+    return SliverGrid(
+        delegate: SliverChildBuilderDelegate((context, index) {
+          final AssetEntity assetEntity = assetList[index];
+          return CustomAssetWidget(assetEntity: assetEntity);
+        }, childCount: assetList.length),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4, mainAxisSpacing: 2, crossAxisSpacing: 2));
   }
 
   Widget _buildSelectedImageWidget() {
