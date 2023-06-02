@@ -15,6 +15,7 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> {
   late RequestType selectedRequestType;
   AssetPathEntity? selectedAlbum;
+  AssetEntity? selectedImage;
   List<AssetPathEntity> albumList = [];
   List<AssetEntity> assetList = [];
 
@@ -34,6 +35,7 @@ class _AddScreenState extends State<AddScreen> {
       MediaServices.loadAssets(selectedAlbum!).then((value) {
         setState(() {
           assetList = value;
+          selectedImage = value[0];
         });
       });
     });
@@ -46,32 +48,51 @@ class _AddScreenState extends State<AddScreen> {
     return Scaffold(
       appBar: _buildAppBarWidget(context),
       body: Stack(children: [
-        _buildAddImageScreenBody(size),
+        _buildAddImageScreenBody(size, assetList),
         _buildTabBarWidget(),
       ]),
     );
   }
 
-  Widget _buildAddImageScreenBody(Size size) {
+  Widget _buildAddImageScreenBody(Size size, List<AssetEntity> assetList) {
+    const Widget loadingWidget = Center(
+      child: CircularProgressIndicator(),
+    );
     return Positioned.fill(
-      child: CustomScrollView(
-        slivers: [
-          // ******** show selected media or medias ********
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            expandedHeight: size.height / 2.5,
-            flexibleSpace: Stack(
-              children: [
-                Container(
-                  color: Colors.blue,
+      child: assetList.isEmpty
+          ? loadingWidget
+          : CustomScrollView(
+              slivers: [
+                // ******** show selected media or medias ********
+                SliverAppBar(
+                  automaticallyImplyLeading: false,
+                  expandedHeight: size.height / 2.5,
+                  flexibleSpace: Stack(
+                    children: [
+                      _buildSelectedImageWidget(),
+                      _buildActionImageList()
+                    ],
+                  ),
                 ),
-                _buildActionImageList()
               ],
             ),
-          )
-        ],
-      ),
     );
+  }
+
+  Widget _buildSelectedImageWidget() {
+    return Positioned.fill(
+        child: AssetEntityImage(
+      selectedImage!,
+      isOriginal: false,
+      thumbnailSize: const ThumbnailSize.square(250),
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stackTrace) => const Center(
+        child: Icon(
+          Icons.error,
+          color: Colors.black,
+        ),
+      ),
+    ));
   }
 
   CustomTabBarWidget _buildTabBarWidget() {
