@@ -68,6 +68,8 @@ class _AddScreenState extends State<AddScreen> {
                 SliverAppBar(
                   automaticallyImplyLeading: false,
                   expandedHeight: size.height / 2.5,
+                  floating: true,
+                  snap: true,
                   flexibleSpace: Stack(
                     children: [
                       _buildSelectedImageWidget(),
@@ -75,7 +77,10 @@ class _AddScreenState extends State<AddScreen> {
                     ],
                   ),
                 ),
-                _buildGridWidget(assetList)
+                _buildGridWidget(assetList),
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: 60),
+                )
               ],
             ),
     );
