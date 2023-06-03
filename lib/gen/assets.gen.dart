@@ -31,6 +31,10 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
+  /// File path: assets/icons/image_post_multi_like.png
+  AssetGenImage get imagePostMultiLike =>
+      const AssetGenImage('assets/icons/image_post_multi_like.png');
+
   /// File path: assets/icons/notify.svg
   SvgGenImage get notify => const SvgGenImage('assets/icons/notify.svg');
 
@@ -38,15 +42,26 @@ class $AssetsIconsGen {
   SvgGenImage get notifySelected =>
       const SvgGenImage('assets/icons/notify_selected.svg');
 
+  /// File path: assets/icons/user_multi_like.png
+  AssetGenImage get userMultiLike =>
+      const AssetGenImage('assets/icons/user_multi_like.png');
+
+  /// File path: assets/icons/user_multi_like1.png
+  AssetGenImage get userMultiLike1 =>
+      const AssetGenImage('assets/icons/user_multi_like1.png');
+
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
         addNew,
         explore,
         exploreSelected,
         home,
         homeSelected,
+        imagePostMultiLike,
         notify,
-        notifySelected
+        notifySelected,
+        userMultiLike,
+        userMultiLike1
       ];
 }
 
@@ -114,7 +129,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
@@ -141,9 +165,9 @@ class SvgGenImage {
     bool excludeFromSemantics = false,
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated Clip? clipBehavior,
     @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
@@ -163,6 +187,7 @@ class SvgGenImage {
       theme: theme,
       color: color,
       colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }
