@@ -80,8 +80,10 @@ class _MainScreenState extends State<MainScreen> {
                     key: _exploreScreenKey,
                     onGenerateRoute: (settings) => MaterialPageRoute(
  
+ 
                       builder: (context) => ExploreScreen(),
                      ),
+ 
                   ),
                   Navigator(
                     key: _notifyScreenKey,

@@ -156,14 +156,13 @@ class C extends StatelessWidget {
             _gridView(size)
           ],
         ),
+ 
+      )));
+ 
       )),
-      // return Container(
-      //   color: Colors.yellow,
-      //   height: 300,
-      //   width: MediaQuery.of(context).size.width*.5,
-      //   child: const Text("C",style: TextStyle(fontSize: 30),),
+ 
     );
-  }
+   }
 
   _searchBar(Size size) {
     return Container(
