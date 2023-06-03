@@ -7,7 +7,7 @@ class CustomTextFieldWidget extends StatelessWidget {
   Color? hintTextColor;
   Color? boxColor;
   Color borderColor;
-  SvgPicture? myIcon;
+  Widget? myIcon;
   BorderRadius? borderRadius;
   double height;
   double width;
