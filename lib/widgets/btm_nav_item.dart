@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,7 +7,8 @@ class BtmNavItem extends StatefulWidget {
   var inActive;
   bool isSelected;
 
-  BtmNavItem({Key? key, 
+  BtmNavItem({
+    Key? key,
     required this.onTap,
     required this.active,
     required this.inActive,
@@ -23,9 +23,7 @@ class _BtmNavItemState extends State<BtmNavItem> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-              onPressed: widget.onTap,
-              icon:widget.isSelected
-                  ? widget.active
-                  : widget.inActive);
+        onPressed: widget.onTap,
+        icon: widget.isSelected ? widget.active : widget.inActive);
   }
 }
