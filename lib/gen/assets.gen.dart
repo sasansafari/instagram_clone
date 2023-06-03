@@ -43,11 +43,11 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
-  /// File path: assets/icons/like.svg
-  SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
-
-  /// File path: assets/icons/messenger.svg
-  SvgGenImage get messenger => const SvgGenImage('assets/icons/messenger.svg');
+ 
+  /// File path: assets/icons/image_post_multi_like.png
+  AssetGenImage get imagePostMultiLike =>
+      const AssetGenImage('assets/icons/image_post_multi_like.png');
+ 
 
   /// File path: assets/icons/notify.svg
   SvgGenImage get notify => const SvgGenImage('assets/icons/notify.svg');
@@ -56,16 +56,18 @@ class $AssetsIconsGen {
   SvgGenImage get notifySelected =>
       const SvgGenImage('assets/icons/notify_selected.svg');
 
-  /// File path: assets/icons/save.svg
-  SvgGenImage get save => const SvgGenImage('assets/icons/save.svg');
-
  
-  /// File path: assets/icons/select_multiple.svg
-  SvgGenImage get selectMultiple =>
-      const SvgGenImage('assets/icons/select_multiple.svg');
+  /// File path: assets/icons/user_multi_like.png
+  AssetGenImage get userMultiLike =>
+      const AssetGenImage('assets/icons/user_multi_like.png');
+
+  /// File path: assets/icons/user_multi_like1.png
+  AssetGenImage get userMultiLike1 =>
+      const AssetGenImage('assets/icons/user_multi_like1.png');
+ 
 
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
         addNew,
         boomerang,
         combinePhoto,
@@ -75,6 +77,7 @@ class $AssetsIconsGen {
         exploreSelected,
         home,
         homeSelected,
+ 
         like,
         messenger,
         notify,
@@ -192,6 +195,7 @@ class $AssetsImagesGen {
         item7,
         item8,
         item9
+ 
       ];
 }
 
