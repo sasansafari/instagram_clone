@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tec/custom_widgets/users_profile.dart';
+import 'package:tec/widgets/users_profile.dart';
 import '../models/stories_data.dart';
 
 class StoryList extends StatelessWidget {
