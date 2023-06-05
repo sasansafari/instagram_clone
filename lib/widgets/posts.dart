@@ -66,6 +66,7 @@ class _PostsState extends State<Posts> {
 
   PageView postsSlider(int postsLength) {
     return PageView.builder(
+      physics: const BouncingScrollPhysics(),
       itemCount: postsLength,
       itemBuilder: (context, index) {
         return Image.asset(widget.imagesUrl[index]);
