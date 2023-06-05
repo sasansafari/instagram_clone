@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tec/extensions/space_xy_extension.dart';
 
 import '../gen/assets.gen.dart';
 import '../res/colors.dart';
@@ -157,18 +158,14 @@ class _PostsState extends State<Posts> {
                   width: 24,
                   height: 21,
                 ),
-                const SizedBox(
-                  width: 17,
-                ),
+                17.0.spaceX,
                 CustomIconButton(
                   onPressed: () {},
                   icon: Assets.icons.comment.svg(),
                   width: 22,
                   height: 23,
                 ),
-                const SizedBox(
-                  width: 17,
-                ),
+                17.0.spaceX,
                 CustomIconButton(
                   onPressed: () {},
                   icon: Assets.icons.messenger.svg(),
