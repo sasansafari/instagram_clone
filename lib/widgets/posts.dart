@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
+import '../gen/assets.gen.dart';
 import '../res/colors.dart';
+import 'custom_icon_button.dart';
 
 class Posts extends StatefulWidget {
   final List<String> imagesUrl;
@@ -129,53 +130,40 @@ class _PostsState extends State<Posts> {
                     children: [
                       Row(
                         children: [
-                          InkWell(
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            onTap: () {},
-                            child: SvgPicture.asset(
-                              'assets/icons/like.svg',
-                              height: 21,
-                              width: 24,
-                            ),
+                          CustomIconButton(
+                            onPressed: () {},
+                            icon: Assets.icons.like.svg(),
+                            width: 24,
+                            height: 21,
                           ),
                           const SizedBox(
                             width: 17,
                           ),
-                          InkWell(
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            onTap: () {},
-                            child: SvgPicture.asset(
-                              'assets/icons/comment.svg',
-                              height: 23,
-                              width: 22,
-                            ),
+                          CustomIconButton(
+                            onPressed: () {},
+                            icon: Assets.icons.comment.svg(),
+                            width: 22,
+                            height: 23,
                           ),
                           const SizedBox(
                             width: 17,
                           ),
-                          InkWell(
-                            highlightColor: Colors.transparent,
-                            splashColor: Colors.transparent,
-                            onTap: () {},
-                            child: SvgPicture.asset(
-                              'assets/icons/messenger.svg',
-                              height: 20,
-                              width: 23,
-                            ),
+                          CustomIconButton(
+                            onPressed: () {},
+                            icon: Assets.icons.messenger.svg(),
+                            width: 23,
+                            height: 20,
+                          ),
+                          const SizedBox(
+                            width: 17,
                           ),
                         ],
                       ),
-                      InkWell(
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        onTap: () {},
-                        child: SvgPicture.asset(
-                          'assets/icons/save.svg',
-                          height: 24,
-                          width: 21,
-                        ),
+                      CustomIconButton(
+                        onPressed: () {},
+                        icon: Assets.icons.save.svg(),
+                        width: 21,
+                        height: 24,
                       ),
                     ],
                   ),
