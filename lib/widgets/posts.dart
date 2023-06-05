@@ -31,7 +31,7 @@ class _PostsState extends State<Posts> {
           child: Stack(
             children: [
               if (widget.imagesUrl.isNotEmpty) postsSlider(postsLength),
-              if (widget.imagesUrl.isEmpty) emptyPost(deviceSize),
+              if (widget.imagesUrl.isEmpty) emptyPost(),
               if (postsLength > 1) counterPanel(postsLength),
             ],
           ),
@@ -49,10 +49,10 @@ class _PostsState extends State<Posts> {
     );
   }
 
-  Container emptyPost(Size deviceSize) {
+  Container emptyPost() {
     return Container(
-      width: deviceSize.width,
-      height: deviceSize.width,
+      width: double.infinity,
+      height: double.infinity,
       color: Colors.grey.withOpacity(.4),
       child: const Center(
         child: Icon(
