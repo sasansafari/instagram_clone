@@ -4,6 +4,7 @@ import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/res/constant/colors.dart';
 import 'package:tec/res/constant/dimens.dart';
 import 'package:tec/res/constant/my_strings.dart';
+import 'package:tec/widgets/item_story.dart';
 
 class UserProfileScreen extends StatelessWidget {
   //final String textTitle;
@@ -24,35 +25,8 @@ class UserProfileScreen extends StatelessWidget {
             headerSliverBuilder: (context, isScrolled) {
               return [
                 //AppBar
-                SliverAppBar(
-                  backgroundColor: MyColors.secondaryColorUi,
-                  pinned: true,
-                  actions: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          right: sizeMediaQuery.width / MyDimens.num18),
-                      child: Assets.icons.menu.svg(),
-                    ),
-                  ],
-                  title: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: sizeMediaQuery.width / MyDimens.num12),
-                        Assets.icons.privateIcon.svg(),
-                        SizedBox(width: sizeMediaQuery.width / MyDimens.num50),
-                        Text(
-                          "jacob_w",
-                          style: textTheme.displayLarge,
-                        ),
-                        const SizedBox(width: MyDimens.num5),
-                        Assets.icons.accountsList.svg(),
-                      ],
-                    ),
-                  ),
-                  centerTitle: true,
-                ),
+                SliverAppBarWidget(
+                    sizeMediaQuery: sizeMediaQuery, textTheme: textTheme),
                 //widgets between Appbar and TabBar
                 SliverToBoxAdapter(
                   child: GetHeaderProfile(
@@ -142,6 +116,50 @@ class UserProfileScreen extends StatelessWidget {
   }
 }
 
+class SliverAppBarWidget extends StatelessWidget {
+  const SliverAppBarWidget({
+    Key? key,
+    required this.sizeMediaQuery,
+    required this.textTheme,
+  }) : super(key: key);
+
+  final Size sizeMediaQuery;
+  final TextTheme textTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      backgroundColor: MyColors.secondaryColorUi,
+      pinned: true,
+      actions: [
+        Padding(
+          padding:
+              EdgeInsets.only(right: sizeMediaQuery.width / MyDimens.num18),
+          child: Assets.icons.menu.svg(),
+        ),
+      ],
+      title: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(width: sizeMediaQuery.width / MyDimens.num12),
+            Assets.icons.privateIcon.svg(),
+            SizedBox(width: sizeMediaQuery.width / MyDimens.num50),
+            Text(
+              "jacob_w",
+              style: textTheme.displayLarge,
+            ),
+            const SizedBox(width: MyDimens.num5),
+            Assets.icons.accountsList.svg(),
+          ],
+        ),
+      ),
+      centerTitle: true,
+    );
+  }
+}
+
 class TabBarViewDelegate extends SliverPersistentHeaderDelegate {
   TabBarViewDelegate(this._tabBar);
 
@@ -194,22 +212,27 @@ class GetHeaderProfile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ItemImageProfile(
+              //Item Image Profile
+              ItemStory(
                 width: MyDimens.num96,
                 height: MyDimens.num96,
                 sizeInner: MyDimens.num86,
-                sizeOuter: MyDimens.num96,
+                sizeOuter: MyDimens.num86,
                 image: Assets.images.imgMe.provider(),
+                sizedBoxHeight: MyDimens.num0,
+                margin: const EdgeInsets.all(MyDimens.num0),
+                visible: false,
+                textItemStoryBox: "",
               ),
-              ColumnTextProfile(
+              ColumnTextInfoProfile(
                   textChangeable: '54',
                   text: MyStrings.postsUserProfile,
                   textTheme: textTheme),
-              ColumnTextProfile(
+              ColumnTextInfoProfile(
                   textChangeable: '834',
                   text: MyStrings.followersUserProfile,
                   textTheme: textTheme),
-              ColumnTextProfile(
+              ColumnTextInfoProfile(
                   textChangeable: '162',
                   text: MyStrings.followingUserProfile,
                   textTheme: textTheme),
@@ -260,13 +283,19 @@ class GetHeaderProfile extends StatelessWidget {
                       height: MyDimens.num64,
                       containerOne: MyDimens.num64,
                       containerTwo: MyDimens.num64)
-                  : ItemStoryBox(
+                  : ItemStory(
                       width: MyDimens.num64,
                       height: MyDimens.num64,
                       sizeInner: MyDimens.num56,
                       sizeOuter: MyDimens.num56,
                       textItemStoryBox: "Friends",
-                      image: Assets.images.imgMe.provider()), //
+                      visible: true,
+                      textTheme: textTheme,
+                      margin:
+                          const EdgeInsets.symmetric(horizontal: MyDimens.num8),
+                      sizedBoxHeight: MyDimens.num5,
+                      image: Assets.images.imgMe.provider(),
+                    ), //
             ),
           ),
         ],
@@ -329,8 +358,8 @@ class BioUserProfile extends StatelessWidget {
 }
 
 //Custom Widget - Text Info Profile post-followers-following
-class ColumnTextProfile extends StatelessWidget {
-  const ColumnTextProfile({
+class ColumnTextInfoProfile extends StatelessWidget {
+  const ColumnTextInfoProfile({
     Key? key,
     required this.textTheme,
     required this.textChangeable,
@@ -359,49 +388,6 @@ class ColumnTextProfile extends StatelessWidget {
   }
 }
 
-//Custom widget - Item Story Box profile page
-class ItemImageProfile extends StatelessWidget {
-  final double width;
-  final double height;
-  final double sizeInner;
-  final double sizeOuter;
-  final ImageProvider<Object> image;
-
-  ItemImageProfile({
-    Key? key,
-    required this.width,
-    required this.height,
-    required this.sizeInner,
-    required this.sizeOuter,
-    required this.image,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1.5, color: MyColors.borderOvalProfileScreen),
-        borderRadius: BorderRadius.all(
-          Radius.elliptical(sizeOuter, sizeOuter),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(MyDimens.num4),
-        child: ClipRRect(
-          borderRadius:
-              BorderRadius.all(Radius.elliptical(sizeInner, sizeInner)),
-          child: FittedBox(
-            fit: BoxFit.cover,
-            child: Image(image: image),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 //Custom widget - Item Add Story profile page
 class ItemAddStory extends StatelessWidget {
   final double width;
@@ -426,7 +412,6 @@ class ItemAddStory extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-
             color: MyColors.borderEditProfileColor,
             borderRadius: BorderRadius.circular(containerOne),
           ),
@@ -449,61 +434,6 @@ class ItemAddStory extends StatelessWidget {
         const SizedBox(height: MyDimens.num5),
         const Text(
           MyStrings.newAddHighlight,
-        ),
-      ],
-    );
-  }
-}
-
-//Custom widget - Item Story Box profile page
-class ItemStoryBox extends StatelessWidget {
-  final double width;
-  final double height;
-  final double sizeInner;
-  final double sizeOuter;
-  final String textItemStoryBox;
-  final ImageProvider<Object> image;
-
-  ItemStoryBox({
-    Key? key,
-    required this.width,
-    required this.height,
-    required this.sizeInner,
-    required this.sizeOuter,
-    required this.image,
-    required this.textItemStoryBox,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8),
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            border:
-                Border.all(width: 1.5, color: MyColors.borderOvalProfileScreen),
-            borderRadius: BorderRadius.all(
-              Radius.elliptical(sizeOuter, sizeOuter),
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(4),
-            child: ClipRRect(
-              borderRadius:
-                  BorderRadius.all(Radius.elliptical(sizeInner, sizeInner)),
-              child: FittedBox(
-                fit: BoxFit.cover,
-                child: Image(image: image),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: MyDimens.num5),
-        Text(
-          textItemStoryBox,
         ),
       ],
     );
