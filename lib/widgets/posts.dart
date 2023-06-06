@@ -3,6 +3,7 @@ import 'package:tec/extensions/space_xy_extension.dart';
 
 import '../gen/assets.gen.dart';
 import '../res/colors.dart';
+import '../res/styles.dart';
 import 'custom_icon_button.dart';
 
 class Posts extends StatefulWidget {
@@ -95,13 +96,11 @@ class _PostsState extends State<Posts> {
           color: MyColors.postsCounter,
         ),
         child: Center(
-          child: Text(
-            '${_selectedPost + 1}/$postsLength',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-            ),
-          ),
+          child: Text('${_selectedPost + 1}/$postsLength',
+              style: MyStyles.getRegularStyle(
+                color: MyColors.postsCounterText,
+                fontSize: 12,
+              )),
         ),
       ),
     );
@@ -171,9 +170,6 @@ class _PostsState extends State<Posts> {
                   icon: Assets.icons.messenger.svg(),
                   width: 23,
                   height: 20,
-                ),
-                const SizedBox(
-                  width: 17,
                 ),
               ],
             ),
