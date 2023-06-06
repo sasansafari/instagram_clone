@@ -2,12 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
+import 'package:tec/widgets/story.dart';
 
 import '../../route/names.dart';
 import 'explore_screen.dart';
 import 'home_screen.dart';
 import 'notrifications_screen.dart';
 import 'user_profile_screen.dart';
+
+int selectedIndex = 0;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({
@@ -19,7 +22,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int selectedIndex = 0;
+
 
   final GlobalKey<NavigatorState> _homeScreenKey = GlobalKey();
   final GlobalKey<NavigatorState> _exploreScreenKey = GlobalKey();
@@ -157,20 +160,18 @@ class _MainScreenState extends State<MainScreen> {
                       ? Assets.icons.notifySelected.svg()
                       : Assets.icons.notify.svg()),
               IconButton(
-                onPressed: (() => setState(
-                      () => [
-                        selectedIndex = BottomNavIndex.profileIndex,
-                        if (!navigationHistory
-                            .contains(BottomNavIndex.profileIndex))
-                          {
-                            navigationHistory.add(BottomNavIndex.profileIndex),
-                          }
-                      ],
-                    )),
-                icon: selectedIndex == BottomNavIndex.profileIndex
-                    ? const Icon(Icons.supervised_user_circle_rounded)
-                    : const Icon(Icons.data_usage_rounded),
-              ),
+                  onPressed: (() => setState(
+                        () => [
+                          selectedIndex = BottomNavIndex.profileIndex,
+                          if (!navigationHistory
+                              .contains(BottomNavIndex.profileIndex))
+                            {
+                              navigationHistory
+                                  .add(BottomNavIndex.profileIndex),
+                            }
+                        ],
+                      )), 
+                  icon: userProfileBtmNav()),
             ],
           ),
         ));

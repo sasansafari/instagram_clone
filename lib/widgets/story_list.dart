@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tec/widgets/users_profile.dart';
+import 'package:tec/widgets/story.dart';
 import '../models/stories_data.dart';
 
 class StoryList extends StatelessWidget {
@@ -21,7 +21,7 @@ class StoryList extends StatelessWidget {
           itemCount: stories.length,
           itemBuilder: (context, index) {
             final story = stories[index];
-            return UsersProfile(story: story);
+            return Story(story: story);
           }),
     );
   }

@@ -73,7 +73,7 @@ class StoriesDatabase {
         id: 1007,
         name: 'andrewww_',
         imageFileName: Assets.images.stories.stories6.path,
-        hasStory: false,
+        hasStory: true,
         isViewed: false,
         hasLive: false,
       ),
