@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../widgets/story_list.dart';
-import '../../models/stories_data.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final stories = StoriesDatabase.stories;
+    // final stories = StoriesDatabase.stories;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -18,7 +17,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              StoryList(stories: stories),
+              StoryList(stories: sortStories()),
               const Divider(
                 color: Colors.black38,
               ),

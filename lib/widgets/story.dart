@@ -16,7 +16,7 @@ class Story extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // User object Container with text
-    if (story.hasStory) {
+    if (story.hasStory || story.hasLive || story.isViewed) {
       return Container(
         margin: const EdgeInsets.fromLTRB(8, 0, 8, 0),
         child: Column(
@@ -25,29 +25,34 @@ class Story extends StatelessWidget {
               children: [
                 if (!story.isViewed) ...[
                   // User has story and not viewed
-                  storyNotViewed()
+                  storyNotViewed(),
+                  if (story.hasLive) ...[userHasLive()]
                 ] else ...[
                   // User has story and story is viewed
-                  storyViewed()
+                  storyViewed(),
+                  if (story.hasLive) ...[storyNotViewed(), userHasLive()]
                 ],
-                if (story.hasLive) ...[
-                  Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: -1,
-                    child: Assets.icons.live.svg(height: 19, width: 29),
-                  ),
-                ]
               ],
             ),
             const SizedBox(height: 8),
-            if (story.hasStory) ...[Text(story.name)]
+            if (story.hasStory || story.hasLive || story.isViewed) ...[
+              Text(story.name)
+            ]
           ],
         ),
       );
     } else {
       return const SizedBox.shrink();
     }
+  }
+
+  Positioned userHasLive() {
+    return Positioned(
+      left: 0,
+      right: 0,
+      bottom: -1,
+      child: Assets.icons.live.svg(height: 19, width: 29),
+    );
   }
 
   Widget withoutStory() {
@@ -68,14 +73,21 @@ class Story extends StatelessWidget {
       height: 65,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1000),
-        gradient: const LinearGradient(
+        gradient: !story.hasLive? const LinearGradient(
           begin: Alignment.topLeft,
           colors: [
             Color(0xFFD91A46),
             Color(0xFFFBAA47),
             Color(0xFFA60F93),
           ],
-        ),
+        ):const LinearGradient(
+          begin: Alignment.topLeft,
+          colors: [
+            Color(0xFF7700C3),
+            Color(0xFFC60188),
+            Color(0xFFE20337),
+          ],
+        )
       ),
       child: Container(
         margin: const EdgeInsets.all(2),
@@ -138,3 +150,6 @@ Widget userProfileBtmNav() {
     ),
   );
 }
+
+
+

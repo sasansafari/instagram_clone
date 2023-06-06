@@ -47,7 +47,7 @@ class StoriesDatabase {
       ),
       StoryData(
         id: 1004,
-        name: 'kieron_d ',
+        name: 'kieron_d',
         imageFileName: Assets.images.stories.stories9.path,
         hasStory: true,
         isViewed: false,
@@ -55,6 +55,14 @@ class StoriesDatabase {
       ),
       StoryData(
         id: 1005,
+        name: 'craig_love',
+        imageFileName: Assets.images.stories.stories12.path,
+        hasStory: true,
+        isViewed: false,
+        hasLive: false,
+      ),
+      StoryData(
+        id: 1006,
         name: 'jamie.franc',
         imageFileName: Assets.images.stories.stories4.path,
         hasStory: true,
@@ -62,7 +70,7 @@ class StoriesDatabase {
         hasLive: false,
       ),
       StoryData(
-        id: 1006,
+        id: 1007,
         name: 'maxjacob',
         imageFileName: Assets.images.stories.stories5.path,
         hasStory: true,
@@ -70,7 +78,7 @@ class StoriesDatabase {
         hasLive: false,
       ),
       StoryData(
-        id: 1007,
+        id: 1008,
         name: 'andrewww_',
         imageFileName: Assets.images.stories.stories6.path,
         hasStory: true,
@@ -78,7 +86,7 @@ class StoriesDatabase {
         hasLive: false,
       ),
       StoryData(
-        id: 1008,
+        id: 1009,
         name: 'mersad.dev',
         imageFileName: Assets.images.stories.stories0.path,
         hasStory: true,
@@ -86,7 +94,7 @@ class StoriesDatabase {
         hasLive: false,
       ),
       StoryData(
-        id: 1009,
+        id: 1010,
         name: 'joshua_l',
         imageFileName: Assets.images.stories.stories8.path,
         hasStory: true,
@@ -94,7 +102,7 @@ class StoriesDatabase {
         hasLive: false,
       ),
       StoryData(
-        id: 1010,
+        id: 1011,
         name: 'm_humph',
         imageFileName: Assets.images.stories.stories3.path,
         hasStory: true,
@@ -102,9 +110,17 @@ class StoriesDatabase {
         hasLive: false,
       ),
       StoryData(
-        id: 1011,
+        id: 1012,
         name: 'martini',
         imageFileName: Assets.images.stories.stories7.path,
+        hasStory: true,
+        isViewed: true,
+        hasLive: false,
+      ),
+      StoryData(
+        id: 1013,
+        name: 'martini',
+        imageFileName: Assets.images.stories.stories11.path,
         hasStory: true,
         isViewed: true,
         hasLive: false,

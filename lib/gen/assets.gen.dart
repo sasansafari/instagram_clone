@@ -20,6 +20,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add_new.svg
   SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
 
+  /// File path: assets/icons/boomerang.svg
+  SvgGenImage get boomerang => const SvgGenImage('assets/icons/boomerang.svg');
+
+  /// File path: assets/icons/combine_photo.svg
+  SvgGenImage get combinePhoto =>
+      const SvgGenImage('assets/icons/combine_photo.svg');
+
   /// File path: assets/icons/comment.svg
   SvgGenImage get comment => const SvgGenImage('assets/icons/comment.svg');
 
@@ -37,6 +44,10 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
+  /// File path: assets/icons/image_post_multi_like.png
+  AssetGenImage get imagePostMultiLike =>
+      const AssetGenImage('assets/icons/image_post_multi_like.png');
+
   /// File path: assets/icons/like.svg
   SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
 
@@ -53,25 +64,54 @@ class $AssetsIconsGen {
   /// File path: assets/icons/save.svg
   SvgGenImage get save => const SvgGenImage('assets/icons/save.svg');
 
+  /// File path: assets/icons/select_multiple.svg
+  SvgGenImage get selectMultiple =>
+      const SvgGenImage('assets/icons/select_multiple.svg');
+
+  /// File path: assets/icons/user_multi_like.png
+  AssetGenImage get userMultiLike =>
+      const AssetGenImage('assets/icons/user_multi_like.png');
+
+  /// File path: assets/icons/user_multi_like1.png
+  AssetGenImage get userMultiLike1 =>
+      const AssetGenImage('assets/icons/user_multi_like1.png');
+
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
         live,
         addNew,
+        boomerang,
+        combinePhoto,
         comment,
         explore,
         exploreSelected,
         home,
         homeSelected,
+        imagePostMultiLike,
         like,
         messenger,
         notify,
         notifySelected,
-        save
+        save,
+        selectMultiple,
+        userMultiLike,
+        userMultiLike1
       ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/Back.png
+  AssetGenImage get back => const AssetGenImage('assets/images/Back.png');
+
+  /// File path: assets/images/Facebook Logo.png
+  AssetGenImage get facebookLogo =>
+      const AssetGenImage('assets/images/Facebook Logo.png');
+
+  /// File path: assets/images/Instagram Logo.png
+  AssetGenImage get instagramLogo =>
+      const AssetGenImage('assets/images/Instagram Logo.png');
 
   /// File path: assets/images/item0.png
   AssetGenImage get item0 => const AssetGenImage('assets/images/item0.png');
@@ -140,6 +180,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        back,
+        facebookLogo,
+        instagramLogo,
         item0,
         item1,
         item10,
@@ -183,6 +226,14 @@ class $AssetsImagesStoriesGen {
   AssetGenImage get stories10 =>
       const AssetGenImage('assets/images/stories/stories10.png');
 
+  /// File path: assets/images/stories/stories11.png
+  AssetGenImage get stories11 =>
+      const AssetGenImage('assets/images/stories/stories11.png');
+
+  /// File path: assets/images/stories/stories12.png
+  AssetGenImage get stories12 =>
+      const AssetGenImage('assets/images/stories/stories12.png');
+
   /// File path: assets/images/stories/stories2.png
   AssetGenImage get stories2 =>
       const AssetGenImage('assets/images/stories/stories2.png');
@@ -221,6 +272,8 @@ class $AssetsImagesStoriesGen {
         stories0,
         stories1,
         stories10,
+        stories11,
+        stories12,
         stories2,
         stories3,
         stories4,
@@ -235,8 +288,12 @@ class $AssetsImagesStoriesGen {
 class Assets {
   Assets._();
 
+  static const AssetGenImage oval = AssetGenImage('assets/Oval.png');
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  List<AssetGenImage> get values => [oval];
 }
 
 class AssetGenImage {
@@ -353,11 +410,11 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
-      // colorFilter: colorFilter,
-      // color: color,
-      // colorBlendMode: colorBlendMode,
-      // clipBehavior: clipBehavior,
-      // cacheColorFilter: cacheColorFilter,
+      colorFilter: colorFilter,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 
