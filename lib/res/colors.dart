@@ -6,6 +6,7 @@ abstract class MyColors {
 
   //* Posts Widget Colors
   static const Color postsCounter = Color.fromRGBO(18, 18, 18, .7);
+  static const Color postsCounterText = Color.fromRGBO(249, 249, 249, 1);
   static const Color disablePostPointer = Color.fromRGBO(0, 0, 0, 0.15);
   static const Color selectedPostPointer = Color.fromRGBO(56, 151, 240, 1);
 
