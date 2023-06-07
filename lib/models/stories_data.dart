@@ -119,7 +119,7 @@ class StoriesDatabase {
       ),
       StoryData(
         id: 1013,
-        name: 'martini',
+        name: 'mis_potter',
         imageFileName: Assets.images.stories.stories11.path,
         hasStory: true,
         isViewed: true,
