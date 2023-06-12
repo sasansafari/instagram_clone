@@ -156,7 +156,7 @@ class C extends StatelessWidget {
       ),),
  
     );
-  }
+   }
 
   _searchBar(Size size) {
     return Container(

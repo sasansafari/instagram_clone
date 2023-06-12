@@ -41,6 +41,10 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
+  /// File path: assets/icons/image_post_multi_like.png
+  AssetGenImage get imagePostMultiLike =>
+      const AssetGenImage('assets/icons/image_post_multi_like.png');
+
   /// File path: assets/icons/like.svg
   SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
 
@@ -63,8 +67,16 @@ class $AssetsIconsGen {
   SvgGenImage get selectMultiple =>
       const SvgGenImage('assets/icons/select_multiple.svg');
 
+  /// File path: assets/icons/user_multi_like.png
+  AssetGenImage get userMultiLike =>
+      const AssetGenImage('assets/icons/user_multi_like.png');
+
+  /// File path: assets/icons/user_multi_like1.png
+  AssetGenImage get userMultiLike1 =>
+      const AssetGenImage('assets/icons/user_multi_like1.png');
+
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
         addNew,
         boomerang,
         combinePhoto,
@@ -73,17 +85,31 @@ class $AssetsIconsGen {
         exploreSelected,
         home,
         homeSelected,
+        imagePostMultiLike,
         like,
         messenger,
         notify,
         notifySelected,
         save,
-        selectMultiple
+        selectMultiple,
+        userMultiLike,
+        userMultiLike1
       ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
+
+  /// File path: assets/images/Back.png
+  AssetGenImage get back => const AssetGenImage('assets/images/Back.png');
+
+  /// File path: assets/images/Facebook Logo.png
+  AssetGenImage get facebookLogo =>
+      const AssetGenImage('assets/images/Facebook Logo.png');
+
+  /// File path: assets/images/Instagram Logo.png
+  AssetGenImage get instagramLogo =>
+      const AssetGenImage('assets/images/Instagram Logo.png');
 
   /// File path: assets/images/item0.png
   AssetGenImage get item0 => const AssetGenImage('assets/images/item0.png');
@@ -150,6 +176,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        back,
+        facebookLogo,
+        instagramLogo,
         item0,
         item1,
         item10,
