@@ -19,19 +19,19 @@ class _PostsState extends State<Posts> {
 
   @override
   Widget build(BuildContext context) {
-    final int _postsLength = widget.imagesUrl.length;
-    final Size _deviceSize = MediaQuery.of(context).size;
+    final int postsLength = widget.imagesUrl.length;
+    final Size deviceSize = MediaQuery.of(context).size;
 
     return Column(
       children: [
         SizedBox(
-          width: _deviceSize.width,
-          height: _deviceSize.width,
+          width: deviceSize.width,
+          height: deviceSize.width,
           child: Stack(
             children: [
               if (widget.imagesUrl.isNotEmpty)
                 PageView.builder(
-                  itemCount: _postsLength,
+                  itemCount: postsLength,
                   itemBuilder: (context, index) {
                     return Image.asset(widget.imagesUrl[index]);
                   },
@@ -43,8 +43,8 @@ class _PostsState extends State<Posts> {
                 ),
               if (widget.imagesUrl.isEmpty)
                 Container(
-                  width: _deviceSize.width,
-                  height: _deviceSize.width,
+                  width: deviceSize.width,
+                  height: deviceSize.width,
                   color: Colors.grey.withOpacity(.4),
                   child: const Center(
                     child: Icon(
@@ -54,7 +54,7 @@ class _PostsState extends State<Posts> {
                     ),
                   ),
                 ),
-              if (_postsLength > 1)
+              if (postsLength > 1)
                 Positioned(
                   top: 10,
                   right: 10,
@@ -70,7 +70,7 @@ class _PostsState extends State<Posts> {
                     ),
                     child: Center(
                       child: Text(
-                        '${_selectedPost + 1}/$_postsLength',
+                        '${_selectedPost + 1}/$postsLength',
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -86,7 +86,7 @@ class _PostsState extends State<Posts> {
           height: 48,
           child: Stack(
             children: [
-              if (_postsLength > 1)
+              if (postsLength > 1)
                 Positioned(
                   top: 21,
                   left: 0,
@@ -100,7 +100,7 @@ class _PostsState extends State<Posts> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      itemCount: _postsLength,
+                      itemCount: postsLength,
                       itemBuilder: (context, index) {
                         return Container(
                           width: 6,

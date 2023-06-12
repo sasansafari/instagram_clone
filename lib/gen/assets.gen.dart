@@ -17,7 +17,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add_new.svg
   SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
 
- 
+  /// File path: assets/icons/boomerang.svg
+  SvgGenImage get boomerang => const SvgGenImage('assets/icons/boomerang.svg');
+
+  /// File path: assets/icons/combine_photo.svg
+  SvgGenImage get combinePhoto =>
+      const SvgGenImage('assets/icons/combine_photo.svg');
+
   /// File path: assets/icons/comment.svg
   SvgGenImage get comment => const SvgGenImage('assets/icons/comment.svg');
 
@@ -38,7 +44,8 @@ class $AssetsIconsGen {
   /// File path: assets/icons/like.svg
   SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
 
- 
+  $AssetsIconsMenuGen get menu => const $AssetsIconsMenuGen();
+
   /// File path: assets/icons/messenger.svg
   SvgGenImage get messenger => const SvgGenImage('assets/icons/messenger.svg');
 
@@ -52,7 +59,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/save.svg
   SvgGenImage get save => const SvgGenImage('assets/icons/save.svg');
 
- 
   /// File path: assets/icons/select_multiple.svg
   SvgGenImage get selectMultiple =>
       const SvgGenImage('assets/icons/select_multiple.svg');
@@ -62,7 +68,6 @@ class $AssetsIconsGen {
         addNew,
         boomerang,
         combinePhoto,
- 
         comment,
         explore,
         exploreSelected,
@@ -72,7 +77,8 @@ class $AssetsIconsGen {
         messenger,
         notify,
         notifySelected,
- 
+        save,
+        selectMultiple
       ];
 }
 
@@ -165,7 +171,50 @@ class $AssetsImagesGen {
         item7,
         item8,
         item9
- 
+      ];
+}
+
+class $AssetsIconsMenuGen {
+  const $AssetsIconsMenuGen();
+
+  /// File path: assets/icons/menu/archive.svg
+  SvgGenImage get archive => const SvgGenImage('assets/icons/menu/archive.svg');
+
+  /// File path: assets/icons/menu/closeFreinds.svg
+  SvgGenImage get closeFreinds =>
+      const SvgGenImage('assets/icons/menu/closeFreinds.svg');
+
+  /// File path: assets/icons/menu/discoverPeople.svg
+  SvgGenImage get discoverPeople =>
+      const SvgGenImage('assets/icons/menu/discoverPeople.svg');
+
+  /// File path: assets/icons/menu/nameTag.svg
+  SvgGenImage get nameTag => const SvgGenImage('assets/icons/menu/nameTag.svg');
+
+  /// File path: assets/icons/menu/openFacebook.svg
+  SvgGenImage get openFacebook =>
+      const SvgGenImage('assets/icons/menu/openFacebook.svg');
+
+  /// File path: assets/icons/menu/saved.svg
+  SvgGenImage get saved => const SvgGenImage('assets/icons/menu/saved.svg');
+
+  /// File path: assets/icons/menu/setting.svg
+  SvgGenImage get setting => const SvgGenImage('assets/icons/menu/setting.svg');
+
+  /// File path: assets/icons/menu/yourActivity.svg
+  SvgGenImage get yourActivity =>
+      const SvgGenImage('assets/icons/menu/yourActivity.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+        archive,
+        closeFreinds,
+        discoverPeople,
+        nameTag,
+        openFacebook,
+        saved,
+        setting,
+        yourActivity
       ];
 }
 
@@ -174,7 +223,10 @@ class Assets {
 
   static const AssetGenImage oval = AssetGenImage('assets/Oval.png');
   static const $AssetsIconsGen icons = $AssetsIconsGen();
- 
+  static const $AssetsImagesGen images = $AssetsImagesGen();
+
+  /// List of all assets
+  List<AssetGenImage> get values => [oval];
 }
 
 class AssetGenImage {
@@ -291,7 +343,7 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
- 
+      colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
       clipBehavior: clipBehavior,

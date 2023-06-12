@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../gen/assets.gen.dart';
-import '../res/dimens.dart';
 import 'drawer_item.dart';
 
 class SpecialDrawer extends StatelessWidget {
@@ -13,8 +11,7 @@ class SpecialDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
           const ListTile(
             title: Text('s.khasanov_'),
@@ -67,15 +64,15 @@ class SpecialDrawer extends StatelessWidget {
               title: 'Open Facebook',
             ),
             onTap: () {},
-          ),const SizedBox(height: Dimens.large*8.7,)
-          ,
+          ),
+          const Expanded(child: SizedBox()),
           ListTile(
-              title: CustomDrawer(
-            icon: Assets.icons.menu.setting.svg(),
-            title: 'Settings',
-          ),onTap: () {
-            
-          },),
+            title: CustomDrawer(
+              icon: Assets.icons.menu.setting.svg(),
+              title: 'Settings',
+            ),
+            onTap: () {},
+          ),
         ],
       ),
     );

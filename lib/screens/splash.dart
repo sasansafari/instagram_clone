@@ -14,7 +14,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then(
-        (value) => Navigator.pushReplacementNamed(context, Screens.mainScreen));
+        (value) => Navigator.pushReplacementNamed(context, Screens.mainScreen),);
   }
 
   @override
@@ -25,9 +25,9 @@ class _SplashState extends State<Splash> {
       width: double.infinity,
       color: Colors.white,
       child: const Center(
-        child: Text("Instagram"),
+        child: Text('Instagram'),
       ),
-    ));
+    ),);
   }
 }
 

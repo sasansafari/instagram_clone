@@ -5,7 +5,7 @@ class CustomAssetWidget extends StatelessWidget {
   final AssetEntity assetEntity;
   final TextStyle? videoDurationTextStyle;
   const CustomAssetWidget(
-      {Key? key, required this.assetEntity, this.videoDurationTextStyle})
+      {Key? key, required this.assetEntity, this.videoDurationTextStyle,})
       : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class CustomAssetWidget extends StatelessWidget {
               color: Colors.red,
             ),
           ),
-        )),
+        ),),
         if (assetEntity.type == AssetType.video)
           const Positioned(
             bottom: 8,
