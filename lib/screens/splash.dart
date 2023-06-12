@@ -9,13 +9,11 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds: 3)).then(
-        (value) => Navigator.pushReplacementNamed(context, Screens.mainScreen));
+    Future.delayed(const Duration(seconds: 3)).then((value) =>
+        Navigator.pushReplacementNamed(context, Screens.loginScreen));
   }
 
   @override

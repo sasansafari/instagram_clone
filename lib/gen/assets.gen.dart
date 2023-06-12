@@ -17,6 +17,18 @@ class $AssetsIconsGen {
   /// File path: assets/icons/add_new.svg
   SvgGenImage get addNew => const SvgGenImage('assets/icons/add_new.svg');
 
+ 
+  /// File path: assets/icons/boomerang.svg
+  SvgGenImage get boomerang => const SvgGenImage('assets/icons/boomerang.svg');
+
+  /// File path: assets/icons/combine_photo.svg
+  SvgGenImage get combinePhoto =>
+      const SvgGenImage('assets/icons/combine_photo.svg');
+
+ 
+  /// File path: assets/icons/comment.svg
+  SvgGenImage get comment => const SvgGenImage('assets/icons/comment.svg');
+
   /// File path: assets/icons/explore.svg
   SvgGenImage get explore => const SvgGenImage('assets/icons/explore.svg');
 
@@ -31,6 +43,12 @@ class $AssetsIconsGen {
   SvgGenImage get homeSelected =>
       const SvgGenImage('assets/icons/home_selected.svg');
 
+ 
+  /// File path: assets/icons/image_post_multi_like.png
+  AssetGenImage get imagePostMultiLike =>
+      const AssetGenImage('assets/icons/image_post_multi_like.png');
+ 
+
   /// File path: assets/icons/notify.svg
   SvgGenImage get notify => const SvgGenImage('assets/icons/notify.svg');
 
@@ -38,22 +56,157 @@ class $AssetsIconsGen {
   SvgGenImage get notifySelected =>
       const SvgGenImage('assets/icons/notify_selected.svg');
 
+ 
+  /// File path: assets/icons/user_multi_like.png
+  AssetGenImage get userMultiLike =>
+      const AssetGenImage('assets/icons/user_multi_like.png');
+
+  /// File path: assets/icons/user_multi_like1.png
+  AssetGenImage get userMultiLike1 =>
+      const AssetGenImage('assets/icons/user_multi_like1.png');
+ 
+
   /// List of all assets
-  List<SvgGenImage> get values => [
+  List<dynamic> get values => [
         addNew,
+        boomerang,
+        combinePhoto,
+ 
+        comment,
         explore,
         exploreSelected,
         home,
         homeSelected,
+ 
+        like,
+        messenger,
         notify,
-        notifySelected
+        notifySelected,
+ 
+        save,
+        selectMultiple
+ 
+      ];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+ 
+  /// File path: assets/images/Back.png
+  AssetGenImage get back => const AssetGenImage('assets/images/Back.png');
+
+  /// File path: assets/images/Facebook Logo.png
+  AssetGenImage get facebookLogo =>
+      const AssetGenImage('assets/images/Facebook Logo.png');
+
+  /// File path: assets/images/Instagram Logo.png
+  AssetGenImage get instagramLogo =>
+      const AssetGenImage('assets/images/Instagram Logo.png');
+ 
+  /// File path: assets/images/item0.png
+  AssetGenImage get item0 => const AssetGenImage('assets/images/item0.png');
+
+  /// File path: assets/images/item1.png
+  AssetGenImage get item1 => const AssetGenImage('assets/images/item1.png');
+
+  /// File path: assets/images/item10.png
+  AssetGenImage get item10 => const AssetGenImage('assets/images/item10.png');
+
+  /// File path: assets/images/item11.png
+  AssetGenImage get item11 => const AssetGenImage('assets/images/item11.png');
+
+  /// File path: assets/images/item12.png
+  AssetGenImage get item12 => const AssetGenImage('assets/images/item12.png');
+
+  /// File path: assets/images/item13.png
+  AssetGenImage get item13 => const AssetGenImage('assets/images/item13.png');
+
+  /// File path: assets/images/item14.png
+  AssetGenImage get item14 => const AssetGenImage('assets/images/item14.png');
+
+  /// File path: assets/images/item15.png
+  AssetGenImage get item15 => const AssetGenImage('assets/images/item15.png');
+
+  /// File path: assets/images/item16.png
+  AssetGenImage get item16 => const AssetGenImage('assets/images/item16.png');
+
+  /// File path: assets/images/item17.png
+  AssetGenImage get item17 => const AssetGenImage('assets/images/item17.png');
+
+  /// File path: assets/images/item18.png
+  AssetGenImage get item18 => const AssetGenImage('assets/images/item18.png');
+
+  /// File path: assets/images/item19.png
+  AssetGenImage get item19 => const AssetGenImage('assets/images/item19.png');
+
+  /// File path: assets/images/item2.png
+  AssetGenImage get item2 => const AssetGenImage('assets/images/item2.png');
+
+  /// File path: assets/images/item20.png
+  AssetGenImage get item20 => const AssetGenImage('assets/images/item20.png');
+
+  /// File path: assets/images/item3.png
+  AssetGenImage get item3 => const AssetGenImage('assets/images/item3.png');
+
+  /// File path: assets/images/item4.png
+  AssetGenImage get item4 => const AssetGenImage('assets/images/item4.png');
+
+  /// File path: assets/images/item5.png
+  AssetGenImage get item5 => const AssetGenImage('assets/images/item5.png');
+
+  /// File path: assets/images/item6.png
+  AssetGenImage get item6 => const AssetGenImage('assets/images/item6.png');
+
+  /// File path: assets/images/item7.png
+  AssetGenImage get item7 => const AssetGenImage('assets/images/item7.png');
+
+  /// File path: assets/images/item8.png
+  AssetGenImage get item8 => const AssetGenImage('assets/images/item8.png');
+
+  /// File path: assets/images/item9.png
+  AssetGenImage get item9 => const AssetGenImage('assets/images/item9.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+ 
+        back,
+        facebookLogo,
+        instagramLogo,
+ 
+        item0,
+        item1,
+        item10,
+        item11,
+        item12,
+        item13,
+        item14,
+        item15,
+        item16,
+        item17,
+        item18,
+        item19,
+        item2,
+        item20,
+        item3,
+        item4,
+        item5,
+        item6,
+        item7,
+        item8,
+        item9
+ 
       ];
 }
 
 class Assets {
   Assets._();
 
+  static const AssetGenImage oval = AssetGenImage('assets/Oval.png');
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+ 
+  static const $AssetsImagesGen images = $AssetsImagesGen();
+ 
 }
 
 class AssetGenImage {
@@ -114,7 +267,16 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider() => AssetImage(_assetName);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
+  }
 
   String get path => _assetName;
 
@@ -141,9 +303,9 @@ class SvgGenImage {
     bool excludeFromSemantics = false,
     SvgTheme theme = const SvgTheme(),
     ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
     @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
-    @deprecated Clip? clipBehavior,
     @deprecated bool cacheColorFilter = false,
   }) {
     return SvgPicture.asset(
@@ -161,8 +323,10 @@ class SvgGenImage {
       semanticsLabel: semanticsLabel,
       excludeFromSemantics: excludeFromSemantics,
       theme: theme,
+      // colorFilter: colorFilter,
       color: color,
       colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
       cacheColorFilter: cacheColorFilter,
     );
   }
