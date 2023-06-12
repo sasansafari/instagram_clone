@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
-import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/screens/constants/app_text_feild.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // ignore: must_be_immutable
 class ExploreScreen extends StatefulWidget {
@@ -141,28 +136,23 @@ class C extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-      child: Scaffold(
-          body: Container(
-        width: size.width,
-        height: size.height,
-        child: Column(
-          children: [
-            _searchBar(size),
-            SizedBox(height: 5),
-            _tagBar(size),
-            SizedBox(
-              height: 5,
-            ),
-            _gridView(size)
-          ],
-        ),
- 
-      )));
- 
-      )),
- 
-    );
-   }
+        child: Scaffold(
+            body: Container(
+      width: size.width,
+      height: size.height,
+      child: Column(
+        children: [
+          _searchBar(size),
+          SizedBox(height: 5),
+          _tagBar(size),
+          SizedBox(
+            height: 5,
+          ),
+          _gridView(size)
+        ],
+      ),
+    )));
+  }
 
   _searchBar(Size size) {
     return Container(

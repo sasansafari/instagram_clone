@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
+
 import '../../gen/assets.gen.dart';
 import '../../widgets/custom_asset_widget.dart';
 import '../../widgets/custom_tabbar_widget.dart';
@@ -183,7 +184,7 @@ class _AddScreenState extends State<AddScreen> {
 
 // ******** create custom AppBar ********
 class CustomAddImageAppBarWidget extends StatelessWidget
-    with PreferredSizeWidget {
+    implements PreferredSizeWidget {
   final double appBarHeight;
   final double appBarPadding;
   final String title;

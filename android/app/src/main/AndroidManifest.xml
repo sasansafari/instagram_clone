@@ -1,15 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tec">
-
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
-
- 
-
-   <application
-        android:label="tec"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:label="instagram_clone"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
