@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tec/res/colors.dart';
 
 class AppTextField extends StatelessWidget {
   final String hintText;
@@ -14,7 +13,7 @@ class AppTextField extends StatelessWidget {
       this.filledColor,
       this.filled,
       required this.controller, 
-      this.prefixIcon
+      this.prefixIcon,
       })
       : super(key: key);
 
