@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
-
 import '../../gen/assets.gen.dart';
 import '../../widgets/custom_asset_widget.dart';
 import '../../widgets/custom_tabbar_widget.dart';
@@ -14,7 +13,7 @@ class AddScreen extends StatefulWidget {
   State<AddScreen> createState() => _AddScreenState();
 }
 
-class _AddScreenState extends State<AddScreen> {
+class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   late RequestType selectedRequestType;
   AssetPathEntity? selectedAlbum;
   AssetEntity? selectedImage;
@@ -49,10 +48,12 @@ class _AddScreenState extends State<AddScreen> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: _buildAppBarWidget(context),
-      body: Stack(children: [
-        _buildAddImageScreenBody(size, assetList),
-        _buildTabBarWidget(),
-      ],),
+      body: Stack(
+        children: [
+          _buildAddImageScreenBody(size, assetList),
+          _buildTabBarWidget(),
+        ],
+      ),
     );
   }
 
@@ -89,48 +90,52 @@ class _AddScreenState extends State<AddScreen> {
 
   Widget _buildGridWidget(List<AssetEntity> assetList) {
     return SliverGrid(
-        delegate: SliverChildBuilderDelegate((context, index) {
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
           final AssetEntity assetEntity = assetList[index];
           return CustomAssetWidget(assetEntity: assetEntity);
-        }, childCount: assetList.length,),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, mainAxisSpacing: 2, crossAxisSpacing: 2,),);
+        },
+        childCount: assetList.length,
+      ),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        mainAxisSpacing: 2,
+        crossAxisSpacing: 2,
+      ),
+    );
   }
 
   Widget _buildSelectedImageWidget() {
     return Positioned.fill(
-        child: AssetEntityImage(
-      selectedImage!,
-      isOriginal: false,
-      thumbnailSize: const ThumbnailSize.square(250),
-      fit: BoxFit.cover,
-      errorBuilder: (context, error, stackTrace) => const Center(
-        child: Icon(
-          Icons.error,
-          color: Colors.black,
+      child: AssetEntityImage(
+        selectedImage!,
+        isOriginal: false,
+        thumbnailSize: const ThumbnailSize.square(250),
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) => const Center(
+          child: Icon(
+            Icons.error,
+            color: Colors.black,
+          ),
         ),
       ),
-    ),);
+    );
   }
 
   CustomTabBarWidget _buildTabBarWidget() {
+    final TabController tabController = TabController(length: 3, vsync: this);
     return CustomTabBarWidget(
+      tabController: tabController,
       isBottom: true,
-      items: [
-        CustomTabBarItem.bottom(
-          isSelected: true,
-          onTap: () {},
-          title: 'Library',
+      items: const [
+        Tab(
+          text: 'Library',
         ),
-        CustomTabBarItem.bottom(
-          isSelected: false,
-          onTap: () {},
-          title: 'Photo',
+        Tab(
+          text: 'Photo',
         ),
-        CustomTabBarItem.bottom(
-          isSelected: false,
-          onTap: () {},
-          title: 'Video',
+        Tab(
+          text: 'Video',
         ),
       ],
     );
@@ -157,28 +162,32 @@ class _AddScreenState extends State<AddScreen> {
 
   Widget _buildActionImageList() {
     return Positioned(
-        bottom: 10.2,
-        right: 10,
-        child: Row(
-          children: [
-            ImageActionsCustomWidget(
-                child: Assets.icons.boomerang.svg(fit: BoxFit.scaleDown),),
-            ImageActionsCustomWidget(
-                child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown),),
-            ImageActionsCustomWidget(
-                width: 153,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Assets.icons.selectMultiple.svg(fit: BoxFit.scaleDown),
-                    const Text(
-                      'SELECT MULTIPLE',
-                      style: TextStyle(color: Colors.white, fontSize: 14),
-                    )
-                  ],
-                ),),
-          ],
-        ),);
+      bottom: 10.2,
+      right: 10,
+      child: Row(
+        children: [
+          ImageActionsCustomWidget(
+            child: Assets.icons.boomerang.svg(fit: BoxFit.scaleDown),
+          ),
+          ImageActionsCustomWidget(
+            child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown),
+          ),
+          ImageActionsCustomWidget(
+            width: 153,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Assets.icons.selectMultiple.svg(fit: BoxFit.scaleDown),
+                const Text(
+                  'SELECT MULTIPLE',
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -192,36 +201,37 @@ class CustomAddImageAppBarWidget extends StatelessWidget
   final Widget? nextButton;
   final Color appBarColor;
 
-  const CustomAddImageAppBarWidget(
-      {Key? key,
-      this.appBarHeight = 50,
-      required this.title,
-      this.backButton,
-      required this.nextButton,
-      required this.appBarPadding,
-      required this.appBarColor,})
-      : super(key: key);
+  const CustomAddImageAppBarWidget({
+    Key? key,
+    this.appBarHeight = 50,
+    required this.title,
+    this.backButton,
+    required this.nextButton,
+    required this.appBarPadding,
+    required this.appBarColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Container(
-      color: appBarColor,
-      padding: EdgeInsets.all(appBarPadding),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          backButton ?? const SizedBox(),
-          Align(
-            alignment: Alignment.center,
-            child: Row(
-              children: [Text(title), const Icon(Icons.expand_more)],
+      child: Container(
+        color: appBarColor,
+        padding: EdgeInsets.all(appBarPadding),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            backButton ?? const SizedBox(),
+            Align(
+              alignment: Alignment.center,
+              child: Row(
+                children: [Text(title), const Icon(Icons.expand_more)],
+              ),
             ),
-          ),
-          nextButton ?? const SizedBox()
-        ],
+            nextButton ?? const SizedBox()
+          ],
+        ),
       ),
-    ),);
+    );
   }
 
   @override
@@ -246,9 +256,10 @@ class MediaServices {
 
   static Future loadAssets(AssetPathEntity selectedAlbum) async {
     List<AssetEntity> assetList = await selectedAlbum.getAssetListRange(
-        start: 0,
-        // ignore: deprecated_member_use
-        end: selectedAlbum.assetCount,);
+      start: 0,
+      // ignore: deprecated_member_use
+      end: selectedAlbum.assetCount,
+    );
     return assetList;
   }
 }
