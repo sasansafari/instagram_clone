@@ -127,6 +127,22 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
     return CustomTabBarWidget(
       tabController: tabController,
       isBottom: true,
+      onTap: (index) {
+        switch (index) {
+          case 0:
+            return selectedRequestType != RequestType.common
+                ? loadAlbumsMethod(RequestType.common)
+                : null;
+          case 1:
+            return selectedRequestType != RequestType.image
+                ? loadAlbumsMethod(RequestType.image)
+                : null;
+          case 2:
+            return selectedRequestType != RequestType.video
+                ? loadAlbumsMethod(RequestType.video)
+                : null;
+        }
+      },
       items: const [
         Tab(
           text: 'Library',
@@ -139,6 +155,22 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
         ),
       ],
     );
+  }
+
+  Future<void> loadAlbumsMethod(RequestType requestType) {
+    return MediaServices.loadAlbums(requestType).then((value) {
+      selectedRequestType = requestType;
+      setState(() {
+        albumList = value;
+        selectedAlbum = value[0];
+        MediaServices.loadAssets(selectedAlbum!).then((value) {
+          setState(() {
+            assetList = value;
+            selectedImage = value[0];
+          });
+        });
+      });
+    });
   }
 
   CustomAddImageAppBarWidget _buildAppBarWidget(BuildContext context) {
