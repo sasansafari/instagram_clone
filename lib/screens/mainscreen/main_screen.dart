@@ -102,7 +102,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
             navigationBottom(context),
           ],
-        )),
+        ),),
       ),
     );
   }
@@ -158,7 +158,7 @@ class _MainScreenState extends State<MainScreen> {
                       )),
                   icon: selectedIndex == BottomNavIndex.notifyIndex
                       ? Assets.icons.notifySelected.svg()
-                      : Assets.icons.notify.svg()),
+                      : Assets.icons.notify.svg(),),
               IconButton(
                 onPressed: (() => setState(
                       () => [
@@ -176,7 +176,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ],
           ),
-        ));
+        ),);
   }
 }
 
