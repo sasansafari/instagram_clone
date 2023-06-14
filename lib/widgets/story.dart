@@ -128,28 +128,28 @@ Widget profileImage(userProfile) {
       child: Image.asset(userProfile.imageFileName));
 }
 
-Widget userProfileBtmNav() {
-  return Container(
-    width: 27,
-    height: 27,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(1000),
-        color: selectedIndex == BottomNavIndex.profileIndex
-            ? Colors.black
-            : Colors.transparent),
-    child: Container(
-      margin: const EdgeInsets.all(1.5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(1000),
-      ),
-      child: Container(
-        margin: const EdgeInsets.all(1.5),
-        child: profileImage(myUserProfile),
-      ),
-    ),
-  );
-}
+// Widget userProfileBtmNav() {
+//   return Container(
+//     width: 27,
+//     height: 27,
+//     decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(1000),
+//         color: selectedIndex == BottomNavIndex.profileIndex
+//             ? Colors.black
+//             : Colors.transparent),
+//     child: Container(
+//       margin: const EdgeInsets.all(1.5),
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(1000),
+//       ),
+//       child: Container(
+//         margin: const EdgeInsets.all(1.5),
+//         child: profileImage(myUserProfile),
+//       ),
+//     ),
+//   );
+// }
 
 
 
