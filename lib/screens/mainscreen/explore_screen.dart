@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/screens/constants/app_text_feild.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // ignore: must_be_immutable
 class ExploreScreen extends StatefulWidget {
@@ -137,6 +137,7 @@ class C extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
+
       child: Scaffold(
           body: SizedBox(
         width: size.width,

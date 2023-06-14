@@ -49,6 +49,7 @@ class $AssetsIconsGen {
   SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
 
 
+
   $AssetsIconsMenuGen get menu => const $AssetsIconsMenuGen();
 
 
@@ -112,6 +113,21 @@ class $AssetsImagesGen {
   /// File path: assets/images/Instagram Logo.png
   AssetGenImage get instagramLogo =>
       const AssetGenImage('assets/images/Instagram Logo.png');
+
+  /// File path: assets/images/Oval.png
+  AssetGenImage get oval => const AssetGenImage('assets/images/Oval.png');
+
+  /// File path: assets/images/Rectangle 1.png
+  AssetGenImage get rectangle1 =>
+      const AssetGenImage('assets/images/Rectangle 1.png');
+
+  /// File path: assets/images/Rectangle 2.png
+  AssetGenImage get rectangle2 =>
+      const AssetGenImage('assets/images/Rectangle 2.png');
+
+  /// File path: assets/images/Rectangle 3.png
+  AssetGenImage get rectangle3 =>
+      const AssetGenImage('assets/images/Rectangle 3.png');
 
   /// File path: assets/images/item0.png
   AssetGenImage get item0 => const AssetGenImage('assets/images/item0.png');
@@ -181,6 +197,10 @@ class $AssetsImagesGen {
         back,
         facebookLogo,
         instagramLogo,
+        oval,
+        rectangle1,
+        rectangle2,
+        rectangle3,
         item0,
         item1,
         item10,
@@ -201,8 +221,7 @@ class $AssetsImagesGen {
         item6,
         item7,
         item8,
-        item9
-
+        item9,
       ];
 }
 

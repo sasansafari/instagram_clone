@@ -18,7 +18,6 @@ packages:
     source: hosted
 
     version: "2.11.0"
-
   boolean_selector:
     dependency: transitive
     description:
@@ -201,7 +200,6 @@ packages:
       sha256: cb3798bef7fc021ac45b308f4b51208a152792445cce0448c9a4ba5879dd8750
       url: "https://pub.flutter-io.cn"
     source: hosted
-
     version: "5.4.0"
   photo_manager:
     dependency: "direct main"
@@ -211,7 +209,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.6.0"
-
   sky_engine:
     dependency: transitive
     description: flutter
