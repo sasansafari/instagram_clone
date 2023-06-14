@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
+// ignore: must_be_immutable
 class BtmNavItem extends StatefulWidget {
   void Function() onTap;
   var active;
@@ -24,6 +24,6 @@ class _BtmNavItemState extends State<BtmNavItem> {
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: widget.onTap,
-        icon: widget.isSelected ? widget.active : widget.inActive);
+        icon: widget.isSelected ? widget.active : widget.inActive,);
   }
 }

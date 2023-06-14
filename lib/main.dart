@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Watch Store',
       initialRoute:Screens.root,
-      routes: routes,
+      routes: routes, 
     );
   }
 }

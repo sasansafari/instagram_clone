@@ -15,7 +15,7 @@ class CustomTabBarWidget extends StatelessWidget {
       required this.items,
       this.tabBarColor = MyColors.customTabBarBackgroundColor,
       required this.isBottom,
-      this.dividerColor = MyColors.dividerColor})
+      this.dividerColor = MyColors.dividerColor,})
       : super(key: key);
 
   @override
@@ -41,7 +41,7 @@ class CustomTabBarWidget extends StatelessWidget {
                   : const SizedBox()
             ],
           ),
-        ));
+        ),);
   }
 }
 
@@ -86,7 +86,7 @@ class CustomTabBarItem extends StatelessWidget {
         decoration: (showSelectedItemUnderLine && isSelected)
             ? const BoxDecoration(
                 border:
-                    Border(bottom: BorderSide(width: 1, color: Colors.black)))
+                    Border(bottom: BorderSide(width: 1, color: Colors.black)),)
             : null,
         child: InkWell(
           onTap: onTap,

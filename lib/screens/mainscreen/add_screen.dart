@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
+
 import '../../gen/assets.gen.dart';
 import '../../widgets/custom_asset_widget.dart';
 import '../../widgets/custom_tabbar_widget.dart';
@@ -51,7 +52,7 @@ class _AddScreenState extends State<AddScreen> {
       body: Stack(children: [
         _buildAddImageScreenBody(size, assetList),
         _buildTabBarWidget(),
-      ]),
+      ],),
     );
   }
 
@@ -91,9 +92,9 @@ class _AddScreenState extends State<AddScreen> {
         delegate: SliverChildBuilderDelegate((context, index) {
           final AssetEntity assetEntity = assetList[index];
           return CustomAssetWidget(assetEntity: assetEntity);
-        }, childCount: assetList.length),
+        }, childCount: assetList.length,),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4, mainAxisSpacing: 2, crossAxisSpacing: 2));
+            crossAxisCount: 4, mainAxisSpacing: 2, crossAxisSpacing: 2,),);
   }
 
   Widget _buildSelectedImageWidget() {
@@ -109,7 +110,7 @@ class _AddScreenState extends State<AddScreen> {
           color: Colors.black,
         ),
       ),
-    ));
+    ),);
   }
 
   CustomTabBarWidget _buildTabBarWidget() {
@@ -161,9 +162,9 @@ class _AddScreenState extends State<AddScreen> {
         child: Row(
           children: [
             ImageActionsCustomWidget(
-                child: Assets.icons.boomerang.svg(fit: BoxFit.scaleDown)),
+                child: Assets.icons.boomerang.svg(fit: BoxFit.scaleDown),),
             ImageActionsCustomWidget(
-                child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown)),
+                child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown),),
             ImageActionsCustomWidget(
                 width: 153,
                 child: Row(
@@ -175,9 +176,9 @@ class _AddScreenState extends State<AddScreen> {
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     )
                   ],
-                )),
+                ),),
           ],
-        ));
+        ),);
   }
 }
 
@@ -198,7 +199,7 @@ class CustomAddImageAppBarWidget extends StatelessWidget
       this.backButton,
       required this.nextButton,
       required this.appBarPadding,
-      required this.appBarColor})
+      required this.appBarColor,})
       : super(key: key);
 
   @override
@@ -220,7 +221,7 @@ class CustomAddImageAppBarWidget extends StatelessWidget
           nextButton ?? const SizedBox()
         ],
       ),
-    ));
+    ),);
   }
 
   @override
@@ -247,7 +248,7 @@ class MediaServices {
     List<AssetEntity> assetList = await selectedAlbum.getAssetListRange(
         start: 0,
         // ignore: deprecated_member_use
-        end: selectedAlbum.assetCount);
+        end: selectedAlbum.assetCount,);
     return assetList;
   }
 }
