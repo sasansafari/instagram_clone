@@ -48,7 +48,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/like.svg
   SvgGenImage get like => const SvgGenImage('assets/icons/like.svg');
 
+
   $AssetsIconsMenuGen get menu => const $AssetsIconsMenuGen();
+
 
   /// File path: assets/icons/messenger.svg
   SvgGenImage get messenger => const SvgGenImage('assets/icons/messenger.svg');
@@ -200,6 +202,7 @@ class $AssetsImagesGen {
         item7,
         item8,
         item9
+
       ];
 }
 
