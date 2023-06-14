@@ -50,6 +50,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  build_runner:
+  flutter_gen_runner:
 
 
 
@@ -62,6 +64,7 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+    - assets/images/stories/
     - assets/images/
     - assets/icons/menu/
 

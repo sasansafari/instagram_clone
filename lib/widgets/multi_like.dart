@@ -8,7 +8,7 @@ class MultiLike extends StatelessWidget {
   Widget build(BuildContext context) {
     //Size size = MediaQuery.of(context).size;
     List<Image> imageProfiles = [
-      Assets.icons.userMultiLike.image(width: 50, height: 50),
+      Assets.icons.userMultiLike1.image(width: 50, height: 50),
       Assets.icons.userMultiLike1.image(width: 50, height: 50)
     ];
     List<String> textProlfilesName = ["Hossein_110", "ali"];

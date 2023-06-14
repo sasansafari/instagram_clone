@@ -153,11 +153,6 @@ class C extends StatelessWidget {
             _gridView(size)
           ],
         ),
- 
-      ),),
- 
-    );
-   }
 
   _searchBar(Size size) {
     return Container(
@@ -281,4 +276,4 @@ class C extends StatelessWidget {
       ),
     );
   }
-}
+
