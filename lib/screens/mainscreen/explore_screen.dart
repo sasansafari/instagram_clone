@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:tec/res/colors.dart';
+import 'package:tec/screens/constants/app_text_feild.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 // ignore: must_be_immutable
 class ExploreScreen extends StatefulWidget {
-    ExploreScreen({Key? key}) : super(key: key);
+  const ExploreScreen({Key? key}) : super(key: key);
 
   static const aState = 0;
   static const bState = 1;
@@ -18,88 +21,82 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return   SafeArea(
+    return SafeArea(
         child: Scaffold(
       body: Stack(
         alignment: Alignment.topCenter,
         children: [
-
           Container(
             width: double.infinity,
             height: double.infinity,
             color: Colors.teal,
-            child: const Center(
-              child: Text("ExploreScreen")),
+            child: const Center(child: Text('ExploreScreen')),
           ),
-
           currentWidget(),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Visibility(
-                visible: widgetsIndexList.last> widgetsIndexList.first,
-                child: ElevatedButton(onPressed:() {
-                  setState(() {
-                    widgetsIndexList.remove(counter);
-                  });
-                  counter--;
-              
-                }, child: const Text("Back")),
+                visible: widgetsIndexList.last > widgetsIndexList.first,
+                child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        widgetsIndexList.remove(counter);
+                      });
+                      counter--;
+                    },
+                    child: const Text('Back'),),
               ),
               Visibility(
-                visible: widgetsIndexList.last<2,
-                child: ElevatedButton(onPressed: (() {
-              
-                  counter++;
-                  setState(() {
-                    widgetsIndexList.add(counter);
-                  });
-                  
-                }), child: const Text("Next")),
+                visible: widgetsIndexList.last < 2,
+                child: ElevatedButton(
+                    onPressed: (() {
+                      counter++;
+                      setState(() {
+                        widgetsIndexList.add(counter);
+                      });
+                    }),
+                    child: const Text('Next'),),
               ),
             ],
           )
-
-
         ],
       ),
-    ));
+    ),);
   }
 
-
-  Widget currentWidget(){
-    routeToC(){
+  Widget currentWidget() {
+    routeToC() {
       setState(() {
-      widgetsIndexList.add(ExploreScreen.cState);
-
+        widgetsIndexList.add(ExploreScreen.cState);
       });
     }
 
-    Widget widget = A(onTap: routeToC,);
+    Widget widget = A(
+      onTap: routeToC,
+    );
     switch (widgetsIndexList.last) {
       case ExploreScreen.aState:
-          widget =   A(onTap: routeToC,);
+        widget = A(
+          onTap: routeToC,
+        );
         break;
       case ExploreScreen.bState:
-          widget = const B();
+        widget = const B();
         break;
       case ExploreScreen.cState:
-          widget = const C();
+        widget = const C();
         break;
       default:
     }
-  return widget;
+    return widget;
   }
-
-
 }
 
-
-
+// ignore: must_be_immutable
 class A extends StatelessWidget {
   void Function() onTap;
-  A({required this.onTap});
+  A({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +105,11 @@ class A extends StatelessWidget {
       child: Container(
         color: Colors.green,
         height: 300,
-        width: MediaQuery.of(context).size.width*.5,
-        child: const Text("A",style: TextStyle(fontSize: 30),),
+        width: MediaQuery.of(context).size.width * .5,
+        child: const Text(
+          'A',
+          style: TextStyle(fontSize: 30),
+        ),
       ),
     );
   }
@@ -122,9 +122,11 @@ class B extends StatelessWidget {
     return Container(
       color: Colors.red,
       height: 300,
-      width: MediaQuery.of(context).size.width*.5,
-      child: const Text("B",style: TextStyle(fontSize: 30),),
-
+      width: MediaQuery.of(context).size.width * .5,
+      child: const Text(
+        'B',
+        style: TextStyle(fontSize: 30),
+      ),
     );
   }
 }
@@ -133,11 +135,149 @@ class C extends StatelessWidget {
   const C({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+          body: SizedBox(
+        width: size.width,
+        height: size.height,
+        child: Column(
+          children: [
+            _searchBar(size),
+            const SizedBox(height: 5),
+            _tagBar(size),
+            const SizedBox(
+              height: 5,
+            ),
+            _gridView(size)
+          ],
+        ),
+ 
+      ),),
+ 
+    );
+   }
+
+  _searchBar(Size size) {
     return Container(
-      color: Colors.yellow,
-      height: 300,
-      width: MediaQuery.of(context).size.width*.5,
-      child: const Text("C",style: TextStyle(fontSize: 30),),
+      width: size.width,
+      height: size.height * 0.08,
+      padding: const EdgeInsets.all(12),
+      // color: Colors.green,
+      child: Row(
+        children: [
+          Expanded(
+            child: AppTextField(
+              hintText: 'Search',
+              controller: TextEditingController(),
+              filled: true,
+              filledColor: MyColors.textfieldFillColor,
+              prefixIcon: Icons.search,
+            ),
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          const Icon(Icons.center_focus_weak_outlined)
+        ],
+      ),
+    );
+  }
+
+  _tagBar(Size size) {
+    List fakeHeaders = [
+      'IGTV',
+      'Shop',
+      'Style',
+      'Sports',
+      'Auto',
+      'Programming',
+      'Study',
+      'LifeStyle',
+      'Coding',
+      'Flutter',
+      'Developer'
+    ];
+    return Container(
+      width: size.width,
+      height: size.height * 0.06,
+      // color: Colors.green,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+
+      child: ListView.builder(
+        // padEnds: false,
+        padding: EdgeInsets.zero,
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        itemCount: fakeHeaders.length,
+        // controller: PageController(viewportFraction: 0.2),
+        itemBuilder: ((context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.black,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  fakeHeaders[index],
+                  // maxLines: 1,
+                  // overflow: TextOverflow.visible,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+
+  _gridView(Size size) {
+    return Expanded(
+      child: Container(
+        // color: Colors.amber,
+        child: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              sliver: SliverGrid(
+                delegate: SliverChildBuilderDelegate(((context, index) {
+                  return Container(
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(Radius.circular(0)),
+                      child: FittedBox(
+                        fit: BoxFit.cover,
+                        child: Image.asset('assets/images/item$index.png'),
+                      ),
+                    ),
+                  );
+                }), childCount: 20,),
+                gridDelegate: SliverQuiltedGridDelegate(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                    repeatPattern: QuiltedGridRepeatPattern.same,
+                    pattern: [
+                      const QuiltedGridTile(1, 1),
+                      const QuiltedGridTile(2, 2),
+                      const QuiltedGridTile(1, 1),
+                      const QuiltedGridTile(1, 1),
+                      const QuiltedGridTile(1, 1),
+                      const QuiltedGridTile(1, 1),
+                    ],),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
