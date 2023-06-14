@@ -24,8 +24,8 @@ class _SplashState extends State<Splash> {
       width: double.infinity,
       color: Colors.white,
       child: const Center(
-        child: Text("Instagram"),
+        child: Text('Instagram'),
       ),
-    ));
+    ),);
   }
 }

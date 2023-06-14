@@ -8,7 +8,7 @@ class HomeScreenCaption extends StatelessWidget {
       {Key? key,
       required this.profile_name,
       required this.short_caption,
-      required this.text_direction})
+      required this.text_direction,})
       : super(key: key);
 
   @override
@@ -17,11 +17,11 @@ class HomeScreenCaption extends StatelessWidget {
       TextSpan(children: [
         TextSpan(
             text: profile_name,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),),
         TextSpan(
-            text: " " + short_caption,
-            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 13))
-      ]),
+            text: ' $short_caption',
+            style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 13),)
+      ],),
       maxLines: 2,
       textDirection: text_direction,
     );
