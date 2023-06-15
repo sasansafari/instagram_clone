@@ -121,8 +121,8 @@ class _MainScreenState extends State<MainScreen> {
                     () => selectedIndex = BottomNavIndex.homeIndex,
                   )),
               icon: selectedIndex == BottomNavIndex.homeIndex
-                  ? Assets.icons.homeSelected.svg()
-                  : Assets.icons.home.svg(),
+                  ? Assets.icons.navBottom.homeSelected.svg()
+                  : Assets.icons.navBottom.home.svg(),
             ),
             IconButton(
               onPressed: (() => setState(
@@ -136,12 +136,12 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   )),
               icon: selectedIndex == BottomNavIndex.exploreIndex
-                  ? Assets.icons.exploreSelected.svg()
-                  : Assets.icons.explore.svg(),
+                  ? Assets.icons.navBottom.exploreSelected.svg()
+                  : Assets.icons.navBottom.explore.svg(),
             ),
             IconButton(
               onPressed: () => Navigator.pushNamed(context, Screens.addNew),
-              icon: Assets.icons.addNew.svg(),
+              icon: Assets.icons.navBottom.addNew.svg(),
             ),
             IconButton(
               onPressed: (() => setState(
@@ -155,8 +155,8 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   )),
               icon: selectedIndex == BottomNavIndex.notifyIndex
-                  ? Assets.icons.notifySelected.svg()
-                  : Assets.icons.notify.svg(),
+                  ? Assets.icons.navBottom.notifySelected.svg()
+                  : Assets.icons.navBottom.notify.svg(),
             ),
             IconButton(
               onPressed: (() => setState(
