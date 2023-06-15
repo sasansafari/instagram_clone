@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tec/gen/fonts.gen.dart';
+
 import '../../gen/assets.gen.dart';
-import '../../widgets/CustomTextField.dart';
 import '../../route/names.dart';
+import '../../widgets/CustomTextField.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,50 +13,50 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: _topWidget(),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 16,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: _centerWidget(),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 400,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            child: _bottomWidget(),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 12,
-          ),
-          const Divider(thickness: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
-          const Padding(
-            padding: EdgeInsets.only(top: 16, bottom: 12),
-            child: Text(
-              "Instagram от Facebook",
-              style: TextStyle(
+        resizeToAvoidBottomInset: false,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: _topWidget(),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 16,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _centerWidget(),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 400,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: _bottomWidget(),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 12,
+            ),
+            const Divider(thickness: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)),
+            const Padding(
+              padding: EdgeInsets.only(top: 16, bottom: 12),
+              child: Text(
+                'Instagram от Facebook',
+                style: TextStyle(
                   fontSize: 12,
                   fontFamily: FontFamily.dana,
-                  color: Color.fromRGBO(0, 0, 0, 0.4)),
-            ),
-          )
-        ],
-      )),
+                  color: Color.fromRGBO(0, 0, 0, 0.4),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -74,14 +75,14 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 40,
         ),
         CustomTextField(
-          hint: "Username or Email",
+          hint: 'Username or Email',
           checkobscure: false,
         ),
         const SizedBox(
           height: 12,
         ),
         CustomTextField(
-          hint: "Password",
+          hint: 'Password',
           checkobscure: true,
         ),
         Align(
@@ -96,13 +97,15 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
         SizedBox(
-            height: 44,
-            width: double.infinity,
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, Screens.mainScreen);
-                },
-                child: const Text("Log in"))),
+          height: 44,
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, Screens.mainScreen);
+            },
+            child: const Text('Log in'),
+          ),
+        ),
         const SizedBox(
           height: 40,
         ),
@@ -126,22 +129,29 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(
           height: 40,
         ),
-        const Row(
+        Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: const [
             Flexible(
-                child: Divider(
-                    thickness: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2))),
+              child: Divider(
+                thickness: 0.5,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            ),
             Text(
-              "OR",
+              'OR',
               style: TextStyle(
-                  fontSize: 12,
-                  fontFamily: FontFamily.dana,
-                  color: Color.fromRGBO(0, 0, 0, 0.4)),
+                fontSize: 12,
+                fontFamily: FontFamily.dana,
+                color: Color.fromRGBO(0, 0, 0, 0.4),
+              ),
             ),
             Flexible(
-                child: Divider(
-                    thickness: 0.5, color: Color.fromRGBO(0, 0, 0, 0.2)))
+              child: Divider(
+                thickness: 0.5,
+                color: Color.fromRGBO(0, 0, 0, 0.2),
+              ),
+            )
           ],
         )
       ],
@@ -153,11 +163,12 @@ class _LoginScreenState extends State<LoginScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          "Don’t have an account? ",
+          'Don’t have an account? ',
           style: TextStyle(
-              fontSize: 14,
-              fontFamily: FontFamily.dana,
-              color: Color.fromRGBO(0, 0, 0, 0.4)),
+            fontSize: 14,
+            fontFamily: FontFamily.dana,
+            color: Color.fromRGBO(0, 0, 0, 0.4),
+          ),
         ),
         TextButton(
           style: TextButton.styleFrom(
