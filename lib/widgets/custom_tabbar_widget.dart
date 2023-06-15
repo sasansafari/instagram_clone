@@ -33,24 +33,35 @@ class CustomTabBarWidget extends StatelessWidget {
       right: 0,
       left: 0,
       top: !isBottom ? 0 : null,
-      child: Container(
-        color: tabBarColor,
-        height: tabBarHeight,
-        width: double.infinity,
-        child: TabBar(
-          onTap: onTap,
-          controller: tabController,
-          tabs: items,
-          unselectedLabelColor: unSelectedItemColor,
-          labelColor: selectedItemColor,
-          indicator: !isBottom
-              ? UnderlineTabIndicator(
-                  insets: const EdgeInsets.symmetric(horizontal: 2),
-                  borderSide: BorderSide(color: indicatorColor),
-                )
-              : null,
-          indicatorColor: isBottom ? Colors.transparent : indicatorColor,
-        ),
+      child: Column(
+        children: [
+          Container(
+            color: tabBarColor,
+            height: tabBarHeight,
+            width: double.infinity,
+            child: TabBar(
+              onTap: onTap,
+              controller: tabController,
+              tabs: items,
+              unselectedLabelColor: unSelectedItemColor,
+              labelColor: selectedItemColor,
+              indicator: !isBottom
+                  ? UnderlineTabIndicator(
+                      insets: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                      ),
+                      borderSide: BorderSide(color: indicatorColor, width: 1.5),
+                    )
+                  : null,
+              indicatorColor: isBottom ? Colors.transparent : indicatorColor,
+            ),
+          ),
+          Divider(
+            thickness: 1.5,
+            height: 0,
+            color: isBottom ? Colors.transparent : null,
+          )
+        ],
       ),
     );
   }
