@@ -22,47 +22,50 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            color: Colors.teal,
-            child: const Center(child: Text('ExploreScreen')),
-          ),
-          currentWidget(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Visibility(
-                visible: widgetsIndexList.last > widgetsIndexList.first,
-                child: ElevatedButton(
+      child: Scaffold(
+        body: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              color: Colors.teal,
+              child: const Center(child: Text('ExploreScreen')),
+            ),
+            currentWidget(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Visibility(
+                  visible: widgetsIndexList.last > widgetsIndexList.first,
+                  child: ElevatedButton(
                     onPressed: () {
                       setState(() {
                         widgetsIndexList.remove(counter);
                       });
                       counter--;
                     },
-                    child: const Text('Back'),),
-              ),
-              Visibility(
-                visible: widgetsIndexList.last < 2,
-                child: ElevatedButton(
+                    child: const Text('Back'),
+                  ),
+                ),
+                Visibility(
+                  visible: widgetsIndexList.last < 2,
+                  child: ElevatedButton(
                     onPressed: (() {
                       counter++;
                       setState(() {
                         widgetsIndexList.add(counter);
                       });
                     }),
-                    child: const Text('Next'),),
-              ),
-            ],
-          )
-        ],
+                    child: const Text('Next'),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
-    ),);
+    );
   }
 
   Widget currentWidget() {
@@ -137,22 +140,25 @@ class C extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
-
       child: Scaffold(
-          body: SizedBox(
-        width: size.width,
-        height: size.height,
-        child: Column(
-          children: [
-            _searchBar(size),
-            const SizedBox(height: 5),
-            _tagBar(size),
-            const SizedBox(
-              height: 5,
-            ),
-            _gridView(size)
-          ],
+        body: SizedBox(
+          width: size.width,
+          height: size.height,
+          child: Column(
+            children: [
+              _searchBar(size),
+              const SizedBox(height: 5),
+              _tagBar(size),
+              const SizedBox(
+                height: 5,
+              ),
+              _gridView(size)
+            ],
+          ),
         ),
+      ),
+    );
+  }
 
   _searchBar(Size size) {
     return Container(
@@ -245,30 +251,35 @@ class C extends StatelessWidget {
             SliverPadding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               sliver: SliverGrid(
-                delegate: SliverChildBuilderDelegate(((context, index) {
-                  return Container(
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(0)),
-                      child: FittedBox(
-                        fit: BoxFit.cover,
-                        child: Image.asset('assets/images/item$index.png'),
+                delegate: SliverChildBuilderDelegate(
+                  ((context, index) {
+                    return Container(
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(0)),
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: Image.asset('assets/images/item$index.png'),
+                        ),
                       ),
-                    ),
-                  );
-                }), childCount: 20,),
+                    );
+                  }),
+                  childCount: 20,
+                ),
                 gridDelegate: SliverQuiltedGridDelegate(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 5,
-                    crossAxisSpacing: 5,
-                    repeatPattern: QuiltedGridRepeatPattern.same,
-                    pattern: [
-                      const QuiltedGridTile(1, 1),
-                      const QuiltedGridTile(2, 2),
-                      const QuiltedGridTile(1, 1),
-                      const QuiltedGridTile(1, 1),
-                      const QuiltedGridTile(1, 1),
-                      const QuiltedGridTile(1, 1),
-                    ],),
+                  crossAxisCount: 3,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  repeatPattern: QuiltedGridRepeatPattern.same,
+                  pattern: [
+                    const QuiltedGridTile(1, 1),
+                    const QuiltedGridTile(2, 2),
+                    const QuiltedGridTile(1, 1),
+                    const QuiltedGridTile(1, 1),
+                    const QuiltedGridTile(1, 1),
+                    const QuiltedGridTile(1, 1),
+                  ],
+                ),
               ),
             )
           ],
@@ -276,4 +287,4 @@ class C extends StatelessWidget {
       ),
     );
   }
-
+}
