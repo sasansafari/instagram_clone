@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tec/res/dimens.dart';
+import 'package:tec/res/styles.dart';
 
 // ignore: must_be_immutable
-class CustomDrawer extends StatelessWidget {
-  CustomDrawer({Key? key, required this.title, required this.icon})
+class DrawerItem extends StatelessWidget {
+  DrawerItem({Key? key, required this.title, required this.icon})
       : super(key: key);
   String? title;
   var icon;
@@ -18,7 +19,10 @@ class CustomDrawer extends StatelessWidget {
         const SizedBox(
           width: Dimens.small,
         ),
-        Text(title!)
+        Text(
+          title!,
+          style: MyStyles.getRegularStyle(color: Colors.black, fontSize: 15),
+        )
       ],
     );
   }
