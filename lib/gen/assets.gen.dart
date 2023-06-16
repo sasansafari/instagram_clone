@@ -110,13 +110,85 @@ class $AssetsImagesGen {
   AssetGenImage get rectangle1 =>
       const AssetGenImage('assets/images/Rectangle 1.png');
 
+  /// File path: assets/images/Rectangle 10.png
+  AssetGenImage get rectangle10 =>
+      const AssetGenImage('assets/images/Rectangle 10.png');
+
+  /// File path: assets/images/Rectangle 11.png
+  AssetGenImage get rectangle11 =>
+      const AssetGenImage('assets/images/Rectangle 11.png');
+
+  /// File path: assets/images/Rectangle 13.png
+  AssetGenImage get rectangle13 =>
+      const AssetGenImage('assets/images/Rectangle 13.png');
+
+  /// File path: assets/images/Rectangle 14.png
+  AssetGenImage get rectangle14 =>
+      const AssetGenImage('assets/images/Rectangle 14.png');
+
+  /// File path: assets/images/Rectangle 15.png
+  AssetGenImage get rectangle15 =>
+      const AssetGenImage('assets/images/Rectangle 15.png');
+
+  /// File path: assets/images/Rectangle 16.png
+  AssetGenImage get rectangle16 =>
+      const AssetGenImage('assets/images/Rectangle 16.png');
+
+  /// File path: assets/images/Rectangle 17.png
+  AssetGenImage get rectangle17 =>
+      const AssetGenImage('assets/images/Rectangle 17.png');
+
+  /// File path: assets/images/Rectangle 18.png
+  AssetGenImage get rectangle18 =>
+      const AssetGenImage('assets/images/Rectangle 18.png');
+
+  /// File path: assets/images/Rectangle 19.png
+  AssetGenImage get rectangle19 =>
+      const AssetGenImage('assets/images/Rectangle 19.png');
+
   /// File path: assets/images/Rectangle 2.png
   AssetGenImage get rectangle2 =>
       const AssetGenImage('assets/images/Rectangle 2.png');
 
+  /// File path: assets/images/Rectangle 20.png
+  AssetGenImage get rectangle20 =>
+      const AssetGenImage('assets/images/Rectangle 20.png');
+
+  /// File path: assets/images/Rectangle 21.png
+  AssetGenImage get rectangle21 =>
+      const AssetGenImage('assets/images/Rectangle 21.png');
+
   /// File path: assets/images/Rectangle 3.png
   AssetGenImage get rectangle3 =>
       const AssetGenImage('assets/images/Rectangle 3.png');
+
+  /// File path: assets/images/Rectangle 4.png
+  AssetGenImage get rectangle4 =>
+      const AssetGenImage('assets/images/Rectangle 4.png');
+
+  /// File path: assets/images/Rectangle 5.png
+  AssetGenImage get rectangle5 =>
+      const AssetGenImage('assets/images/Rectangle 5.png');
+
+  /// File path: assets/images/Rectangle 6.png
+  AssetGenImage get rectangle6 =>
+      const AssetGenImage('assets/images/Rectangle 6.png');
+
+  /// File path: assets/images/Rectangle 7.png
+  AssetGenImage get rectangle7 =>
+      const AssetGenImage('assets/images/Rectangle 7.png');
+
+  /// File path: assets/images/Rectangle 8.png
+  AssetGenImage get rectangle8 =>
+      const AssetGenImage('assets/images/Rectangle 8.png');
+
+  /// File path: assets/images/Rectangle 9.png
+  AssetGenImage get rectangle9 =>
+      const AssetGenImage('assets/images/Rectangle 9.png');
+
+  /// File path: assets/images/craig_love.png
+  AssetGenImage get craigLove =>
+      const AssetGenImage('assets/images/craig_love.png');
 
   /// File path: assets/images/item0.png
   AssetGenImage get item0 => const AssetGenImage('assets/images/item0.png');
@@ -181,11 +253,31 @@ class $AssetsImagesGen {
   /// File path: assets/images/item9.png
   AssetGenImage get item9 => const AssetGenImage('assets/images/item9.png');
 
+  /// File path: assets/images/kieron_d.png
+  AssetGenImage get kieronD =>
+      const AssetGenImage('assets/images/kieron_d.png');
+
+  /// File path: assets/images/martini_round.png
+  AssetGenImage get martiniRound =>
+      const AssetGenImage('assets/images/martini_round.png');
+
+  /// File path: assets/images/maxjacobson.png
+  AssetGenImage get maxjacobson =>
+      const AssetGenImage('assets/images/maxjacobson.png');
+
+  /// File path: assets/images/mis_potter.png
+  AssetGenImage get misPotter =>
+      const AssetGenImage('assets/images/mis_potter.png');
+
   /// File path: assets/images/profile-picture.png
   AssetGenImage get profilePicture =>
       const AssetGenImage('assets/images/profile-picture.png');
 
   $AssetsImagesStoriesGen get stories => const $AssetsImagesStoriesGen();
+
+  /// File path: assets/images/zackjohn.png
+  AssetGenImage get zackjohn =>
+      const AssetGenImage('assets/images/zackjohn.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
@@ -194,8 +286,26 @@ class $AssetsImagesGen {
         instagramLogo,
         oval,
         rectangle1,
+        rectangle10,
+        rectangle11,
+        rectangle13,
+        rectangle14,
+        rectangle15,
+        rectangle16,
+        rectangle17,
+        rectangle18,
+        rectangle19,
         rectangle2,
+        rectangle20,
+        rectangle21,
         rectangle3,
+        rectangle4,
+        rectangle5,
+        rectangle6,
+        rectangle7,
+        rectangle8,
+        rectangle9,
+        craigLove,
         item0,
         item1,
         item10,
@@ -217,7 +327,12 @@ class $AssetsImagesGen {
         item7,
         item8,
         item9,
-        profilePicture
+        kieronD,
+        martiniRound,
+        maxjacobson,
+        misPotter,
+        profilePicture,
+        zackjohn
       ];
 }
 

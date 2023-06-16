@@ -5,11 +5,11 @@ import 'package:tec/res/styles.dart';
 
 import 'account.dart';
 
-class LikeCounter extends StatelessWidget {
+class LikeCounterNotification extends StatelessWidget {
   Image imageprofiles;
   String accountname;
   List<Image> imgpostlist;
-  LikeCounter(
+  LikeCounterNotification(
       {Key? key,
       required this.imageprofiles,
       required this.imgpostlist,

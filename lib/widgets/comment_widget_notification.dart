@@ -5,8 +5,8 @@ import 'package:tec/res/colors.dart';
 import '../res/styles.dart';
 import 'account.dart';
 
-class CommentNotifWidget extends StatefulWidget {
-  CommentNotifWidget(
+class CommentWidgetNotification extends StatefulWidget {
+  CommentWidgetNotification(
       {required this.imgpostlist,
       required this.imageprofiles,
       required this.followeraccountname,
@@ -23,10 +23,10 @@ class CommentNotifWidget extends StatefulWidget {
   bool commentedUserStory = false;
 
   @override
-  State<CommentNotifWidget> createState() => _CommentNotifWidgetState();
+  State<CommentWidgetNotification> createState() => _CommentNotifWidgetState();
 }
 
-class _CommentNotifWidgetState extends State<CommentNotifWidget> {
+class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
   bool isHeartEmpty = true;
 
   void StatusHear() {

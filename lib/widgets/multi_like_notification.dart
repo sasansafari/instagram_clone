@@ -22,7 +22,7 @@ class MultiLike extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: MultiLikeWidget(
+          child: MultiLikeNotification(
         firstimageProfile: imageProfiles[0],
         secondimageProfile: imageProfiles[2],
         accountname: textProlfilesName,
@@ -33,14 +33,14 @@ class MultiLike extends StatelessWidget {
   }
 }
 
-class MultiLikeWidget extends StatelessWidget {
+class MultiLikeNotification extends StatelessWidget {
   Image firstimageProfile;
   Image secondimageProfile;
   List<String> accountname;
   Image imagePost;
   int likeCount;
 
-  MultiLikeWidget(
+  MultiLikeNotification(
       {Key? key,
       required this.firstimageProfile,
       required this.secondimageProfile,
