@@ -11,18 +11,19 @@ class DrawerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        IconButton(
+        TextButton.icon(
           icon: icon,
           onPressed: () {},
+          label: Text(
+            title!,
+            style: MyStyles.getRegularStyle(color: Colors.black, fontSize: 15),
+          ),
         ),
         const SizedBox(
           width: Dimens.small,
         ),
-        Text(
-          title!,
-          style: MyStyles.getRegularStyle(color: Colors.black, fontSize: 15),
-        )
       ],
     );
   }

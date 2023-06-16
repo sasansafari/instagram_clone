@@ -10,79 +10,76 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerRight,
-      width: MediaQuery.of(context).size.width * 0.67,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Expanded(
-            child: Column(
-              children: [
-                const ListTile(
-                  title: Text('s.khasanov_'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const ListTile(
+                title: Text('s.khasanov_'),
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.archive.svg(),
+                  title: 'Archive',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.archive.svg(),
-                    title: 'Archive',
-                  ),
-                  onTap: () {},
+                onTap: () {},
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.yourActivity.svg(),
+                  title: 'Your Activity',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.yourActivity.svg(),
-                    title: 'Your Activity',
-                  ),
-                  onTap: () {},
+                onTap: () {},
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.nameTag.svg(),
+                  title: 'Nametag',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.nameTag.svg(),
-                    title: 'Nametag',
-                  ),
-                  onTap: () {},
+                onTap: () {},
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.saved.svg(),
+                  title: 'Saved',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.saved.svg(),
-                    title: 'Saved',
-                  ),
-                  onTap: () {},
+                onTap: () {},
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.closeFreinds.svg(),
+                  title: 'Close Friends',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.closeFreinds.svg(),
-                    title: 'Close Friends',
-                  ),
-                  onTap: () {},
+                onTap: () {},
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.discoverPeople.svg(),
+                  title: 'Discover People',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.discoverPeople.svg(),
-                    title: 'Discover People',
-                  ),
-                  onTap: () {},
+                onTap: () {},
+              ),
+              ListTile(
+                title: DrawerItem(
+                  icon: Assets.icons.menu.openFacebook.svg(),
+                  title: 'Open Facebook',
                 ),
-                ListTile(
-                  title: DrawerItem(
-                    icon: Assets.icons.menu.openFacebook.svg(),
-                    title: 'Open Facebook',
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
+                onTap: () {},
+              ),
+            ],
           ),
-          ListTile(
-            title: DrawerItem(
-              icon: Assets.icons.menu.setting.svg(),
-              title: 'Settings',
-            ),
-            onTap: () {},
+        ),
+        ListTile(
+          title: DrawerItem(
+            icon: Assets.icons.menu.setting.svg(),
+            title: 'Settings',
           ),
-        ],
-      ),
+          onTap: () {},
+        ),
+      ],
     );
   }
 }
