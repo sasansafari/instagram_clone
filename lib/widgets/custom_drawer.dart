@@ -10,8 +10,11 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return Container(
+      alignment: Alignment.centerRight,
+      width: MediaQuery.of(context).size.width * 0.67,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
             child: Column(
