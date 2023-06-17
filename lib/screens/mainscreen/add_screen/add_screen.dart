@@ -22,6 +22,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   AssetEntity? selectedAsset;
   List<AssetEntity> multipleSelectedAsset = [];
   bool isMultiple = false;
+  int currentTabBarIndex = 0;
 
   @override
   void initState() {
@@ -48,161 +49,175 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: _buildAppBarWidget(context, size),
-      body: Stack(
-        children: [
-          _buildAddImageScreenBody(size, assetList),
-          _buildTabBarWidget(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAddImageScreenBody(Size size, List<AssetEntity> assetList) {
-    const Widget loadingWidget = Center(
+    Widget loadingWidget = Center(
       child: CircularProgressIndicator(),
     );
-    return Positioned.fill(
-      child: assetList.isEmpty
-          ? loadingWidget
-          : CustomScrollView(
-              slivers: [
-                // ******** show selected media or medias ********
-                SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  expandedHeight: size.height / 2.5,
-                  floating: true,
-                  snap: true,
-                  flexibleSpace: Stack(
-                    children: [
-                      // TODO build selected image has to replace with page view when ismultiple change
-                      _buildSelectedImageWidget(),
-                      _buildActionImageList()
-                    ],
-                  ),
-                ),
-                _buildGridWidget(assetList),
-                const SliverToBoxAdapter(
-                  child: SizedBox(height: 60),
-                )
-              ],
-            ),
-    );
-  }
-
-  Widget _buildGridWidget(List<AssetEntity> assetList) {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
-          final AssetEntity assetEntity = assetList[index];
-          return InkWell(
-            onTap: () {
-              setState(() {
-                if (isMultiple == false) {
-                  selectedAsset = assetList[index];
-                } else {
-                  if (!multipleSelectedAsset.contains(assetList[index]) &&
-                      multipleSelectedAsset.length < 10) {
-                    multipleSelectedAsset.add(assetList[index]);
-                  } else {
-                    multipleSelectedAsset.remove(assetList[index]);
-                  }
-                }
-              });
-            },
-            child: Stack(
-              children: [
-                Positioned.fill(
-                  child: CustomAssetWidget(assetEntity: assetEntity),
-                ),
-                Positioned(
-                  right: 6,
-                  top: 6,
-                  child: isMultiple == true
-                      ? Container(
-                          alignment: Alignment.center,
-                          width: 24,
-                          height: 24,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: multipleSelectedAsset.contains(assetEntity)
-                                ? Colors.blue
-                                : null,
-                            border: Border.all(color: Colors.white, width: 1.5),
-                          ),
-                          child: multipleSelectedAsset.contains(assetEntity)
-                              ? Text(
-                                  '${multipleSelectedAsset.indexOf(assetEntity) + 1}',
-                                )
-                              : null,
-                        )
-                      : const SizedBox(),
-                )
-              ],
-            ),
-          );
-        },
-        childCount: assetList.length,
-      ),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        mainAxisSpacing: 2,
-        crossAxisSpacing: 2,
-      ),
-    );
-  }
-
-  Widget _buildSelectedImageWidget() {
-    return Positioned.fill(
-      child: AssetEntityImage(
-        selectedAsset!,
-        isOriginal: false,
-        thumbnailSize: const ThumbnailSize.square(250),
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) => const Center(
-          child: Icon(
-            Icons.error,
-            color: Colors.black,
+    final Size size = MediaQuery.of(context).size;
+    final TabController tabController = TabController(length: 3, vsync: this);
+    return Scaffold(
+      appBar: CustomAddImageAppBarWidget(
+        title: selectedAlbum!.name,
+        backButton: GestureDetector(
+          onTap: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        nextButton: GestureDetector(
+          onTap: () {},
+          child: const Text(
+            'Next',
+            style: TextStyle(color: Colors.blue),
           ),
         ),
+        appBarPadding: 14,
+        appBarColor: MyColors.customAppBarBackgroundColor,
+        titleOnTap: () => showBottomSheet(size, context, albumList),
+        // albumList: albumList,
       ),
-    );
-  }
-
-  CustomTabBarWidget _buildTabBarWidget() {
-    final TabController tabController = TabController(length: 3, vsync: this);
-    return CustomTabBarWidget(
-      tabController: tabController,
-      isBottom: true,
-      onTap: (index) {
-        switch (index) {
-          case 0:
-            return selectedRequestType != RequestType.common
-                ? loadAlbumsMethod(RequestType.common)
-                : null;
-          case 1:
-            return selectedRequestType != RequestType.image
-                ? loadAlbumsMethod(RequestType.image)
-                : null;
-          case 2:
-            return selectedRequestType != RequestType.video
-                ? loadAlbumsMethod(RequestType.video)
-                : null;
-        }
-      },
-      items: const [
-        Tab(
-          text: 'Library',
-        ),
-        Tab(
-          text: 'Photo',
-        ),
-        Tab(
-          text: 'Video',
-        ),
-      ],
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: assetList.isEmpty
+                ? loadingWidget
+                : CustomScrollView(
+                    slivers: [
+                      // ******** show selected media or medias ********
+                      SliverAppBar(
+                        automaticallyImplyLeading: false,
+                        expandedHeight: size.height / 2.5,
+                        floating: true,
+                        snap: true,
+                        flexibleSpace: Stack(
+                          children: [
+                            // TODO build selected image has to replace with page view when ismultiple change
+                            Positioned.fill(
+                              child: AssetEntityImage(
+                                selectedAsset!,
+                                isOriginal: false,
+                                thumbnailSize: const ThumbnailSize.square(250),
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const Center(
+                                  child: Icon(
+                                    Icons.error,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            _buildActionImageList()
+                          ],
+                        ),
+                      ),
+                      SliverGrid(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            final AssetEntity assetEntity = assetList[index];
+                            return InkWell(
+                              onTap: () {
+                                setState(() {
+                                  if (isMultiple == false) {
+                                    selectedAsset = assetList[index];
+                                  } else {
+                                    if (!multipleSelectedAsset
+                                            .contains(assetList[index]) &&
+                                        multipleSelectedAsset.length < 10) {
+                                      multipleSelectedAsset
+                                          .add(assetList[index]);
+                                    } else {
+                                      multipleSelectedAsset
+                                          .remove(assetList[index]);
+                                    }
+                                  }
+                                });
+                              },
+                              child: Stack(
+                                children: [
+                                  Positioned.fill(
+                                    child: CustomAssetWidget(
+                                        assetEntity: assetEntity),
+                                  ),
+                                  Positioned(
+                                    right: 6,
+                                    top: 6,
+                                    child: isMultiple == true
+                                        ? Container(
+                                            alignment: Alignment.center,
+                                            width: 24,
+                                            height: 24,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: multipleSelectedAsset
+                                                      .contains(assetEntity)
+                                                  ? Colors.blue
+                                                  : null,
+                                              border: Border.all(
+                                                  color: Colors.white,
+                                                  width: 1.5),
+                                            ),
+                                            child: multipleSelectedAsset
+                                                    .contains(assetEntity)
+                                                ? Text(
+                                                    '${multipleSelectedAsset.indexOf(assetEntity) + 1}',
+                                                  )
+                                                : null,
+                                          )
+                                        : const SizedBox(),
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                          childCount: assetList.length,
+                        ),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          mainAxisSpacing: 2,
+                          crossAxisSpacing: 2,
+                        ),
+                      ),
+                      const SliverToBoxAdapter(
+                        child: SizedBox(height: 60),
+                      )
+                    ],
+                  ),
+          ),
+          CustomTabBarWidget(
+            tabController: tabController,
+            isBottom: true,
+            onTap: (itemIndex) {
+              switch (itemIndex) {
+                case 0:
+                  return selectedRequestType != RequestType.common
+                      ? loadAlbumsMethod(RequestType.common)
+                      : null;
+                case 1:
+                  return selectedRequestType != RequestType.image
+                      ? loadAlbumsMethod(RequestType.image)
+                      : null;
+                case 2:
+                  return selectedRequestType != RequestType.video
+                      ? loadAlbumsMethod(RequestType.video)
+                      : null;
+              }
+              // setState(() {if(tabController.index!=itemIndex){
+              //   tabController.index=itemIndex;
+              // }});
+            },
+            items: const [
+              Tab(
+                text: 'Library',
+              ),
+              Tab(
+                text: 'Photo',
+              ),
+              Tab(
+                text: 'Video',
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -222,31 +237,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
     });
   }
 
-  CustomAddImageAppBarWidget _buildAppBarWidget(
-    BuildContext context,
-    Size size,
-  ) {
-    return CustomAddImageAppBarWidget(
-      title: selectedAlbum!.name,
-      backButton: GestureDetector(
-        onTap: () => Navigator.pop(context),
-        child: const Text('Cancel'),
-      ),
-      nextButton: GestureDetector(
-        onTap: () {},
-        child: const Text(
-          'Next',
-          style: TextStyle(color: Colors.blue),
-        ),
-      ),
-      appBarPadding: 14,
-      appBarColor: MyColors.customAppBarBackgroundColor,
-      titleOnTap: () => customBottomSheet(size, context, albumList),
-      // albumList: albumList,
-    );
-  }
-
-  Future<dynamic> customBottomSheet(
+  Future<dynamic> showBottomSheet(
     Size size,
     BuildContext context,
     List items,
