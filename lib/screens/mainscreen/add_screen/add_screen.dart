@@ -6,6 +6,7 @@ import '../../../gen/assets.gen.dart';
 import '../../../widgets/custom_asset_widget.dart';
 import '../../../widgets/custom_tabbar_widget.dart';
 import '../../../widgets/image_action_custom_widget.dart';
+import 'components/selected_asset_widget.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -82,32 +83,20 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                     slivers: [
                       // ******** show selected media or medias ********
                       SliverAppBar(
-                        automaticallyImplyLeading: false,
-                        expandedHeight: size.height / 2.5,
-                        floating: true,
-                        snap: true,
-                        flexibleSpace: Stack(
-                          children: [
-                            // TODO build selected image has to replace with page view when ismultiple change
-                            Positioned.fill(
-                              child: AssetEntityImage(
-                                selectedAsset!,
-                                isOriginal: false,
-                                thumbnailSize: const ThumbnailSize.square(250),
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) =>
-                                    const Center(
-                                  child: Icon(
-                                    Icons.error,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            _buildActionImageList()
-                          ],
-                        ),
-                      ),
+                          automaticallyImplyLeading: false,
+                          expandedHeight: size.height / 2.5,
+                          floating: true,
+                          snap: true,
+                          flexibleSpace: SelectedAssetWidget(
+                            selectedAsset: selectedAsset,
+                            isMultiple: isMultiple,
+                            changeIsMultiple: () {
+                              setState(() {
+                                // TODO this has to change and make selectedasset or multiple selected asset list null when is multiple change
+                                isMultiple = !isMultiple;
+                              });
+                            },
+                          )),
                       SliverGrid(
                         delegate: SliverChildBuilderDelegate(
                           (context, index) {
@@ -134,7 +123,8 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                                 children: [
                                   Positioned.fill(
                                     child: CustomAssetWidget(
-                                        assetEntity: assetEntity),
+                                      assetEntity: assetEntity,
+                                    ),
                                   ),
                                   Positioned(
                                     right: 6,
@@ -151,8 +141,9 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                                                   ? Colors.blue
                                                   : null,
                                               border: Border.all(
-                                                  color: Colors.white,
-                                                  width: 1.5),
+                                                color: Colors.white,
+                                                width: 1.5,
+                                              ),
                                             ),
                                             child: multipleSelectedAsset
                                                     .contains(assetEntity)
@@ -284,46 +275,8 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
     );
   }
 
-  Widget _buildActionImageList() {
-    return Positioned(
-      bottom: 10.2,
-      right: 10,
-      child: Row(
-        children: [
-          ImageActionsCustomWidget(
-            child: Assets.icons.boomerang.svg(fit: BoxFit.scaleDown),
-          ),
-          ImageActionsCustomWidget(
-            child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown),
-          ),
-          ImageActionsCustomWidget(
-            onTap: () {
-              setState(() {
-                // TODO this has to change and make selectedasset or multiple selected asset list null when is multiple change
-                isMultiple = !isMultiple;
-              });
-            },
-            width: 153,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Assets.icons.selectMultiple.svg(
-                  fit: BoxFit.scaleDown,
-                ),
-                Text(
-                  'SELECT MULTIPLE',
-                  style: TextStyle(
-                    color: isMultiple == false ? Colors.white : Colors.white54,
-                    fontSize: 14,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+//   Widget _buildActionImageList() {
+//     return
 }
 
 // ******** load medias from storage ********
