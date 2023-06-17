@@ -4,6 +4,7 @@ abstract class MyColors {
   static const Color bottomNavigationBar = Color.fromARGB(255, 250, 250, 250);
   static const Color textfieldFillColor = Color(0xffEAEAEB);
   static const Color selectedTextFieldColor = Color.fromARGB(255, 0, 0, 0);
+  static const Color dividers = Color.fromRGBO(158, 158, 158, .3);
 
   //* Posts Widget Colors
   static const Color postsCounter = Color.fromRGBO(18, 18, 18, .7);
