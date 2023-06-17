@@ -124,23 +124,25 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
         (context, index) {
           final AssetEntity assetEntity = assetList[index];
           return GridViewItem(
-              onTap: () {
-                setState(() {
-                  if (isMultiple == false) {
+            onTap: () {
+              setState(() {
+                if (isMultiple == false) {
+                  selectedAsset = assetList[index];
+                } else {
+                  if (!multipleSelectedAsset.contains(assetList[index]) &&
+                      multipleSelectedAsset.length < 10) {
+                    multipleSelectedAsset.add(assetList[index]);
                     selectedAsset = assetList[index];
                   } else {
-                    if (!multipleSelectedAsset.contains(assetList[index]) &&
-                        multipleSelectedAsset.length < 10) {
-                      multipleSelectedAsset.add(assetList[index]);
-                    } else {
-                      multipleSelectedAsset.remove(assetList[index]);
-                    }
+                    multipleSelectedAsset.remove(assetList[index]);
                   }
-                });
-              },
-              assetEntity: assetEntity,
-              isMultiple: isMultiple,
-              multipleSelectedAsset: multipleSelectedAsset);
+                }
+              });
+            },
+            assetEntity: assetEntity,
+            isMultiple: isMultiple,
+            multipleSelectedAsset: multipleSelectedAsset,
+          );
         },
         childCount: assetList.length,
       ),
@@ -153,7 +155,9 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   }
 
   CustomAddImageAppBarWidget buildAppBarWidget(
-      BuildContext context, Size size) {
+    BuildContext context,
+    Size size,
+  ) {
     return CustomAddImageAppBarWidget(
       title: selectedAlbum!.name,
       backButton: GestureDetector(
@@ -176,20 +180,23 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
 
   SliverAppBar buildSelectedAssetWidget(Size size) {
     return SliverAppBar(
-        automaticallyImplyLeading: false,
-        expandedHeight: size.height / 2.5,
-        floating: true,
-        snap: true,
-        flexibleSpace: SelectedAssetWidget(
-          selectedAsset: selectedAsset,
-          isMultiple: isMultiple,
-          changeIsMultiple: () {
-            setState(() {
-              // TODO this has to change and make selectedasset or multiple selected asset list null when is multiple change
-              isMultiple = !isMultiple;
-            });
-          },
-        ));
+      automaticallyImplyLeading: false,
+      expandedHeight: size.height / 2.5,
+      floating: true,
+      snap: true,
+      flexibleSpace: SelectedAssetWidget(
+        selectedAsset: selectedAsset,
+        isMultiple: isMultiple,
+        changeIsMultiple: () {
+          setState(() {
+            isMultiple = !isMultiple;
+            if (isMultiple == false) {
+              multipleSelectedAsset = [];
+            }
+          });
+        },
+      ),
+    );
   }
 
   Future<void> loadAlbumsMethod(RequestType requestType) {
