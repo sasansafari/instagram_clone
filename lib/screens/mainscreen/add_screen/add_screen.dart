@@ -251,7 +251,12 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                 onTap: () {
                   setState(() {
                     selectedAlbum = items[index];
-                    MediaServices.loadAssets(selectedAlbum!);
+                    MediaServices.loadAssets(selectedAlbum!).then((value) {
+                      setState(() {
+                        assetList = value;
+                        selectedAsset = value[0];
+                      });
+                    });
                     Navigator.pop(context);
                   });
                 },
