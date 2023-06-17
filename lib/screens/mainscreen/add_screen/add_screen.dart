@@ -22,7 +22,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   AssetEntity? selectedAsset;
   List<AssetEntity> multipleSelectedAsset = [];
   bool isMultiple = false;
-  int currentTabBarIndex = 0;
+  late TabController _controller;
 
   @override
   void initState() {
@@ -45,15 +45,15 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       });
     });
     super.initState();
+    _controller = TabController(length: 3, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
-    Widget loadingWidget = Center(
+    Widget loadingWidget = const Center(
       child: CircularProgressIndicator(),
     );
     final Size size = MediaQuery.of(context).size;
-    final TabController tabController = TabController(length: 3, vsync: this);
     return Scaffold(
       appBar: CustomAddImageAppBarWidget(
         title: selectedAlbum!.name,
@@ -183,7 +183,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                   ),
           ),
           CustomTabBarWidget(
-            tabController: tabController,
+            tabController: _controller,
             isBottom: true,
             onTap: (itemIndex) {
               switch (itemIndex) {
