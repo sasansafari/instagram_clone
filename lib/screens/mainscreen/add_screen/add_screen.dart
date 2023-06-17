@@ -176,7 +176,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
 
   CustomAddImageAppBarWidget _buildAppBarWidget(BuildContext context) {
     return CustomAddImageAppBarWidget(
-      title: 'Recents',
+      title: selectedAlbum!.name,
       backButton: GestureDetector(
         onTap: () => Navigator.pop(context),
         child: const Text('Cancel'),
@@ -190,6 +190,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       ),
       appBarPadding: 14,
       appBarColor: MyColors.customAppBarBackgroundColor,
+      albumList: albumList,
     );
   }
 
