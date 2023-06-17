@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 abstract class MyColors {
+  MyColors._();
   static const Color bottomNavigationBar = Color.fromARGB(255, 250, 250, 250);
   static const Color textfieldFillColor = Color(0xffEAEAEB);
   static const Color selectedTextFieldColor = Color.fromARGB(255, 0, 0, 0);

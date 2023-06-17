@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
- import 'package:tec/route/names.dart';
- import 'package:tec/route/routes.dart';
+import 'package:tec/route/names.dart';
+import 'package:tec/route/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,14 +14,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Watch Store',
-      initialRoute:Screens.root,
-      routes: routes, 
+      initialRoute: Screens.root,
+      routes: routes,
     );
   }
 }
