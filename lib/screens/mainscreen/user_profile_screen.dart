@@ -4,6 +4,7 @@ import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import '../../widgets/custom_drawer.dart';
 
 class UserProfileScreen extends StatefulWidget {
+
   const UserProfileScreen({Key? key}) : super(key: key);
 
   @override

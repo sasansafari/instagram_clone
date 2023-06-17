@@ -5,6 +5,7 @@ abstract class MyColors {
   static const Color bottomNavigationBar = Color.fromARGB(255, 250, 250, 250);
   static const Color textfieldFillColor = Color(0xffEAEAEB);
   static const Color selectedTextFieldColor = Color.fromARGB(255, 0, 0, 0);
+  static const Color dividers = Color.fromRGBO(158, 158, 158, .3);
 
   //* Posts Widget Colors
   static const Color postsCounter = Color.fromRGBO(18, 18, 18, .7);
@@ -19,4 +20,14 @@ abstract class MyColors {
   static const Color customTabBarBackgroundColor =
       Color.fromRGBO(250, 250, 250, 1);
   static const Color dividerColor = Color.fromRGBO(60, 60, 67, 0.138);
+  // ******** notification screen colors ********
+  static const Color textnotificationcolor = Color.fromARGB(255, 38, 38, 38);
+  static const Color textgraynotificationcolor = Color.fromARGB(102, 0, 0, 0);
+  static const Color dividernotificationcolor =
+      Color.fromARGB(255, 206, 206, 206);
+  static const Color tagaccountcolor = Color.fromARGB(255, 5, 56, 107);
+  static const Color btmfollowcolor = Color.fromARGB(255, 55, 151, 239);
+  static const Color pinkstorycolor = Color(0xffd91a46);
+  static const Color purplestorycolor = Color(0xffa60f93);
+  static const Color yelowstorycolor = Color(0xfffbaa47);
 }

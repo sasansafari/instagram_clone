@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tec/screens/mainscreen/post_screen.dart';
+import 'package:tec/extensions/space_xy_extension.dart';
+import 'package:tec/models/stories_data.dart';
+import 'package:tec/widgets/main_app_bar.dart';
+import 'package:tec/widgets/story_list.dart';
+
+import '../../models/posts_model.dart';
+import '../../widgets/posts_list_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -7,31 +13,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'home - 0 stack',
-              style: TextStyle(fontSize: 28),
-            ),
-            ElevatedButton(
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PostScreen(),),),
-                child: const Text('next'),),
-            const Text('implenting fork and pr'),
-            ElevatedButton(
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const PostScreen(),),),
-                child: const Text('next'),)
-          ],
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const MainAppBar(),
+              StoryList(stories: StoriesDatabase.stories),
+              PostsListView(postsData: PostsDatabase.posts),
+              10.0.spaceY,
+              const CircularProgressIndicator(),
+              10.0.spaceY,
+            ],
+          ),
         ),
       ),
-    ),);
+    );
   }
 }
