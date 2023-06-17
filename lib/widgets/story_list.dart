@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tec/extensions/space_xy_extension.dart';
 import 'package:tec/widgets/story.dart';
+
 import '../models/stories_data.dart';
+import 'custom_divider.dart';
 
 List<StoryData> sortStories() {
   List<StoryData> stories = StoriesDatabase.stories;
@@ -38,19 +41,25 @@ class StoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: 90, //90
-      child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          scrollDirection: Axis.horizontal,
-          itemCount: sortStories().length,
-          itemBuilder: (context, index) {
-            final story = sortStories()[index];
-            return Story(story: story);
-          }),
+    return Column(
+      children: [
+        const CustomDivider(),
+        9.0.spaceY,
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: 98,
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemCount: sortStories().length,
+            itemBuilder: (context, index) {
+              final story = sortStories()[index];
+              return Story(story: story);
+            },
+          ),
+        ),
+        const CustomDivider(),
+      ],
     );
   }
 }
-
-
