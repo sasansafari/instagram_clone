@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
 import 'package:tec/screens/mainscreen/add_screen/components/custom_app_bar.dart';
-import '../../../gen/assets.gen.dart';
-import '../../../widgets/custom_asset_widget.dart';
 import '../../../widgets/custom_tabbar_widget.dart';
-import '../../../widgets/image_action_custom_widget.dart';
+import 'components/grid_view_item.dart';
 import 'components/selected_asset_widget.dart';
 
 class AddScreen extends StatefulWidget {
@@ -46,6 +44,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       });
     });
     super.initState();
+    // ******** initial tab controller ********
     _controller = TabController(length: 3, vsync: this);
   }
 
@@ -56,24 +55,8 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
     );
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: CustomAddImageAppBarWidget(
-        title: selectedAlbum!.name,
-        backButton: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: const Text('Cancel'),
-        ),
-        nextButton: GestureDetector(
-          onTap: () {},
-          child: const Text(
-            'Next',
-            style: TextStyle(color: Colors.blue),
-          ),
-        ),
-        appBarPadding: 14,
-        appBarColor: MyColors.customAppBarBackgroundColor,
-        titleOnTap: () => showBottomSheet(size, context, albumList),
-        // albumList: albumList,
-      ),
+      // ******** add image screen app bar ********\
+      appBar: buildAppBarWidget(context, size),
       body: Stack(
         children: [
           Positioned.fill(
@@ -82,134 +65,131 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                 : CustomScrollView(
                     slivers: [
                       // ******** show selected media or medias ********
-                      SliverAppBar(
-                          automaticallyImplyLeading: false,
-                          expandedHeight: size.height / 2.5,
-                          floating: true,
-                          snap: true,
-                          flexibleSpace: SelectedAssetWidget(
-                            selectedAsset: selectedAsset,
-                            isMultiple: isMultiple,
-                            changeIsMultiple: () {
-                              setState(() {
-                                // TODO this has to change and make selectedasset or multiple selected asset list null when is multiple change
-                                isMultiple = !isMultiple;
-                              });
-                            },
-                          )),
-                      SliverGrid(
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            final AssetEntity assetEntity = assetList[index];
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (isMultiple == false) {
-                                    selectedAsset = assetList[index];
-                                  } else {
-                                    if (!multipleSelectedAsset
-                                            .contains(assetList[index]) &&
-                                        multipleSelectedAsset.length < 10) {
-                                      multipleSelectedAsset
-                                          .add(assetList[index]);
-                                    } else {
-                                      multipleSelectedAsset
-                                          .remove(assetList[index]);
-                                    }
-                                  }
-                                });
-                              },
-                              child: Stack(
-                                children: [
-                                  Positioned.fill(
-                                    child: CustomAssetWidget(
-                                      assetEntity: assetEntity,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    right: 6,
-                                    top: 6,
-                                    child: isMultiple == true
-                                        ? Container(
-                                            alignment: Alignment.center,
-                                            width: 24,
-                                            height: 24,
-                                            decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: multipleSelectedAsset
-                                                      .contains(assetEntity)
-                                                  ? Colors.blue
-                                                  : null,
-                                              border: Border.all(
-                                                color: Colors.white,
-                                                width: 1.5,
-                                              ),
-                                            ),
-                                            child: multipleSelectedAsset
-                                                    .contains(assetEntity)
-                                                ? Text(
-                                                    '${multipleSelectedAsset.indexOf(assetEntity) + 1}',
-                                                  )
-                                                : null,
-                                          )
-                                        : const SizedBox(),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                          childCount: assetList.length,
-                        ),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          mainAxisSpacing: 2,
-                          crossAxisSpacing: 2,
-                        ),
-                      ),
+                      buildSelectedAssetWidget(size),
+                      // ******** gird view ********
+                      buildGridViewWidget(),
                       const SliverToBoxAdapter(
                         child: SizedBox(height: 60),
                       )
                     ],
                   ),
           ),
-          CustomTabBarWidget(
-            tabController: _controller,
-            isBottom: true,
-            onTap: (itemIndex) {
-              switch (itemIndex) {
-                case 0:
-                  return selectedRequestType != RequestType.common
-                      ? loadAlbumsMethod(RequestType.common)
-                      : null;
-                case 1:
-                  return selectedRequestType != RequestType.image
-                      ? loadAlbumsMethod(RequestType.image)
-                      : null;
-                case 2:
-                  return selectedRequestType != RequestType.video
-                      ? loadAlbumsMethod(RequestType.video)
-                      : null;
-              }
-              // setState(() {if(tabController.index!=itemIndex){
-              //   tabController.index=itemIndex;
-              // }});
-            },
-            items: const [
-              Tab(
-                text: 'Library',
-              ),
-              Tab(
-                text: 'Photo',
-              ),
-              Tab(
-                text: 'Video',
-              ),
-            ],
-          ),
+          // ******** tab bar widget ********
+          buildTabBarWidget(),
         ],
       ),
     );
+  }
+
+  CustomTabBarWidget buildTabBarWidget() {
+    return CustomTabBarWidget(
+      tabController: _controller,
+      isBottom: true,
+      onTap: (itemIndex) {
+        switch (itemIndex) {
+          case 0:
+            return selectedRequestType != RequestType.common
+                ? loadAlbumsMethod(RequestType.common)
+                : null;
+          case 1:
+            return selectedRequestType != RequestType.image
+                ? loadAlbumsMethod(RequestType.image)
+                : null;
+          case 2:
+            return selectedRequestType != RequestType.video
+                ? loadAlbumsMethod(RequestType.video)
+                : null;
+        }
+        // setState(() {if(tabController.index!=itemIndex){
+        //   tabController.index=itemIndex;
+        // }});
+      },
+      items: const [
+        Tab(
+          text: 'Library',
+        ),
+        Tab(
+          text: 'Photo',
+        ),
+        Tab(
+          text: 'Video',
+        ),
+      ],
+    );
+  }
+
+  SliverGrid buildGridViewWidget() {
+    return SliverGrid(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          final AssetEntity assetEntity = assetList[index];
+          return GridViewItem(
+              onTap: () {
+                setState(() {
+                  if (isMultiple == false) {
+                    selectedAsset = assetList[index];
+                  } else {
+                    if (!multipleSelectedAsset.contains(assetList[index]) &&
+                        multipleSelectedAsset.length < 10) {
+                      multipleSelectedAsset.add(assetList[index]);
+                    } else {
+                      multipleSelectedAsset.remove(assetList[index]);
+                    }
+                  }
+                });
+              },
+              assetEntity: assetEntity,
+              isMultiple: isMultiple,
+              multipleSelectedAsset: multipleSelectedAsset);
+        },
+        childCount: assetList.length,
+      ),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 4,
+        mainAxisSpacing: 2,
+        crossAxisSpacing: 2,
+      ),
+    );
+  }
+
+  CustomAddImageAppBarWidget buildAppBarWidget(
+      BuildContext context, Size size) {
+    return CustomAddImageAppBarWidget(
+      title: selectedAlbum!.name,
+      backButton: GestureDetector(
+        onTap: () => Navigator.pop(context),
+        child: const Text('Cancel'),
+      ),
+      nextButton: GestureDetector(
+        onTap: () {},
+        child: const Text(
+          'Next',
+          style: TextStyle(color: Colors.blue),
+        ),
+      ),
+      appBarPadding: 14,
+      appBarColor: MyColors.customAppBarBackgroundColor,
+      titleOnTap: () => showBottomSheet(size, context, albumList),
+      // albumList: albumList,
+    );
+  }
+
+  SliverAppBar buildSelectedAssetWidget(Size size) {
+    return SliverAppBar(
+        automaticallyImplyLeading: false,
+        expandedHeight: size.height / 2.5,
+        floating: true,
+        snap: true,
+        flexibleSpace: SelectedAssetWidget(
+          selectedAsset: selectedAsset,
+          isMultiple: isMultiple,
+          changeIsMultiple: () {
+            setState(() {
+              // TODO this has to change and make selectedasset or multiple selected asset list null when is multiple change
+              isMultiple = !isMultiple;
+            });
+          },
+        ));
   }
 
   Future<void> loadAlbumsMethod(RequestType requestType) {
@@ -274,9 +254,6 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       context: context,
     );
   }
-
-//   Widget _buildActionImageList() {
-//     return
 }
 
 // ******** load medias from storage ********
