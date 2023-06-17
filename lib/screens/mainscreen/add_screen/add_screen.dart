@@ -77,6 +77,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                   snap: true,
                   flexibleSpace: Stack(
                     children: [
+                      // TODO build selected image has to replace with page view when ismultiple change
                       _buildSelectedImageWidget(),
                       _buildActionImageList()
                     ],
@@ -102,7 +103,8 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                 if (isMultiple == false) {
                   selectedAsset = assetList[index];
                 } else {
-                  if (!multipleSelectedAsset.contains(assetList[index])) {
+                  if (!multipleSelectedAsset.contains(assetList[index]) &&
+                      multipleSelectedAsset.length < 10) {
                     multipleSelectedAsset.add(assetList[index]);
                   } else {
                     multipleSelectedAsset.remove(assetList[index]);
@@ -110,7 +112,36 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                 }
               });
             },
-            child: CustomAssetWidget(assetEntity: assetEntity),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: CustomAssetWidget(assetEntity: assetEntity),
+                ),
+                Positioned(
+                  right: 6,
+                  top: 6,
+                  child: isMultiple == true
+                      ? Container(
+                          alignment: Alignment.center,
+                          width: 24,
+                          height: 24,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: multipleSelectedAsset.contains(assetEntity)
+                                ? Colors.blue
+                                : null,
+                            border: Border.all(color: Colors.white, width: 1.5),
+                          ),
+                          child: multipleSelectedAsset.contains(assetEntity)
+                              ? Text(
+                                  '${multipleSelectedAsset.indexOf(assetEntity) + 1}',
+                                )
+                              : null,
+                        )
+                      : const SizedBox(),
+                )
+              ],
+            ),
           );
         },
         childCount: assetList.length,
@@ -277,6 +308,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
           ImageActionsCustomWidget(
             onTap: () {
               setState(() {
+                // TODO this has to change and make selectedasset or multiple selected asset list null when is multiple change
                 isMultiple = !isMultiple;
               });
             },
@@ -290,7 +322,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
                 Text(
                   'SELECT MULTIPLE',
                   style: TextStyle(
-                    color: isMultiple ? Colors.white : Colors.white54,
+                    color: isMultiple == false ? Colors.white : Colors.white54,
                     fontSize: 14,
                   ),
                 )
