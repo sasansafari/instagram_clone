@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:tec/res/colors.dart';
-import '../../gen/assets.gen.dart';
-import '../../widgets/custom_asset_widget.dart';
-import '../../widgets/custom_tabbar_widget.dart';
-import '../../widgets/image_action_custom_widget.dart';
+import 'package:tec/screens/mainscreen/add_screen/components/custom_app_bar.dart';
+import '../../../gen/assets.gen.dart';
+import '../../../widgets/custom_asset_widget.dart';
+import '../../../widgets/custom_tabbar_widget.dart';
+import '../../../widgets/image_action_custom_widget.dart';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({Key? key}) : super(key: key);
@@ -221,53 +222,6 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       ),
     );
   }
-}
-
-// ******** create custom AppBar ********
-class CustomAddImageAppBarWidget extends StatelessWidget
-    implements PreferredSizeWidget {
-  final double appBarHeight;
-  final double appBarPadding;
-  final String title;
-  final Widget? backButton;
-  final Widget? nextButton;
-  final Color appBarColor;
-
-  const CustomAddImageAppBarWidget({
-    Key? key,
-    this.appBarHeight = 50,
-    required this.title,
-    this.backButton,
-    required this.nextButton,
-    required this.appBarPadding,
-    required this.appBarColor,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: appBarColor,
-        padding: EdgeInsets.all(appBarPadding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            backButton ?? const SizedBox(),
-            Align(
-              alignment: Alignment.center,
-              child: Row(
-                children: [Text(title), const Icon(Icons.expand_more)],
-              ),
-            ),
-            nextButton ?? const SizedBox()
-          ],
-        ),
-      ),
-    );
-  }
-
-  @override
-  Size get preferredSize => Size.fromHeight(appBarHeight);
 }
 
 // ******** load medias from storage ********

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tec/screens/mainscreen/add_screen.dart';
+import 'package:tec/screens/mainscreen/add_screen/add_screen.dart';
 import 'package:tec/screens/mainscreen/login_screen.dart';
 import 'package:tec/screens/mainscreen/main_screen.dart';
 import 'package:tec/screens/splash.dart';
