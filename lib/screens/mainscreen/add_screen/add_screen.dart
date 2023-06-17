@@ -50,9 +50,6 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Widget loadingWidget = const Center(
-      child: CircularProgressIndicator(),
-    );
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       // ******** add image screen app bar ********\
@@ -60,8 +57,8 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       body: Stack(
         children: [
           Positioned.fill(
-            child: assetList.isEmpty
-                ? loadingWidget
+            child: assetList.isEmpty && selectedAsset == null
+                ? buildLoadingWidget()
                 : CustomScrollView(
                     slivers: [
                       // ******** show selected media or medias ********
@@ -78,6 +75,12 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
           buildTabBarWidget(),
         ],
       ),
+    );
+  }
+
+  Center buildLoadingWidget() {
+    return const Center(
+      child: CircularProgressIndicator(),
     );
   }
 
@@ -159,7 +162,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
     Size size,
   ) {
     return CustomAddImageAppBarWidget(
-      title: selectedAlbum!.name,
+      title: selectedAlbum?.name ?? '',
       backButton: GestureDetector(
         onTap: () => Navigator.pop(context),
         child: const Text('Cancel'),
