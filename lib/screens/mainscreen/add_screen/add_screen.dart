@@ -48,7 +48,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: _buildAppBarWidget(context),
+      appBar: _buildAppBarWidget(context, size),
       body: Stack(
         children: [
           _buildAddImageScreenBody(size, assetList),
@@ -174,7 +174,10 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
     });
   }
 
-  CustomAddImageAppBarWidget _buildAppBarWidget(BuildContext context) {
+  CustomAddImageAppBarWidget _buildAppBarWidget(
+    BuildContext context,
+    Size size,
+  ) {
     return CustomAddImageAppBarWidget(
       title: selectedAlbum!.name,
       backButton: GestureDetector(
@@ -190,7 +193,55 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       ),
       appBarPadding: 14,
       appBarColor: MyColors.customAppBarBackgroundColor,
-      albumList: albumList,
+      titleOnTap: () => customBottomSheet(size, context, albumList),
+      // albumList: albumList,
+    );
+  }
+
+  Future<dynamic> customBottomSheet(
+    Size size,
+    BuildContext context,
+    List items,
+  ) {
+    return showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      builder: (context) => Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 10),
+            height: 3,
+            width: size.width / 7,
+            decoration: const BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+          ),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final AssetPathEntity albumItem = items[index];
+
+              return ListTile(
+                onTap: () {
+                  setState(() {
+                    selectedAlbum = items[index];
+                    MediaServices.loadAssets(selectedAlbum!);
+                    Navigator.pop(context);
+                  });
+                },
+                title: Text(albumItem.name.toString()),
+              );
+            },
+          ),
+        ],
+      ),
+      context: context,
     );
   }
 
