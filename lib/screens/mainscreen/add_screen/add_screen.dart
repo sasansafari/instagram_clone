@@ -17,9 +17,11 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   late RequestType selectedRequestType;
   AssetPathEntity? selectedAlbum;
-  AssetEntity? selectedImage;
   List<AssetPathEntity> albumList = [];
   List<AssetEntity> assetList = [];
+  AssetEntity? selectedAsset;
+  List<AssetEntity> multipleSelectedAsset = [];
+  bool isMultiple = false;
 
   @override
   void initState() {
@@ -37,7 +39,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       MediaServices.loadAssets(selectedAlbum!).then((value) {
         setState(() {
           assetList = value;
-          selectedImage = value[0];
+          selectedAsset = value[0];
         });
       });
     });
@@ -94,7 +96,22 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final AssetEntity assetEntity = assetList[index];
-          return CustomAssetWidget(assetEntity: assetEntity);
+          return InkWell(
+            onTap: () {
+              setState(() {
+                if (isMultiple == false) {
+                  selectedAsset = assetList[index];
+                } else {
+                  if (!multipleSelectedAsset.contains(assetList[index])) {
+                    multipleSelectedAsset.add(assetList[index]);
+                  } else {
+                    multipleSelectedAsset.remove(assetList[index]);
+                  }
+                }
+              });
+            },
+            child: CustomAssetWidget(assetEntity: assetEntity),
+          );
         },
         childCount: assetList.length,
       ),
@@ -109,7 +126,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
   Widget _buildSelectedImageWidget() {
     return Positioned.fill(
       child: AssetEntityImage(
-        selectedImage!,
+        selectedAsset!,
         isOriginal: false,
         thumbnailSize: const ThumbnailSize.square(250),
         fit: BoxFit.cover,
@@ -167,7 +184,7 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
         MediaServices.loadAssets(selectedAlbum!).then((value) {
           setState(() {
             assetList = value;
-            selectedImage = value[0];
+            selectedAsset = value[0];
           });
         });
       });
@@ -258,14 +275,24 @@ class _AddScreenState extends State<AddScreen> with TickerProviderStateMixin {
             child: Assets.icons.combinePhoto.svg(fit: BoxFit.scaleDown),
           ),
           ImageActionsCustomWidget(
+            onTap: () {
+              setState(() {
+                isMultiple = !isMultiple;
+              });
+            },
             width: 153,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Assets.icons.selectMultiple.svg(fit: BoxFit.scaleDown),
-                const Text(
+                Assets.icons.selectMultiple.svg(
+                  fit: BoxFit.scaleDown,
+                ),
+                Text(
                   'SELECT MULTIPLE',
-                  style: TextStyle(color: Colors.white, fontSize: 14),
+                  style: TextStyle(
+                    color: isMultiple ? Colors.white : Colors.white54,
+                    fontSize: 14,
+                  ),
                 )
               ],
             ),
