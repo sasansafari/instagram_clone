@@ -38,76 +38,88 @@ class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      padding: const EdgeInsets.only(left: 15, right: 15),
-      width: MediaQuery.of(context).size.width,
-      height: size.height / 8,
-      child: Column(
-        children: [
-          SizedBox(
-            height: size.height / 12,
-            width: size.width,
-            child: Row(
-              children: [
-                // the user that commented image
-                GestureDetector(
-                  onTap: () {
-                    if (widget.commentedUserStory == true) {
-                      // show story
-                    } else {
-                      // Navigate to user profile Screen
-                    }
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: widget.commentedUserStory == true
-                              ? const LinearGradient(
-                                  colors: [
-                                    MyColors.purplestorycolor,
-                                    MyColors.pinkstorycolor,
-                                    MyColors.yelowstorycolor
-                                  ],
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
-                                )
-                              : null,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16),
+      child: SizedBox(
+        width: size.width,
+        height: size.height / 8,
+        child: Column(
+          children: [
+            SizedBox(
+              height: size.height / 12,
+              width: size.width,
+              child: Row(
+                children: [
+                  // the user that commented image
+                  GestureDetector(
+                    onTap: () {
+                      if (widget.commentedUserStory == true) {
+                        // show story
+                      } else {
+                        // Navigate to user profile Screen
+                      }
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          padding: const EdgeInsets.all(2),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: widget.commentedUserStory == true
+                                ? const LinearGradient(
+                                    colors: [
+                                      MyColors.purplestorycolor,
+                                      MyColors.pinkstorycolor,
+                                      MyColors.yelowstorycolor
+                                    ],
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                  )
+                                : null,
+                          ),
+                          child: Container(
+                            // margin: const EdgeInsets.all(2),
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                            ),
+                            padding: const EdgeInsets.all(2),
+                            child: widget.imgpostlist,
+                          ),
                         ),
-                        child: SizedBox(
-                          child: widget.imgpostlist,
-                          width: 44,
-                          height: 44,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                10.0.spaceX,
-                Flexible(
-                  flex: 6,
-                  child: SizedBox(
+                  10.0.spaceX,
+                  Flexible(
+                    flex: 6,
                     child: RichText(
                       maxLines: 2,
                       // softWrap: true,
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(
-                        style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.normal,
-                        ),
+                        style: MyStyles.getRegularStyle(
+                            color: MyColors.textnotificationcolor),
                         children: [
                           TextSpan(
-                            text: '${widget.followeraccountname}',
+                            text: widget.followeraccountname,
                             style: MyStyles.getBoldStyle(
                                 color: MyColors.textnotificationcolor),
                           ),
                           TextSpan(
-                            text: ' liked ${widget.accountname}’s comment: ',
+                            text: ' liked ',
+                            style: MyStyles.getRegularStyle(
+                                color: MyColors.textnotificationcolor),
+                          ),
+                          TextSpan(
+                            text: '${widget.accountname}’s ',
+                            style: MyStyles.getBoldStyle(
+                                color: MyColors.textnotificationcolor),
+                          ),
+                          TextSpan(
+                            text: 'comment: ',
                             style: MyStyles.getRegularStyle(
                                 color: MyColors.textnotificationcolor),
                           ),
@@ -118,7 +130,7 @@ class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
                                 color: MyColors.tagaccountcolor),
                           ),
                           TextSpan(
-                            text: 'Nice!  ',
+                            text: 'Nice! ',
                             style: MyStyles.getRegularStyle(
                                 color: MyColors.textnotificationcolor),
                           ),
@@ -131,20 +143,17 @@ class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
                       ),
                     ),
                   ),
-                ),
 
-                const Spacer(),
-                SizedBox(height: 44, width: 44, child: widget.imageprofiles),
-                6.0.spaceX
-              ],
+                  const Spacer(),
+                  SizedBox(height: 44, width: 44, child: widget.imageprofiles),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 60),
-            child: SizedBox(
+            SizedBox(
               height: size.height / 25,
               child: Row(
                 children: [
+                  60.0.spaceX,
                   GestureDetector(
                     onTap: StatusHear,
                     child: Icon(
@@ -169,8 +178,8 @@ class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
