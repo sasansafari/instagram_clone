@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tec/res/colors.dart';
 
 abstract class FontWeightManager {
   static const FontWeight regular = FontWeight.w400;
@@ -39,4 +40,50 @@ class MyStyles {
       color,
     );
   }
+
+  //* Regular TextStyle User Profile Screen = UPS
+  static TextStyle getRegularTextStyleUPS() {
+    return _getTextStyle(
+      14.0,
+      FontWeightManager.regular,
+      MyColors.textPrimaryColor,
+    );
+  }
+
+  //* Semi Regular TextStyle User Profile Screen UPS
+  static TextStyle getSemiRegularTextStyleUPS() {
+    return _getTextStyle(
+      12.0,
+      FontWeightManager.regular,
+      MyColors.textPrimaryColor,
+    );
+  }
+
+  //* Clickable Semi Regular TextStyle User Profile Screen  = UPS
+  static TextStyle getClickableTextStyleUPS() {
+    return _getTextStyle(
+      12.0,
+      FontWeightManager.regular,
+      MyColors.textPrimaryColor,
+    );
+  }
+
+  //* Bold TextStyle User Profile Screen = UPS
+  static TextStyle getBoldTextStyleUPS() {
+    return _getTextStyle(
+      16.0,
+      FontWeightManager.bold,
+      MyColors.textPrimaryColor,
+    );
+  }
+
+  //* Semi Bold TextStyle User Profile Screen = UPS
+  static TextStyle getSemiBoldTextStyleUPS() {
+    return _getTextStyle(
+      12.0,
+      FontWeightManager.bold,
+      MyColors.textPrimaryColor,
+    );
+  }
 }
+

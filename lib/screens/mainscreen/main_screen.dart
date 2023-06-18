@@ -7,7 +7,7 @@ import '../../route/names.dart';
 import 'explore_screen.dart';
 import 'home_screen.dart';
 import 'notrifications_screen.dart';
-import 'user_profile_screen.dart';
+import 'UserProfileScreen/user_profile_screen.dart';
 
 int selectedIndex = 0;
 

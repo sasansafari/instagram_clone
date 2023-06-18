@@ -69,6 +69,9 @@ class $AssetsIconsGen {
   AssetGenImage get userMultiLike1 =>
       const AssetGenImage('assets/icons/user_multi_like1.png');
 
+  $AssetsIconsUserprofilescreenGen get userprofilescreen =>
+      const $AssetsIconsUserprofilescreenGen();
+
   /// List of all assets
   List<dynamic> get values => [
         live,
@@ -304,6 +307,54 @@ class $AssetsIconsNavBottomGen {
         homeSelected,
         notify,
         notifySelected
+      ];
+}
+
+class $AssetsIconsUserprofilescreenGen {
+  const $AssetsIconsUserprofilescreenGen();
+
+  /// File path: assets/icons/userprofilescreen/accounts_list_icon_ups.svg
+  SvgGenImage get accountsListIconUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/accounts_list_icon_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/add_story_icon_ups.svg
+  SvgGenImage get addStoryIconUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/add_story_icon_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/grid_Icon_inSelected_ups.svg
+  SvgGenImage get gridIconInSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/grid_Icon_inSelected_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/grid_Icon_selected_ups.svg
+  SvgGenImage get gridIconSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/grid_Icon_selected_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/menu_icon_ups.svg
+  SvgGenImage get menuIconUps =>
+      const SvgGenImage('assets/icons/userprofilescreen/menu_icon_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/private_icon_ups.svg
+  SvgGenImage get privateIconUps =>
+      const SvgGenImage('assets/icons/userprofilescreen/private_icon_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/tags_icon_inSelected_ups.svg
+  SvgGenImage get tagsIconInSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/tags_icon_inSelected_ups.svg');
+
+  /// File path: assets/icons/userprofilescreen/tags_icon_selected_ups.svg
+  SvgGenImage get tagsIconSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/tags_icon_selected_ups.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+        accountsListIconUps,
+        addStoryIconUps,
+        gridIconInSelectedUps,
+        gridIconSelectedUps,
+        menuIconUps,
+        privateIconUps,
+        tagsIconInSelectedUps,
+        tagsIconSelectedUps
       ];
 }
 
