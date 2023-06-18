@@ -111,14 +111,14 @@ class _NotificationsScreenState extends State<NotificationsScreen>
                           height: size.height / 30,
                           width: size.width / 1.13,
                           child: Text(
-                            "Follow Requests",
+                            'Follow Requests',
                             textAlign: TextAlign.left,
                             style: MyStyles.getRegularStyle(
                                 color: MyColors.textnotificationcolor,
                                 fontSize: 15),
                           ),
                         ),
-                        Divider(color: MyColors.dividernotificationcolor),
+                        const Divider(color: MyColors.dividernotificationcolor),
                         SizedBox(
                           height: size.height / 26,
                           width: size.width / 1.13,
@@ -134,11 +134,11 @@ class _NotificationsScreenState extends State<NotificationsScreen>
                             ],
                             imageprofiles: imageProfiles[0],
                             accountname: accountname[0]),
-                        Divider(color: MyColors.dividernotificationcolor),
+                        const Divider(color: MyColors.dividernotificationcolor),
                         SizedBox(
                           height: size.height / 26,
                           width: size.width / 1.13,
-                          child: Text("Today",
+                          child: Text('Today',
                               textAlign: TextAlign.left,
                               style: MyStyles.getBoldStyle(
                                   color: MyColors.textnotificationcolor,
@@ -150,24 +150,25 @@ class _NotificationsScreenState extends State<NotificationsScreen>
                             accountname: [accountname[1], accountname[2]],
                             imagePost: imagePost,
                             likeCount: 5),
-                        Divider(color: MyColors.dividernotificationcolor),
+                        const Divider(color: MyColors.dividernotificationcolor),
                         SizedBox(
                           height: size.height / 26,
                           width: size.width / 1.13,
-                          child: Text("This Week",
+                          child: Text('This Week',
                               textAlign: TextAlign.left,
                               style: MyStyles.getBoldStyle(
                                   color: MyColors.textnotificationcolor,
                                   fontSize: 15)),
                         ),
                         CommentWidgetNotification(
-                            imgpostlist:
-                                Image.asset(Assets.images.craigLove.path),
-                            imageprofiles:
-                                Image.asset(Assets.images.rectangle20.path),
-                            followeraccountname: accountname[3],
-                            accountname: accountname[5],
-                            commentedUserStory: false),
+                          imgpostlist:
+                              Image.asset(Assets.images.craigLove.path),
+                          imageprofiles:
+                              Image.asset(Assets.images.rectangle20.path),
+                          followeraccountname: accountname[3],
+                          accountname: accountname[5],
+                          commentedUserStory: false,
+                        ),
                         FollowWigetNotification(
                             imageprofiles:
                                 Image.asset(Assets.images.martiniRound.path),
@@ -183,15 +184,18 @@ class _NotificationsScreenState extends State<NotificationsScreen>
                                 Image.asset(Assets.images.misPotter.path),
                             followeraccountname: accountname[6],
                             accountname: accountname[1]),
-                        Divider(color: MyColors.dividernotificationcolor),
+                        const Divider(color: MyColors.dividernotificationcolor),
                         SizedBox(
                           height: size.height / 26,
                           width: size.width / 1.13,
-                          child: Text("This Week",
-                              textAlign: TextAlign.left,
-                              style: MyStyles.getBoldStyle(
-                                  color: MyColors.textnotificationcolor,
-                                  fontSize: 15)),
+                          child: Text(
+                            'This Week',
+                            textAlign: TextAlign.left,
+                            style: MyStyles.getBoldStyle(
+                              color: MyColors.textnotificationcolor,
+                              fontSize: 15,
+                            ),
+                          ),
                         ),
                       ]),
                     ),

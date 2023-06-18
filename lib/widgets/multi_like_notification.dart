@@ -52,81 +52,90 @@ class MultiLikeNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: size.height / 10,
-      child: Row(
-        children: [
-          16.0.spaceX,
-          SizedBox(
-            width: 44,
-            height: 44,
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: 32,
-                  height: 32,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: firstimageProfile,
-                  ),
-                ),
-                Positioned(
-                    height: 32,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16),
+      child: SizedBox(
+        height: size.height / 10,
+        child: Row(
+          children: [
+            // 16.0.spaceX,
+            SizedBox(
+              width: 44,
+              height: 44,
+              child: Stack(
+                children: [
+                  SizedBox(
                     width: 32,
-                    left: 11,
-                    top: 11,
+                    height: 32,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: secondimageProfile,
-                    )),
-              ],
+                      child: firstimageProfile,
+                    ),
+                  ),
+                  Positioned(
+                      height: 32,
+                      width: 32,
+                      left: 11,
+                      top: 11,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: secondimageProfile,
+                      )),
+                ],
+              ),
             ),
-          ),
-          10.0.spaceX,
-          SizedBox(
-            width: size.width / 1.6,
-            height: size.height / 10,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RichText(
-                  text: TextSpan(
-                      text: accountname.join(","),
-                      style: MyStyles.getBoldStyle(
-                          color: MyColors.textnotificationcolor),
-                      children: [
-                        TextSpan(
-                            text: " and ",
-                            style: MyStyles.getRegularStyle(
-                                color: MyColors.textnotificationcolor)),
-                        TextSpan(
-                          text: "${likeCount.toString()} others ",
+            10.0.spaceX,
+            SizedBox(
+              width: size.width / 1.6,
+              height: size.height / 10,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Flexible(
+                    flex: 6,
+                    child: RichText(
+                      maxLines: 2,
+                      text: TextSpan(
+                          text: accountname.join(','),
                           style: MyStyles.getBoldStyle(
                               color: MyColors.textnotificationcolor),
-                        ),
-                        TextSpan(
-                            text: "Liked your photo. ",
-                            style: MyStyles.getRegularStyle(
-                                color: MyColors.textnotificationcolor),
-                            children: [
-                              TextSpan(
-                                text: "${liketime()}h",
+                          children: [
+                            TextSpan(
+                                text: ' and ',
                                 style: MyStyles.getRegularStyle(
-                                    color: MyColors.textgraynotificationcolor),
-                              ),
-                            ]),
-                      ]),
-                ),
-              ],
+                                    color: MyColors.textnotificationcolor)),
+                            TextSpan(
+                              text: '${likeCount.toString()} others ',
+                              style: MyStyles.getBoldStyle(
+                                  color: MyColors.textnotificationcolor),
+                            ),
+                            TextSpan(
+                                text: 'Liked your photo. ',
+                                style: MyStyles.getRegularStyle(
+                                    color: MyColors.textnotificationcolor),
+                                children: [
+                                  TextSpan(
+                                    text: '${liketime()}h',
+                                    style: MyStyles.getRegularStyle(
+                                        color:
+                                            MyColors.textgraynotificationcolor),
+                                  ),
+                                ]),
+                          ]),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            width: 44,
-            height: 44,
-            child: imagePost,
-          )
-        ],
+            const Spacer(),
+            SizedBox(
+              width: 44,
+              height: 44,
+              child: imagePost,
+            )
+          ],
+        ),
       ),
     );
   }
