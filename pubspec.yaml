@@ -68,6 +68,7 @@ flutter:
     - assets/images/
     - assets/icons/menu/
     - assets/icons/nav_bottom/
+    - assets/icons/userprofilescreen/
 
 
   fonts:
