@@ -5,8 +5,8 @@ import 'package:tec/widgets/story.dart';
 import '../models/stories_data.dart';
 import 'custom_divider.dart';
 
-List<StoryData> sortStories() {
-  List<StoryData> stories = StoriesDatabase.stories;
+List<StoryData> sortStories(List<StoryData> stories) {
+  // List<StoryData> stories = StoriesDatabase.stories;
 
   List<StoryData> updatedStories = [];
   List<StoryData> liveStories = [];
@@ -51,9 +51,9 @@ class StoryList extends StatelessWidget {
           child: ListView.builder(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemCount: sortStories().length,
+            itemCount: sortStories(stories).length,
             itemBuilder: (context, index) {
-              final story = sortStories()[index];
+              final story = sortStories(stories)[index];
               return Story(story: story);
             },
           ),
