@@ -6,6 +6,13 @@ abstract class MyColors {
   static const Color textfieldFillColor = Color(0xffEAEAEB);
   static const Color selectedTextFieldColor = Color.fromARGB(255, 0, 0, 0);
   static const Color dividers = Color.fromRGBO(158, 158, 158, .3);
+  static const Color textPrimaryColor = Color.fromRGBO(38, 38, 38, 1);
+
+  //User Profile Screen = UPS
+  static const Color borderStoryUPS = Color.fromRGBO(199, 199, 204, 1);
+  static const Color indicatorColorUPS = Color.fromRGBO(38, 38, 38, 1);
+  static const Color secondaryColorUi = Color.fromRGBO(250,250,250,1);
+  static const Color borderBottomEditProfileColorUPS = Color.fromRGBO(220,220,221,1);
 
   //* Posts Widget Colors
   static const Color postsCounter = Color.fromRGBO(18, 18, 18, .7);

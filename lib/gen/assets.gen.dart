@@ -52,6 +52,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/messenger.svg
   SvgGenImage get messenger => const SvgGenImage('assets/icons/messenger.svg');
 
+  /// File path: assets/icons/more.svg
+  SvgGenImage get more => const SvgGenImage('assets/icons/more.svg');
+
   $AssetsIconsNavBottomGen get navBottom => const $AssetsIconsNavBottomGen();
 
   /// File path: assets/icons/save.svg
@@ -69,6 +72,9 @@ class $AssetsIconsGen {
   AssetGenImage get userMultiLike1 =>
       const AssetGenImage('assets/icons/user_multi_like1.png');
 
+  $AssetsIconsUserprofilescreenGen get userprofilescreen =>
+      const $AssetsIconsUserprofilescreenGen();
+
   /// List of all assets
   List<dynamic> get values => [
         live,
@@ -82,6 +88,7 @@ class $AssetsIconsGen {
         like,
         messanger,
         messenger,
+        more,
         save,
         selectMultiple,
         userMultiLike,
@@ -419,6 +426,49 @@ class $AssetsIconsNavBottomGen {
         homeSelected,
         notify,
         notifySelected
+      ];
+}
+
+class $AssetsIconsUserprofilescreenGen {
+  const $AssetsIconsUserprofilescreenGen();
+
+  /// File path: assets/icons/userprofilescreen/accountsListIconUps.svg
+  SvgGenImage get accountsListIconUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/accountsListIconUps.svg');
+
+  /// File path: assets/icons/userprofilescreen/addStoryIconUps.svg
+  SvgGenImage get addStoryIconUps =>
+      const SvgGenImage('assets/icons/userprofilescreen/addStoryIconUps.svg');
+
+  /// File path: assets/icons/userprofilescreen/gridIconInSelectedUps.svg
+  SvgGenImage get gridIconInSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/gridIconInSelectedUps.svg');
+
+  /// File path: assets/icons/userprofilescreen/gridIconSelectedUps.svg
+  SvgGenImage get gridIconSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/gridIconSelectedUps.svg');
+
+  /// File path: assets/icons/userprofilescreen/privateIconUps.svg
+  SvgGenImage get privateIconUps =>
+      const SvgGenImage('assets/icons/userprofilescreen/privateIconUps.svg');
+
+  /// File path: assets/icons/userprofilescreen/tagsIconInSelectedUps.svg
+  SvgGenImage get tagsIconInSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/tagsIconInSelectedUps.svg');
+
+  /// File path: assets/icons/userprofilescreen/tagsIconSelectedUps.svg
+  SvgGenImage get tagsIconSelectedUps => const SvgGenImage(
+      'assets/icons/userprofilescreen/tagsIconSelectedUps.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+        accountsListIconUps,
+        addStoryIconUps,
+        gridIconInSelectedUps,
+        gridIconSelectedUps,
+        privateIconUps,
+        tagsIconInSelectedUps,
+        tagsIconSelectedUps
       ];
 }
 
