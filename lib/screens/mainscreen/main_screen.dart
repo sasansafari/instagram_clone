@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 
 import '../../route/names.dart';
+import '../../widgets/story.dart';
 import 'explore_screen.dart';
 import 'home_screen.dart';
 import 'notrifications_screen.dart';
@@ -169,9 +170,7 @@ class _MainScreenState extends State<MainScreen> {
                         }
                     ],
                   )),
-              icon: selectedIndex == BottomNavIndex.profileIndex
-                  ? const Icon(Icons.circle)
-                  : const Icon(Icons.panorama_fisheye_outlined),
+              icon: userProfileBtmNav(),
             ),
           ],
         ),
