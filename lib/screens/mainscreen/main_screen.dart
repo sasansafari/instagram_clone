@@ -74,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                     Navigator(
                       key: _homeScreenKey,
                       onGenerateRoute: (settings) => MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) =>   HomeScreen(),
                       ),
                     ),
                     Navigator(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:tec/extensions/space_xy_extension.dart';
 import 'package:tec/res/colors.dart';
-import 'package:tec/screens/constants/app_text_feild.dart';
+import 'package:tec/widgets/app_text_feild.dart';
 
 // ignore: must_be_immutable
 class ExploreScreen extends StatefulWidget {

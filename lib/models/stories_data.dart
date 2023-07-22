@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import '../gen/assets.gen.dart';
 
 class StoryData {
@@ -128,3 +130,4 @@ class StoriesDatabase {
     ];
   }
 }
+ 
