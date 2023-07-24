@@ -1,35 +1,39 @@
-
 class PostModel {
-
-  late int id;
-  late String userNameId;
-  late List<String> imagesUrl;
-  late String profilePic;
-  late String firstLike;
-  late String otherLikes;
-  late String shortCaption;
-  late String location;
+  String id;
+  String content;
+  int likes;
+  int views;
+  String userId;
+  DateTime createdAt;
 
   PostModel({
     required this.id,
-    required this.userNameId,
-    required this.imagesUrl,
-    required this.profilePic,
-    required this.firstLike,
-    required this.otherLikes,
-    required this.shortCaption,
-    required this.location,
+    required this.content,
+    required this.likes,
+    required this.views,
+    required this.userId,
+    required this.createdAt,
   });
 
-  PostModel.fromJson(Map<String,dynamic> element){
-    id = element['id'];
-    userNameId=element['userNameId'];
-    imagesUrl=element['imagesUrl'];
-    profilePic=element['profilePic'];
-    firstLike=element['firstLike'];
-    otherLikes=element['otherLikes'];
-    shortCaption=element['shortCaption'];
-    location=element['location'];
+  factory PostModel.fromJson(Map<String, dynamic> json) {
+    return PostModel(
+      id: json['id'],
+      content: json['content'],
+      likes: int.parse(json['likes']),
+      views: int.parse(json['views']),
+      userId: json['user_id'],
+      createdAt: DateTime.fromMillisecondsSinceEpoch(int.parse(json['create_at']) * 1000),
+    );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'content': content,
+      'likes': likes.toString(),
+      'views': views.toString(),
+      'user_id': userId,
+      'create_at': (createdAt.millisecondsSinceEpoch ~/ 1000).toString(),
+    };
+  }
 }

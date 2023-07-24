@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/component/text_style.dart';
 
 class CustomTextFieldWidget extends StatelessWidget {
@@ -45,20 +44,20 @@ class CustomTextFieldWidget extends StatelessWidget {
                   scaleY: heightScale,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: padding ?? 0, right: padding ?? 0),
+                        left: padding ?? 0, right: padding ?? 0,),
                     child: myIcon,
                   ),
                 )
               : myIcon,
           enabledBorder: OutlineInputBorder(
               borderRadius: borderRadius ?? BorderRadius.zero,
-              borderSide: BorderSide(color: borderColor)),
+              borderSide: BorderSide(color: borderColor),),
           focusedBorder: OutlineInputBorder(
               borderRadius: borderRadius ?? BorderRadius.zero,
-              borderSide: BorderSide(color: borderColor)),
+              borderSide: BorderSide(color: borderColor),),
           border: OutlineInputBorder(
               borderRadius: borderRadius ?? BorderRadius.zero,
-              borderSide: BorderSide(color: borderColor)),
+              borderSide: BorderSide(color: borderColor),),
         ),
       ),
     );

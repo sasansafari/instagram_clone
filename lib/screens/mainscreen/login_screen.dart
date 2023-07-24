@@ -129,9 +129,9 @@ class _LoginScreenState extends State<LoginScreen> {
         const SizedBox(
           height: 40,
         ),
-        Row(
+        const Row(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
+          children: [
             Flexible(
               child: Divider(
                 thickness: 0.5,

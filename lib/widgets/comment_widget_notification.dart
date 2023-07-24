@@ -12,7 +12,7 @@ class CommentWidgetNotification extends StatefulWidget {
       required this.followeraccountname,
       required this.accountname,
       required this.commentedUserStory,
-      Key? key})
+      Key? key,})
       : super(key: key);
 
   String followeraccountname;
@@ -101,43 +101,43 @@ class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(
                         style: MyStyles.getRegularStyle(
-                            color: MyColors.textnotificationcolor),
+                            color: MyColors.textnotificationcolor,),
                         children: [
                           TextSpan(
                             text: widget.followeraccountname,
                             style: MyStyles.getBoldStyle(
-                                color: MyColors.textnotificationcolor),
+                                color: MyColors.textnotificationcolor,),
                           ),
                           TextSpan(
                             text: ' liked ',
                             style: MyStyles.getRegularStyle(
-                                color: MyColors.textnotificationcolor),
+                                color: MyColors.textnotificationcolor,),
                           ),
                           TextSpan(
                             text: '${widget.accountname}’s ',
                             style: MyStyles.getBoldStyle(
-                                color: MyColors.textnotificationcolor),
+                                color: MyColors.textnotificationcolor,),
                           ),
                           TextSpan(
                             text: 'comment: ',
                             style: MyStyles.getRegularStyle(
-                                color: MyColors.textnotificationcolor),
+                                color: MyColors.textnotificationcolor,),
                           ),
                           // userUsername
                           TextSpan(
                             text: '@${widget.accountname} ',
                             style: MyStyles.getRegularStyle(
-                                color: MyColors.tagaccountcolor),
+                                color: MyColors.tagaccountcolor,),
                           ),
                           TextSpan(
                             text: 'Nice! ',
                             style: MyStyles.getRegularStyle(
-                                color: MyColors.textnotificationcolor),
+                                color: MyColors.textnotificationcolor,),
                           ),
                           TextSpan(
                             text: '${liketime()}h',
                             style: MyStyles.getRegularStyle(
-                                color: MyColors.textgraynotificationcolor),
+                                color: MyColors.textgraynotificationcolor,),
                           )
                         ],
                       ),
@@ -171,10 +171,10 @@ class _CommentNotifWidgetState extends State<CommentWidgetNotification> {
                     border: InputBorder.none,
                     hintText: 'Reply',
                     hintStyle: MyStyles.getRegularStyle(
-                        color: MyColors.textgraynotificationcolor),
+                        color: MyColors.textgraynotificationcolor,),
                     contentPadding:
                         EdgeInsets.symmetric(vertical: size.height / 55),
-                  ))),
+                  ),),),
                 ],
               ),
             ),

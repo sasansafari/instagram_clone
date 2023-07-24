@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import '../gen/assets.gen.dart';
 
