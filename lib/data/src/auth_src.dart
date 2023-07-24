@@ -9,8 +9,7 @@ abstract class IAuthSrc {
     String userName,
     String password,
     String email,
-  ) async =>
-      registerUser(userName, password, email);
+  );
   Future<UserModel> checkUserActivate(param);
   Future<UserModel> useVerify(param);
   Future<UserModel> resendActivation(param);
