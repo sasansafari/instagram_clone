@@ -16,7 +16,7 @@ final Widget?imageDiff;
 final double?sizedBoxHeight;
 final bool?visible;
 
-ItemStory({
+const ItemStory({
 Key?key,
 this.width,
 this.height,

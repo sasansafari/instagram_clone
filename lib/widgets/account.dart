@@ -34,13 +34,13 @@ List<Image> imageProfiles = [
   Image.asset(Assets.images.misPotter.path),
 ];
 List<String> accountname = [
-  "karennne",
-  "kieron_d",
-  "zackjohn",
-  "craig_Love",
-  "martini_round",
-  "maxjacobson",
-  "mis_potter"
+  'karennne',
+  'kieron_d',
+  'zackjohn',
+  'craig_Love',
+  'martini_round',
+  'maxjacobson',
+  'mis_potter'
 ];
 Image imagePost = Assets.icons.imagePostMultiLike.image();
 String liketime() {

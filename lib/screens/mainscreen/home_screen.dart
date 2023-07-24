@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    postRepo.getPosts(0);
+    //postRepo.getPosts(0);
 
     return SafeArea(
       child: Scaffold(

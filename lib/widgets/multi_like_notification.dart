@@ -16,7 +16,7 @@ class MultiLike extends StatelessWidget {
       Assets.icons.userMultiLike1.image(width: 50, height: 50),
       Assets.icons.userMultiLike1.image(width: 50, height: 50)
     ];
-    List<String> textProlfilesName = ["Hossein_110", "ali"];
+    List<String> textProlfilesName = ['Hossein_110', 'ali'];
     Image imagePost = Assets.icons.imagePostMultiLike.image();
 
     return Scaffold(
@@ -28,7 +28,7 @@ class MultiLike extends StatelessWidget {
         accountname: textProlfilesName,
         imagePost: imagePost,
         likeCount: 50,
-      )),
+      ),),
     );
   }
 }
@@ -46,7 +46,7 @@ class MultiLikeNotification extends StatelessWidget {
       required this.secondimageProfile,
       required this.accountname,
       required this.imagePost,
-      required this.likeCount})
+      required this.likeCount,})
       : super(key: key);
 
   @override
@@ -80,7 +80,7 @@ class MultiLikeNotification extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: secondimageProfile,
-                      )),
+                      ),),
                 ],
               ),
             ),
@@ -99,30 +99,30 @@ class MultiLikeNotification extends StatelessWidget {
                       text: TextSpan(
                           text: accountname.join(','),
                           style: MyStyles.getBoldStyle(
-                              color: MyColors.textnotificationcolor),
+                              color: MyColors.textnotificationcolor,),
                           children: [
                             TextSpan(
                                 text: ' and ',
                                 style: MyStyles.getRegularStyle(
-                                    color: MyColors.textnotificationcolor)),
+                                    color: MyColors.textnotificationcolor,),),
                             TextSpan(
                               text: '${likeCount.toString()} others ',
                               style: MyStyles.getBoldStyle(
-                                  color: MyColors.textnotificationcolor),
+                                  color: MyColors.textnotificationcolor,),
                             ),
                             TextSpan(
                                 text: 'Liked your photo. ',
                                 style: MyStyles.getRegularStyle(
-                                    color: MyColors.textnotificationcolor),
+                                    color: MyColors.textnotificationcolor,),
                                 children: [
                                   TextSpan(
                                     text: '${liketime()}h',
                                     style: MyStyles.getRegularStyle(
                                         color:
-                                            MyColors.textgraynotificationcolor),
+                                            MyColors.textgraynotificationcolor,),
                                   ),
-                                ]),
-                          ]),
+                                ],),
+                          ],),
                     ),
                   ),
                 ],

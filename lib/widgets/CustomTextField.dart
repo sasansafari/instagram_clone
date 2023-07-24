@@ -14,7 +14,7 @@ class CustomTextField extends StatefulWidget {
     required this.hint,
     required this.checkobscure,
   }) : super(key: key) {
-    icon = hint != "Password" ? null : Icon(Icons.remove_red_eye);
+    icon = hint != 'Password' ? null : const Icon(Icons.remove_red_eye);
   }
 
   @override
@@ -34,7 +34,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: const TextStyle(
             // color: Colors.black26,
             fontSize: 14,
-            fontFamily: FontFamily.dana),
+            fontFamily: FontFamily.dana,),
         border: OutlineInputBorder(
           borderSide: Divider.createBorderSide(context),
         ),

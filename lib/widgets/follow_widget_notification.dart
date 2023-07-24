@@ -48,24 +48,24 @@ class _FollowWigetNotificationState extends State<FollowWigetNotification> {
                     TextSpan(
                         text: widget.followeraccountname,
                         style: MyStyles.getBoldStyle(
-                            color: MyColors.textnotificationcolor)),
+                            color: MyColors.textnotificationcolor,),),
                     TextSpan(
                         text: ' started following ',
                         style: MyStyles.getRegularStyle(
-                            color: MyColors.textnotificationcolor)),
+                            color: MyColors.textnotificationcolor,),),
                     TextSpan(
                         text: '${widget.accountname}. ',
                         style: MyStyles.getBoldStyle(
-                            color: MyColors.textnotificationcolor)),
+                            color: MyColors.textnotificationcolor,),),
                     TextSpan(
                       text: '${liketime()}h',
                       style: MyStyles.getRegularStyle(
-                          color: MyColors.textgraynotificationcolor),
+                          color: MyColors.textgraynotificationcolor,),
                     ),
                   ],
                 ),
               ),
-            ]),
+            ],),
           ),
           const Spacer(),
           InkWell(
@@ -94,7 +94,7 @@ class _FollowWigetNotificationState extends State<FollowWigetNotification> {
                         width: 1,
                         color: buttonColor == MyColors.btmfollowcolor
                             ? Colors.transparent
-                            : MyColors.dividernotificationcolor)),
+                            : MyColors.dividernotificationcolor,),),
                 child: Center(
                   child: Text(
                     buttonText,
@@ -107,7 +107,7 @@ class _FollowWigetNotificationState extends State<FollowWigetNotification> {
               ),
             ),
           )
-        ]),
+        ],),
       ),
     );
   }
