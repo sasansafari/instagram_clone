@@ -21,7 +21,7 @@ class PostRemoteSrc implements IPostSrc {
   @override
   Future<List<PostModel>> getPosts(param) {
     List<PostModel> list = [];
-    http.get("/api/v1/post/getposts?user_id=&random=true").then((value) {
+    http.get('/api/v1/post/getposts?user_id=&random=true').then((value) {
       if (value.statusCode == 200) {
         for (var element in value.data as List) {
           list.add(PostModel.fromJson(element));

@@ -23,7 +23,7 @@ class MyStyles {
 
   //* Regular Style
   static TextStyle getRegularStyle(
-      {double fontSize = 13.0, required Color color}) {
+      {double fontSize = 13.0, required Color color,}) {
     return _getTextStyle(
       fontSize,
       FontWeightManager.regular,
@@ -33,7 +33,7 @@ class MyStyles {
 
 //* Bold Style
   static TextStyle getBoldStyle(
-      {double fontSize = 13.0, required Color color}) {
+      {double fontSize = 13.0, required Color color,}) {
     return _getTextStyle(
       fontSize,
       FontWeightManager.bold,

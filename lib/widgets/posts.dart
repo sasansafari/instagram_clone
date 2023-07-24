@@ -100,7 +100,7 @@ class _PostsState extends State<Posts> {
               style: MyStyles.getRegularStyle(
                 color: MyColors.postsCounterText,
                 fontSize: 12,
-              )),
+              ),),
         ),
       ),
     );

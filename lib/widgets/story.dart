@@ -87,7 +87,7 @@ class Story extends StatelessWidget {
             Color(0xFFC60188),
             Color(0xFFE20337),
           ],
-        )
+        ),
       ),
       child: Container(
         margin: const EdgeInsets.all(2),
@@ -125,7 +125,7 @@ class Story extends StatelessWidget {
 Widget profileImage(userProfile) {
   return ClipRRect(
       borderRadius: BorderRadius.circular(1000),
-      child: Image.asset(userProfile.imageFileName));
+      child: Image.asset(userProfile.imageFileName),);
 }
 
 Widget userProfileBtmNav() {
@@ -136,7 +136,7 @@ Widget userProfileBtmNav() {
         borderRadius: BorderRadius.circular(1000),
         color: selectedIndex == BottomNavIndex.profileIndex
             ? Colors.black
-            : Colors.transparent),
+            : Colors.transparent,),
     child: Container(
       margin: const EdgeInsets.all(1.5),
       decoration: BoxDecoration(

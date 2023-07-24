@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3)).then((value) =>
-        Navigator.pushReplacementNamed(context, Screens.loginScreen));
+        Navigator.pushReplacementNamed(context, Screens.loginScreen),);
   }
 
   @override
