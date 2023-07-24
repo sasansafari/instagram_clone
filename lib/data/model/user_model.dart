@@ -30,4 +30,28 @@ class UserModel {
         veryfyToken = json['veryfy_token'],
         activeToken = json['active_token'],
         password = json['password'];
+
+  UserModel copyWith({
+    int? userId,
+    String? userName,
+    String? fullName,
+    String? email,
+    int? phone,
+    String? userAvatar,
+    String? veryfyToken,
+    String? activeToken,
+    String? password,
+  }) {
+    return UserModel(
+      userId ?? this.userId,
+      userName ?? this.userName,
+      fullName ?? this.fullName,
+      email ?? this.email,
+      phone ?? this.phone,
+      userAvatar ?? this.userAvatar,
+      veryfyToken ?? this.veryfyToken,
+      activeToken ?? this.activeToken,
+      password ?? this.password,
+    );
+  }
 }
