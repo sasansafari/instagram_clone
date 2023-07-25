@@ -18,7 +18,7 @@ abstract class IAuthSrc {
     String? userAvatar,
   );
   Future<void> checkUserActivate(param);
-  Future<void> useVerify(param);
+  Future<void> useVerify(String activeToken);
   Future<void> resendActivation(param);
 }
 
@@ -94,9 +94,23 @@ class AuthRemoteSrc implements IAuthSrc {
   }
 
   @override
-  Future<void> useVerify(param) {
-    // TODO: implement useVerify
-    throw UnimplementedError();
+  Future<void> useVerify(String activeToken) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    int? userId = preferences.getInt('user_id');
+    String? token = preferences.getString('verify_token');
+    try {
+      final response = await http.post(
+        'https://maktabkhoneh-api.sasansafari.com/api/v1/auth/verify',
+        data: {
+          'user_id': userId,
+          'verify_token': token,
+          'active_token': activeToken,
+        },
+      );
+      httpErrorHandle(response: response, onSuccess: () {});
+    } catch (e) {
+      debugPrint('Error in Auth src resendActivation :  ${e.toString()}');
+    }
   }
 
   @override
