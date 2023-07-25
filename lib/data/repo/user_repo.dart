@@ -14,7 +14,7 @@ class UserRepo implements IUserRepo {
 
   @override
   Future<void> editUser(UserModel userModel, String password) async {
-    return dataSource.editUser(userModel,password);
+    return dataSource.editUser(userModel, password);
   }
 
   @override
