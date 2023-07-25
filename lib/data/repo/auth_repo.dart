@@ -1,9 +1,8 @@
-import '../model/auth_model.dart';
 import '../src/auth_src.dart';
 
 abstract class IAuthRepo {
-  Future<AuthModel> userLogin(param);
-  Future<AuthModel> registerUser(
+  Future<void> userLogin(param);
+  Future<void> registerUser(
     String userName,
     String password,
     String email,
@@ -11,9 +10,9 @@ abstract class IAuthRepo {
     String? phone,
     String? userAvatar,
   );
-  Future<AuthModel> checkUserActivate(param);
-  Future<AuthModel> useVerify(param);
-  Future<AuthModel> resendActivation(param);
+  Future<void> checkUserActivate(param);
+  Future<void> useVerify(param);
+  Future<void> resendActivation(param);
 }
 
 class AuthRepo implements IAuthRepo {
@@ -22,12 +21,12 @@ class AuthRepo implements IAuthRepo {
   AuthRepo({required this.src});
 
   @override
-  Future<AuthModel> checkUserActivate(param) {
+  Future<void> checkUserActivate(param) {
     return src.checkUserActivate(param);
   }
 
   @override
-  Future<AuthModel> registerUser(
+  Future<void> registerUser(
     String userName,
     String password,
     String email,
@@ -36,21 +35,27 @@ class AuthRepo implements IAuthRepo {
     String? userAvatar,
   ) async {
     return src.registerUser(
-        userName, password, email, fullName, phone, userAvatar);
+      userName,
+      password,
+      email,
+      fullName,
+      phone,
+      userAvatar,
+    );
   }
 
   @override
-  Future<AuthModel> resendActivation(param) {
+  Future<void> resendActivation(param) {
     return src.resendActivation(param);
   }
 
   @override
-  Future<AuthModel> useVerify(param) {
+  Future<void> useVerify(param) {
     return src.useVerify(param);
   }
 
   @override
-  Future<AuthModel> userLogin(param) {
+  Future<void> userLogin(param) {
     return src.userLogin(param);
   }
 }
