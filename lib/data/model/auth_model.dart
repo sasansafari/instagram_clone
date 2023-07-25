@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+//! i didn't used this model in repository because we dont have state management yet
 class AuthModel {
   final String verifyToken;
   final int userId;
