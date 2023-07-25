@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tec/common/http_error_handler.dart';
@@ -17,8 +19,8 @@ abstract class IAuthSrc {
     String? phone,
     String? userAvatar,
   );
-  Future<void> checkUserActivate(param);
-  Future<void> useVerify(String activeToken);
+  Future<String> checkUserActivate(param);
+  Future<void> userVerify(int activeToken);
   Future<void> resendActivation(param);
 }
 
@@ -28,9 +30,27 @@ class AuthRemoteSrc implements IAuthSrc {
   AuthRemoteSrc({required this.http});
 
   @override
-  Future<void> checkUserActivate(param) {
-    // TODO: implement checkUserActivate
-    throw UnimplementedError();
+  Future<String> checkUserActivate(param) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String msg = '';
+    int? userId = preferences.getInt('user_id');
+
+    try {
+      final response = await http.post(
+        'https://maktabkhoneh-api.sasansafari.com/api/v1/auth/check_active',
+        data: {
+          'user_id': userId,
+        },
+      );
+      httpErrorHandle(
+          response: response,
+          onSuccess: () {
+            msg = jsonDecode(response.data)['ms'];
+          });
+    } catch (e) {
+      debugPrint('Error in Auth src check Activation :  ${e.toString()}');
+    }
+    return msg;
   }
 
   @override
@@ -63,8 +83,8 @@ class AuthRemoteSrc implements IAuthSrc {
           //! to add auth token to this object by copywith method
           //! so for now we just use sharedpreferences
 
-          String token = response.data['verify_token'];
-          int userId = response.data['user_id'];
+          String token = jsonDecode(response.data)['verify_token'];
+          int userId = jsonDecode(response.data)['user_id'];
           await preferences.setInt('user_id', userId);
           await preferences.setString('verify_token', token);
           // auth = AuthModel.fromJson(response.data);
@@ -81,20 +101,21 @@ class AuthRemoteSrc implements IAuthSrc {
     int? userId = preferences.getInt('user_id');
     String? token = preferences.getString('verify_token');
     try {
-      http.post(
+      final response = await http.post(
         'https://maktabkhoneh-api.sasansafari.com/api/v1/auth/resend_token',
         data: {
           'user_id': userId,
           'verify_token': token,
         },
       );
+      httpErrorHandle(response: response, onSuccess: () {});
     } catch (e) {
       debugPrint('Error in Auth src resendActivation :  ${e.toString()}');
     }
   }
 
   @override
-  Future<void> useVerify(String activeToken) async {
+  Future<void> userVerify(int activeToken) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     int? userId = preferences.getInt('user_id');
     String? token = preferences.getString('verify_token');
@@ -109,7 +130,7 @@ class AuthRemoteSrc implements IAuthSrc {
       );
       httpErrorHandle(response: response, onSuccess: () {});
     } catch (e) {
-      debugPrint('Error in Auth src resendActivation :  ${e.toString()}');
+      debugPrint('Error in Auth src user verify :  ${e.toString()}');
     }
   }
 
@@ -133,7 +154,7 @@ class AuthRemoteSrc implements IAuthSrc {
       httpErrorHandle(
         response: response,
         onSuccess: () async {
-          String token = response.data['auth_token'];
+          String token = jsonDecode(response.data)['auth_token'];
 
           await preferences.setString('auth_token', token);
         },
