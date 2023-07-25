@@ -7,6 +7,9 @@ abstract class IAuthRepo {
     String userName,
     String password,
     String email,
+    String? fullName,
+    String? phone,
+    String? userAvatar,
   );
   Future<AuthModel> checkUserActivate(param);
   Future<AuthModel> useVerify(param);
@@ -28,8 +31,12 @@ class AuthRepo implements IAuthRepo {
     String userName,
     String password,
     String email,
+    String? fullName,
+    String? phone,
+    String? userAvatar,
   ) async {
-    return src.registerUser(userName, password, email);
+    return src.registerUser(
+        userName, password, email, fullName, phone, userAvatar);
   }
 
   @override

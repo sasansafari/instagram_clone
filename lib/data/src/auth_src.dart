@@ -9,6 +9,9 @@ abstract class IAuthSrc {
     String userName,
     String password,
     String email,
+    String? fullName,
+    String? phone,
+    String? userAvatar,
   );
   Future<AuthModel> checkUserActivate(param);
   Future<AuthModel> useVerify(param);
@@ -31,6 +34,9 @@ class AuthRemoteSrc implements IAuthSrc {
     String userName,
     String password,
     String email,
+    String? fullName,
+    String? phone,
+    String? userAvatar,
   ) async {
     late AuthModel auth;
 
@@ -41,6 +47,9 @@ class AuthRemoteSrc implements IAuthSrc {
           'username': userName,
           'password': password,
           'email': email,
+          'fullName': fullName,
+          'phone': phone,
+          'userAvatar': userAvatar
         },
       ).then((value) {
         if (value.statusCode == 200) {
@@ -48,7 +57,7 @@ class AuthRemoteSrc implements IAuthSrc {
         }
       });
     } catch (e) {
-      debugPrint('Error registering User :  ${e.toString()}');
+      debugPrint('Error in Auth src user register :  ${e.toString()}');
     }
     return auth;
   }
