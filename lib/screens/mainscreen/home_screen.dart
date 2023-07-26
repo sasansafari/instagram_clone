@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
   final Dio _dio = Dio();
 
-  final postRepo = PostRepo(src: PostDbSrc());
+  //final postRepo = PostRepo(src: PostDbSrc());
   final storyRepo = StoryRepo(
     src: StoryRemoteSrc(
       http: Dio(),
