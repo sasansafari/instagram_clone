@@ -43,6 +43,7 @@ dependencies:
   staggered_grid_view_flutter: ^0.0.4
   photo_manager: ^2.6.0
   dio: ^5.3.0
+  shared_preferences: ^2.2.0
  
  
 
