@@ -1,39 +1,42 @@
 class PostModel {
-  String id;
-  String content;
-  int likes;
-  int views;
-  String userId;
-  DateTime createdAt;
+   Info info;
+   List<String> files;
 
-  PostModel({
-    required this.id,
-    required this.content,
-    required this.likes,
-    required this.views,
-    required this.userId,
-    required this.createdAt,
-  });
+   PostModel(
+    this.info,
+    this.files,
+  );
 
-  factory PostModel.fromJson(Map<String, dynamic> json) {
+  factory PostModel.fromMapJson(Map<String, dynamic> json) {
     return PostModel(
-      id: json['id'],
-      content: json['content'],
-      likes: int.parse(json['likes']),
-      views: int.parse(json['views']),
-      userId: json['user_id'],
-      createdAt: DateTime.fromMillisecondsSinceEpoch(int.parse(json['create_at']) * 1000),
+      Info.fromMapJson(json['data']['info']),
+      json['data']['files'],
     );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'content': content,
-      'likes': likes.toString(),
-      'views': views.toString(),
-      'user_id': userId,
-      'create_at': (createdAt.millisecondsSinceEpoch ~/ 1000).toString(),
-    };
+class Info {
+  String id;
+  String content;
+  String likes;
+  String views;
+  String userId;
+
+  Info(
+    this.id,
+    this.content,
+    this.likes,
+    this.views,
+    this.userId,
+  );
+
+  factory Info.fromMapJson(Map<String, dynamic> jsonObject) {
+    return Info(
+      jsonObject['id'],
+      jsonObject['content'],
+      jsonObject['likes'],
+      jsonObject['views'],
+      jsonObject['user_id'],
+    );
   }
 }
