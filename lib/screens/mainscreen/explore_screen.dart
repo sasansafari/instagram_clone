@@ -13,6 +13,9 @@ class ExploreScreen extends StatefulWidget {
 }
 
 class _ExploreScreenState extends State<ExploreScreen> {
+  // selected tags
+  List selectedHeaders = [];
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -87,23 +90,36 @@ class _ExploreScreenState extends State<ExploreScreen> {
         itemCount: fakeHeaders.length,
         // controller: PageController(viewportFraction: 0.2),
         itemBuilder: ((context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: Colors.black,
+          String currentIndex = fakeHeaders[index];
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedHeaders.contains(currentIndex)
+                    ? selectedHeaders.remove(currentIndex)
+                    : selectedHeaders.add(currentIndex);
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: selectedHeaders.contains(currentIndex)
+                      ? MyColors.borderStoryUPS
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Text(
-                  fakeHeaders[index],
-                  // maxLines: 1,
-                  // overflow: TextOverflow.visible,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
+                child: Center(
+                  child: Text(
+                    fakeHeaders[index],
+                    // maxLines: 1,
+                    // overflow: TextOverflow.visible,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -125,8 +141,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               delegate: SliverChildBuilderDelegate(
                 ((context, index) {
                   return ClipRRect(
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(0)),
                     child: FittedBox(
                       fit: BoxFit.cover,
                       child: Image.asset('assets/images/item$index.png'),
