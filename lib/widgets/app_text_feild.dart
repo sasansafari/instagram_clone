@@ -7,19 +7,19 @@ class AppTextField extends StatelessWidget {
   final IconData? prefixIcon;
   final TextEditingController controller;
 
-  const AppTextField(
-      {Key? key,
-      required this.hintText,
-      this.filledColor,
-      this.filled,
-      required this.controller, 
-      this.prefixIcon,
-      })
-      : super(key: key);
+  const AppTextField({
+    Key? key,
+    required this.hintText,
+    this.filledColor,
+    this.filled,
+    required this.controller,
+    this.prefixIcon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autofocus: false,
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
@@ -31,7 +31,7 @@ class AppTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide.none,
         ),
-        fillColor:filledColor,
+        fillColor: filledColor,
       ),
     );
   }

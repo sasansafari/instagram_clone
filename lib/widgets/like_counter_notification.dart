@@ -9,12 +9,12 @@ class LikeCounterNotification extends StatelessWidget {
   Image imageprofiles;
   String accountname;
   List<Image> imgpostlist;
-  LikeCounterNotification(
-      {Key? key,
-      required this.imageprofiles,
-      required this.imgpostlist,
-      required this.accountname,})
-      : super(key: key);
+  LikeCounterNotification({
+    Key? key,
+    required this.imageprofiles,
+    required this.imgpostlist,
+    required this.accountname,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +41,20 @@ class LikeCounterNotification extends StatelessWidget {
                         TextSpan(
                           text: accountname,
                           style: MyStyles.getBoldStyle(
-                              color: MyColors.textnotificationcolor,),
+                            color: MyColors.textnotificationcolor,
+                          ),
                         ),
                         TextSpan(
                           text: ' liked ${imgpostlist.length} posts. ',
                           style: MyStyles.getRegularStyle(
-                              color: MyColors.textnotificationcolor,),
+                            color: MyColors.textnotificationcolor,
+                          ),
                         ),
                         TextSpan(
                           text: '${liketime()}h',
                           style: MyStyles.getRegularStyle(
-                              color: MyColors.textgraynotificationcolor,),
+                            color: MyColors.textgraynotificationcolor,
+                          ),
                         ),
                       ],
                     ),
@@ -93,17 +96,20 @@ class LikeCounterNotification extends StatelessWidget {
                         TextSpan(
                           text: accountname,
                           style: MyStyles.getBoldStyle(
-                              color: MyColors.textnotificationcolor,),
+                            color: MyColors.textnotificationcolor,
+                          ),
                         ),
                         TextSpan(
                           text: ' liked ${imgpostlist.length} posts. ',
                           style: MyStyles.getRegularStyle(
-                              color: MyColors.textnotificationcolor,),
+                            color: MyColors.textnotificationcolor,
+                          ),
                         ),
                         TextSpan(
                           text: '${liketime()}h',
                           style: MyStyles.getRegularStyle(
-                              color: MyColors.textgraynotificationcolor,),
+                            color: MyColors.textgraynotificationcolor,
+                          ),
                         ),
                       ],
                     ),
