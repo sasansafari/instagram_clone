@@ -1,7 +1,11 @@
 import 'package:tec/data/model/user_model.dart';
 import 'package:tec/data/src/user_src.dart';
 
-abstract class IUserRepo implements IUserSrc {}
+abstract class IUserRepo implements IUserSrc {
+
+
+  
+}
 
 class UserRepo implements IUserRepo {
   final IUserSrc dataSource;
@@ -18,11 +22,11 @@ class UserRepo implements IUserRepo {
   }
 
   @override
-  Future<void> followOrUnfollowUser({
+  Future<void> followUnfollow({
     required int userId,
     required int followerId,
   }) async =>
-      dataSource.followOrUnfollowUser(userId: userId, followerId: followerId);
+      dataSource.followUnfollow(userId: userId, followerId: followerId);
 
   @override
   Future<UserModel> getUser({

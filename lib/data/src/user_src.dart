@@ -3,16 +3,20 @@ import 'package:tec/common/response_validator.dart';
 import 'package:tec/data/model/user_model.dart';
 
 abstract class IUserSrc {
+
   Future<void> editUser(UserModel userModel, String password) async =>
       editUser(userModel, password);
+
   Future<UserModel> getUser(
           {required String userName, required int userId}) async =>
       getUser(userName: userName, userId: userId);
+
   Future<void> deleteUser({required int userId}) async =>
       deleteUser(userId: userId);
-  Future<void> followOrUnfollowUser(
+
+  Future<void> followUnfollow(
           {required int userId, required int followerId}) async =>
-      followOrUnfollowUser(userId: userId, followerId: followerId);
+      followUnfollow(userId: userId, followerId: followerId);
 }
 
 class RemoteUserUrc with HttpResponseValidator implements IUserSrc {
@@ -49,7 +53,7 @@ class RemoteUserUrc with HttpResponseValidator implements IUserSrc {
   }
 
   @override
-  Future<void> followOrUnfollowUser(
+  Future<void> followUnfollow(
       {required int userId, required int followerId}) async {
     final response = await httpClient.post(
       'https://maktabkhoneh-api.sasansafari.com/api/v1/user/follow',

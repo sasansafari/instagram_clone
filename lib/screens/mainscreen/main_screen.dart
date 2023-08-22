@@ -6,7 +6,7 @@ import 'package:tec/gen/assets.gen.dart';
 import '../../route/names.dart';
 import '../../widgets/story.dart';
 import 'explore_screen.dart';
-import 'home_screen.dart';
+import 'home/home_screen.dart';
 import 'notrifications_screen.dart';
 import 'user_profile_screen.dart';
 

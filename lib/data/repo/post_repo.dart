@@ -27,12 +27,12 @@ class PostRepo implements IPostRepo{
       dataSource.getFiles(userId: userId, postId: postId);
 
   @override
-  Future<PostModel> getPost({required int userId, required int postId}) =>
-      dataSource.getPost(userId: userId, postId: postId);
+  Future<PostModel> getSinglePost({required int userId, required int postId}) =>
+      dataSource.getSinglePost(userId: userId, postId: postId);
 
   @override
-  Future<List<PostModel>> getPosts({required int userId, bool random = true}) =>
-      dataSource.getPosts(userId: userId);
+  Future<List<PostModel>> getPostsList({required int userId, bool random = true}) =>
+      dataSource.getPostsList(userId: userId);
 
   @override
   Future<void> likeAndDislike({required int userId, required int postId}) =>
