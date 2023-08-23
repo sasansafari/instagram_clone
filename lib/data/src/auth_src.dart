@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
-import 'package:tec/common/http_error_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tec/common/http_error_handler.dart';
 
 abstract class IAuthSrc {
   Future<void> userLogin(
@@ -26,7 +26,7 @@ abstract class IAuthSrc {
 
 class AuthRemoteSrc implements IAuthSrc {
   final Dio http;
-   
+
   AuthRemoteSrc({required this.http});
 
   @override
@@ -43,18 +43,9 @@ class AuthRemoteSrc implements IAuthSrc {
         },
       );
 
-      HttpResponseHandeler(
-        on200: () {
-          
-        },
-        on409: () {
-          //route login
-        }
-        ,response: response,
+      HttpResponseHandler(
+        response: response,
       ).validate();
-
-
- 
 
       // httpErrorHandle(
       //     response: response,
@@ -90,9 +81,9 @@ class AuthRemoteSrc implements IAuthSrc {
           'userAvatar': userAvatar
         },
       );
-      httpErrorHandle(
+      HttpResponseHandler(
         response: response,
-        onSuccess: () async {
+        on200: () async {
           //! as we dont use statemanager yet, we cant use model because in  login we need
           //! to add auth token to this object by copywith method
           //! so for now we just use sharedpreferences
@@ -103,7 +94,7 @@ class AuthRemoteSrc implements IAuthSrc {
           await preferences.setString('verify_token', token);
           // auth = AuthModel.fromJson(response.data);
         },
-      );
+      ).validate();
     } catch (e) {
       debugPrint('Error in Auth src user register :  ${e.toString()}');
     }
@@ -122,7 +113,9 @@ class AuthRemoteSrc implements IAuthSrc {
           'verify_token': token,
         },
       );
-      httpErrorHandle(response: response, onSuccess: () {});
+      HttpResponseHandler(
+        response: response,
+      ).validate();
     } catch (e) {
       debugPrint('Error in Auth src resendActivation :  ${e.toString()}');
     }
@@ -142,7 +135,9 @@ class AuthRemoteSrc implements IAuthSrc {
           'active_token': activeToken,
         },
       );
-      httpErrorHandle(response: response, onSuccess: () {});
+      HttpResponseHandler(
+        response: response,
+      ).validate();
     } catch (e) {
       debugPrint('Error in Auth src user verify :  ${e.toString()}');
     }
@@ -164,15 +159,14 @@ class AuthRemoteSrc implements IAuthSrc {
           'email': email,
         },
       );
-
-      httpErrorHandle(
+      HttpResponseHandler(
         response: response,
-        onSuccess: () async {
+        on200: () async {
           String token = jsonDecode(response.data)['auth_token'];
 
           await preferences.setString('auth_token', token);
         },
-      );
+      ).validate();
     } catch (e) {
       debugPrint('Error in Auth src user login :  ${e.toString()}');
     }
