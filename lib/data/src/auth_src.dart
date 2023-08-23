@@ -26,7 +26,7 @@ abstract class IAuthSrc {
 
 class AuthRemoteSrc implements IAuthSrc {
   final Dio http;
-
+   
   AuthRemoteSrc({required this.http});
 
   @override
@@ -42,11 +42,25 @@ class AuthRemoteSrc implements IAuthSrc {
           'user_id': userId,
         },
       );
-      httpErrorHandle(
-          response: response,
-          onSuccess: () {
-            msg = jsonDecode(response.data)['ms'];
-          });
+
+      HttpResponseHandeler(
+        on200: () {
+          
+        },
+        on409: () {
+          //route login
+        }
+        ,response: response,
+      ).validate();
+
+
+ 
+
+      // httpErrorHandle(
+      //     response: response,
+      //     onSuccess: () {
+      //       msg = jsonDecode(response.data)['ms'];
+      //     });
     } catch (e) {
       debugPrint('Error in Auth src check Activation :  ${e.toString()}');
     }
@@ -121,7 +135,7 @@ class AuthRemoteSrc implements IAuthSrc {
     String? token = preferences.getString('verify_token');
     try {
       final response = await http.post(
-        'https://maktabkhoneh-api.sasansafari.com/api/v1/auth/verify',
+        '/auth/verify',
         data: {
           'user_id': userId,
           'verify_token': token,
