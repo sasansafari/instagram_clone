@@ -19,9 +19,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return RepositoryProvider(
       create: (BuildContext context) {
-            RepositoryProvider<Post>
-
-        },
+        // RepositoryProvider<Post>
+      },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'instagram clone',
@@ -31,5 +30,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
