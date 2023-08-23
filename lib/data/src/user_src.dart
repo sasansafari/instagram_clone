@@ -1,25 +1,29 @@
 import 'package:dio/dio.dart';
-import 'package:tec/common/response_validator.dart';
 import 'package:tec/data/model/user_model.dart';
 
-abstract class IUserSrc {
+import '../../common/http_error_handler.dart';
 
+abstract class IUserSrc {
   Future<void> editUser(UserModel userModel, String password) async =>
       editUser(userModel, password);
 
-  Future<UserModel> getUser(
-          {required String userName, required int userId}) async =>
+  Future<UserModel> getUser({
+    required String userName,
+    required int userId,
+  }) async =>
       getUser(userName: userName, userId: userId);
 
   Future<void> deleteUser({required int userId}) async =>
       deleteUser(userId: userId);
 
-  Future<void> followUnfollow(
-          {required int userId, required int followerId}) async =>
+  Future<void> followUnfollow({
+    required int userId,
+    required int followerId,
+  }) async =>
       followUnfollow(userId: userId, followerId: followerId);
 }
 
-class RemoteUserUrc with HttpResponseValidator implements IUserSrc {
+class RemoteUserUrc implements IUserSrc {
   final Dio httpClient;
 
   RemoteUserUrc(this.httpClient);
@@ -32,7 +36,9 @@ class RemoteUserUrc with HttpResponseValidator implements IUserSrc {
         'user_id': userId,
       },
     );
-    validateResponse(response);
+    HttpResponseHandler(
+      response: response,
+    ).validate();
   }
 
   @override
@@ -49,12 +55,16 @@ class RemoteUserUrc with HttpResponseValidator implements IUserSrc {
         'user_avatar': userModel.userAvatar,
       },
     );
-    validateResponse(response);
+    HttpResponseHandler(
+      response: response,
+    ).validate();
   }
 
   @override
-  Future<void> followUnfollow(
-      {required int userId, required int followerId}) async {
+  Future<void> followUnfollow({
+    required int userId,
+    required int followerId,
+  }) async {
     final response = await httpClient.post(
       'https://maktabkhoneh-api.sasansafari.com/api/v1/user/follow',
       data: {
@@ -62,16 +72,27 @@ class RemoteUserUrc with HttpResponseValidator implements IUserSrc {
         'follower_id': followerId,
       },
     );
-    validateResponse(response);
+    HttpResponseHandler(
+      response: response,
+    ).validate();
   }
 
   @override
-  Future<UserModel> getUser(
-      {required String userName, required int userId}) async {
+  Future<UserModel> getUser({
+    required String userName,
+    required int userId,
+  }) async {
+    UserModel userModel = UserModel.empty();
+
     final response = await httpClient.get(
       'https://maktabkhoneh-api.sasansafari.com/api/v1/user/getuser?username=$userName&user_id=${userId.toString()}',
     );
-    validateResponse(response);
-    return UserModel.fromJson(response.data);
+    HttpResponseHandler(
+      response: response,
+      on200: () {
+        userModel = UserModel.fromJson(response.data);
+      },
+    ).validate();
+    return userModel;
   }
 }

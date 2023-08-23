@@ -1,8 +1,8 @@
 class PostModel {
-   Info info;
-   List<String> files;
+  Info? info;
+  List<String>? files;
 
-   PostModel(
+  PostModel(
     this.info,
     this.files,
   );
@@ -12,6 +12,10 @@ class PostModel {
       Info.fromMapJson(json['data']['info']),
       json['data']['files'],
     );
+  }
+
+  factory PostModel.empty() {
+    return PostModel(null, null);
   }
 }
 
