@@ -17,8 +17,8 @@ class UserRepo implements IUserRepo {
       dataSource.deleteUser(userId: userId);
 
   @override
-  Future<void> editUser(UserModel userModel, String password) async {
-    return dataSource.editUser(userModel, password);
+  Future<void> editUser(UserModel userModel) async {
+    return dataSource.editUser(userModel);
   }
 
   @override
