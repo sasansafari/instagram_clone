@@ -75,10 +75,10 @@ class RemotePostSrc implements IPostSrc {
   @override
   Future<void> addPost({required int userId, String content = ''}) async {
     final response = await httpClient.post(
-      RemoteContants.postAdd,
+      RemoteConstants.postAdd,
       data: {
-        'user_id': userId,
-        'content': content,
+        RemoteKey.userId: userId,
+        RemoteKey.content: content,
       },
     );
     HttpResponseHandler(
@@ -89,10 +89,10 @@ class RemotePostSrc implements IPostSrc {
   @override
   Future<void> deletePost({required int userId, required int postId}) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/post/delete',
+      RemoteConstants.deletePost,
       data: {
-        'user_id': userId,
-        'post_id': postId,
+        RemoteKey.userId: userId,
+        RemoteKey.postId: postId,
       },
     );
     HttpResponseHandler(
@@ -107,11 +107,11 @@ class RemotePostSrc implements IPostSrc {
     String content = '',
   }) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/post/edit',
+      RemoteConstants.editPost,
       data: {
-        'user_id': userId,
-        'post_id': postId,
-        'content': content,
+        RemoteKey.userId: userId,
+        RemoteKey.postId: postId,
+        RemoteKey.content: content,
       },
     );
     HttpResponseHandler(
@@ -133,7 +133,7 @@ class RemotePostSrc implements IPostSrc {
     PostModel postModel = PostModel.empty();
 
     final response = await httpClient.get(
-      RemoteContants.getSinglePost,
+      RemoteConstants.getSinglePost,
       queryParameters: {'user_id': userId, 'post_id': postId},
     );
 
@@ -154,7 +154,7 @@ class RemotePostSrc implements IPostSrc {
     List<PostModel> postModelList = [];
 
     final response = await httpClient.get(
-      RemoteContants.getPostList,
+      RemoteConstants.getPostList,
       queryParameters: {'user_id': userId, 'random': random},
     );
     HttpResponseHandler(
@@ -175,10 +175,10 @@ class RemotePostSrc implements IPostSrc {
     required int postId,
   }) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/post/like',
+      RemoteConstants.likePost,
       data: {
-        'user_id': userId,
-        'post_id': postId,
+        RemoteKey.userId: userId,
+        RemoteKey.postId: postId,
       },
     );
     HttpResponseHandler(
@@ -194,10 +194,10 @@ class RemotePostSrc implements IPostSrc {
     PostModel postModel = PostModel.empty();
 
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/post/deletefile',
+      RemoteConstants.deleteFile,
       data: {
-        'user_id': userId,
-        'file_id': fileId,
+        RemoteKey.userId: userId,
+        RemoteKey.fileId: fileId,
       },
     );
     HttpResponseHandler(
@@ -216,11 +216,11 @@ class RemotePostSrc implements IPostSrc {
     required List<String> file,
   }) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/post/fileupload',
+      RemoteConstants.uploadFile,
       data: {
-        'user_id': userId,
-        'post_id': postId,
-        'file': file,
+        RemoteKey.userId: userId,
+        RemoteKey.postId: postId,
+        RemoteKey.file: file,
       },
     );
     HttpResponseHandler(

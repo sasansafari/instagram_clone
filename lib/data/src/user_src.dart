@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:tec/data/constant.dart';
 import 'package:tec/data/model/user_model.dart';
 
 import '../../common/http_error_handler.dart';
 
 abstract class IUserSrc {
-  Future<void> editUser(UserModel userModel, String password) async =>
-      editUser(userModel, password);
+  Future<void> editUser(UserModel userModel) async => editUser(userModel);
 
   Future<UserModel> getUser({
     required String userName,
@@ -31,9 +31,9 @@ class RemoteUserUrc implements IUserSrc {
   @override
   Future<void> deleteUser({required int userId}) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/user/delete',
+      RemoteConstants.deleteUser,
       data: {
-        'user_id': userId,
+        RemoteKey.userId: userId,
       },
     );
     HttpResponseHandler(
@@ -42,18 +42,10 @@ class RemoteUserUrc implements IUserSrc {
   }
 
   @override
-  Future<void> editUser(UserModel userModel, String password) async {
+  Future<void> editUser(UserModel userModel) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/user/update',
-      data: {
-        'user_id': userModel.userId,
-        'username': userModel.userName,
-        'password': password,
-        'full_name': userModel.fullName,
-        'email': userModel.email,
-        'phone': userModel.phone,
-        'user_avatar': userModel.userAvatar,
-      },
+      RemoteConstants.updateUser,
+      data: userModel.toJson(),
     );
     HttpResponseHandler(
       response: response,
@@ -66,10 +58,10 @@ class RemoteUserUrc implements IUserSrc {
     required int followerId,
   }) async {
     final response = await httpClient.post(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/user/follow',
+      RemoteConstants.followUser,
       data: {
-        'user_id': userId,
-        'follower_id': followerId,
+        RemoteKey.userId: userId,
+        RemoteKey.followerId: followerId,
       },
     );
     HttpResponseHandler(
@@ -85,7 +77,11 @@ class RemoteUserUrc implements IUserSrc {
     UserModel userModel = UserModel.empty();
 
     final response = await httpClient.get(
-      'https://maktabkhoneh-api.sasansafari.com/api/v1/user/getuser?username=$userName&user_id=${userId.toString()}',
+      RemoteConstants.getUser,
+      queryParameters: {
+        RemoteKey.userName: userName,
+        RemoteKey.userId: userId.toString()
+      },
     );
     HttpResponseHandler(
       response: response,
