@@ -18,6 +18,7 @@ class RemoteConstants {
   static const followUser = '$baseUrl/user/follow';
   static const updateUser = '$baseUrl/user/update';
   static const deleteUser = '$baseUrl/user/delete';
+  static const getStoryList = '$baseUrl/story/getstories';
 }
 
 class RemoteKey {
