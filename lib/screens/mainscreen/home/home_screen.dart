@@ -1,13 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:tec/data/repo/post_repo.dart';
-import 'package:tec/data/src/post_src.dart';
+
 import 'package:tec/extensions/space_xy_extension.dart';
 import 'package:tec/models/stories_data.dart';
-import 'package:tec/screens/mainscreen/home/bloc/home_bloc.dart';
 import 'package:tec/widgets/main_app_bar.dart';
 import 'package:tec/widgets/story_list.dart';
-
 import '../../../data/repo/story_repo.dart';
 import '../../../data/src/story_src.dart';
 import '../../../models/posts_model.dart';
@@ -31,20 +28,23 @@ class HomeScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const MainAppBar(),
+          body: CustomScrollView(
+        slivers: [
+          const SliverAppBar(
+            flexibleSpace: MainAppBar(),
+            floating: true,
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
               StoryList(stories: StoriesDatabase.stories),
               PostsListView(postsData: PostsDatabase.posts),
               10.0.spaceY,
               const CircularProgressIndicator(),
               10.0.spaceY,
-            ],
-          ),
-        ),
-      ),
+            ]),
+          )
+        ],
+      )),
     );
   }
 }
