@@ -1,11 +1,7 @@
 import '../src/auth_src.dart';
 
 abstract class IAuthRepo {
-  Future<void> userLogin(
-    String? userName,
-    String password,
-    String? email,
-  );
+  Future<void> userLogin(String? userName, String password, String? email);
   Future<void> registerUser(
     String userName,
     String password,
