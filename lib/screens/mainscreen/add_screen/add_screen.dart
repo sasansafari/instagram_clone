@@ -291,7 +291,7 @@ class MediaServices {
     List<AssetEntity> assetList = await selectedAlbum.getAssetListRange(
       start: 0,
       // ignore: deprecated_member_use
-      end: selectedAlbum.assetCount,
+      end: await selectedAlbum.assetCountAsync,
     );
     return assetList;
   }
