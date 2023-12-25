@@ -3,12 +3,14 @@ import 'package:photo_manager/photo_manager.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../widgets/image_action_custom_widget.dart';
+import 'package:photo_manager_image_provider/photo_manager_image_provider.dart';
 
 class SelectedAssetWidget extends StatelessWidget {
   const SelectedAssetWidget({
     super.key,
     required this.selectedAsset,
-    this.changeIsMultiple, required this.isMultiple,
+    this.changeIsMultiple,
+    required this.isMultiple,
   });
 
   final AssetEntity? selectedAsset;
